@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>مدرسة مظهر العلوم - MUM KALLOOR-KOOTHALI (1283)</title>
+
+  <!-- PWA Settings -->
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MUM Madrasa">
+
+  <!-- Detailed Islamic Vector Art Logo Manifest -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"مدرسة مظهر العلوم","short_name":"MUM Smart","start_url":".","display":"standalone","background_color":"#4f46e5","theme_color":"#4f46e5","icons":[{"src":"data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><defs><linearGradient id=%22bg%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%23312e81%22/><stop offset=%2250%25%22 stop-color=%22%234f46e5%22/><stop offset=%22100%25%22 stop-color=%22%23065f46%22/></linearGradient><linearGradient id=%22gold%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%23fef08a%22/><stop offset=%22100%25%22 stop-color=%22%23eab308%22/></linearGradient></defs><rect width=%22512%22 height=%22512%22 rx=%22130%22 fill=%22url(%23bg)%22/><path d=%22M256 60 C180 60 130 130 130 210 C130 330 256 380 256 380 C256 380 382 330 382 210 C382 130 332 60 256 60 Z%22 fill=%22none%22 stroke=%22url(%23gold)%22 stroke-width=%228%22/><path d=%22M256 100 A28 28 0 1 0 284 128 A22 22 0 1 1 256 100 Z%22 fill=%22url(%23gold)%22/><polygon points=%22256,85 260,95 270,95 262,101 265,111 256,105 247,111 250,101 242,95 252,95%22 fill=%22%23ffffff%22/><text x=%22256%22 y=%22220%22 font-family=%22serif%22 font-weight=%22bold%22 font-size=%2244%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>مدرسة</text><text x=%22256%22 y=%22285%22 font-family=%22serif%22 font-weight=%22bold%22 font-size=%2250%22 fill=%22url(%23gold)%22 text-anchor=%22middle%22>مظهر العلوم</text><text x=%22256%22 y=%22440%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2226%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>KALLOOR-KOOTHALI (1283)</text></svg>","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}]}'>
+  <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><defs><linearGradient id='bg' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23312e81'/><stop offset='50%' stop-color='%234f46e5'/><stop offset='100%' stop-color='%23065f46'/></linearGradient><linearGradient id='gold' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23fef08a'/><stop offset='100%' stop-color='%23eab308'/></linearGradient></defs><rect width='512' height='512' rx='130' fill='url(#bg)'/><path d='M256 60 C180 60 130 130 130 210 C130 330 256 380 256 380 C256 380 382 330 382 210 C382 130 332 60 256 60 Z' fill='none' stroke='url(#gold)' stroke-width='8'/><text x='256' y='225' font-family='serif' font-weight='bold' font-size='46' fill='#ffffff' text-anchor='middle'>مدرسة</text><text x='256' y='290' font-family='serif' font-weight='bold' font-size='52' fill='url(#gold)' text-anchor='middle'>مظهر العلوم</text><text x='256' y='440' font-family='sans-serif' font-weight='900' font-size='28' fill='#ffffff' text-anchor='middle'>1283</text></svg>">
+
+  <!-- Tailwind CSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Manjari:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');
+    body { font-family: 'Plus Jakarta Sans', 'Manjari', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .font-amiri { font-family: 'Amiri', serif; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @media print {
+      body * { visibility: hidden; }
+      #printable-report, #printable-report * { visibility: visible; }
+      #printable-report { position: absolute; left: 0; top: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50/80 via-purple-50/50 to-pink-50/60 text-slate-800 min-h-screen flex flex-col pb-24">
+
+  <!-- Top Header -->
+  <header class="bg-white/85 backdrop-blur-xl sticky top-0 z-40 border-b border-indigo-100/70 px-4 py-2.5 shadow-xs">
+    <div class="max-w-md mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <button onclick="toggleSidebar()" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 text-white flex items-center justify-center shadow-sm shadow-indigo-200 active:scale-95 transition">
+          <i class="fa-solid fa-bars-staggered text-sm"></i>
+        </button>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-amiri font-bold text-xs text-indigo-950">مدرسة مظهر العلوم</span>
+            <span class="text-[9px] font-black bg-amber-100 text-amber-800 px-1.5 py-0.2 rounded-md">1283</span>
+          </div>
+          <h1 class="text-[11px] font-black tracking-tight text-slate-800 leading-none">MALHARUL ULOOM MADRASA</h1>
+          <p class="text-[9px] font-black text-purple-600 tracking-wider">KALLOOR-KOOTHALI</p>
+        </div>
+      </div>
+
+      <!-- Quick Login Button -->
+      <button onclick="openLoginOptionsModal()" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-black text-[10px] shadow-sm hover:opacity-90 active:scale-95 transition flex items-center gap-1.5">
+        <i class="fa-solid fa-user-lock text-[9px]"></i>
+        <span>LOGIN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+
+  <!-- Sidebar Drawer -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white w-72 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col justify-between">
+    <div class="p-5 overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-700 via-purple-600 to-pink-500 text-white flex flex-col items-center justify-center shadow-md">
+            <span class="font-amiri text-xs font-bold leading-tight">مظهر</span>
+            <span class="text-[8px] font-black text-amber-200">1283</span>
+          </div>
+          <div>
+            <h2 class="font-black text-xs text-slate-900 leading-tight">MUM MADRASA</h2>
+            <p class="text-[10px] font-bold text-indigo-600">Kalloor-Koothali</p>
+          </div>
+        </div>
+        <button onclick="toggleSidebar()" class="text-slate-400 hover:text-slate-800 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="mt-4 space-y-1">
+        <button onclick="switchTab('home')" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 transition">
+          <i class="fa-solid fa-house text-indigo-500 w-5"></i> ഹോം പേജ് (Home)
+        </button>
+        <button onclick="openStudentLoginModal()" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-purple-700 bg-purple-50/70 hover:bg-purple-100 transition">
+          <i class="fa-solid fa-user-graduate text-purple-600 w-5"></i> സ്റ്റുഡന്റ് & പാരന്റ് പോർട്ടൽ
+        </button>
+        <button onclick="switchTab('madrasa-details')" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-emerald-800 bg-emerald-50/70 hover:bg-emerald-100 transition">
+          <i class="fa-solid fa-chart-pie text-emerald-600 w-5"></i> മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്
+        </button>
+        <button onclick="switchTab('result-check')" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-700 transition">
+          <i class="fa-solid fa-square-poll-vertical text-teal-500 w-5"></i> പരീക്ഷാ ഫലം (Result)
+        </button>
+        <button onclick="switchTab('class-notes')" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition">
+          <i class="fa-solid fa-book-bookmark text-blue-500 w-5"></i> ക്ലാസുകൾ & വിഷയങ്ങൾ
+        </button>
+        <button onclick="switchTab('timetable')" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-amber-50 hover:text-amber-700 transition">
+          <i class="fa-solid fa-calendar-days text-amber-500 w-5"></i> ടൈംടേബിൾ (Time Table)
+        </button>
+        <button onclick="switchTab('staff-mgmt-view')" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 transition">
+          <i class="fa-solid fa-users-viewfinder text-indigo-500 w-5"></i> സ്റ്റാഫ് & മാനേജ്‌മെന്റ്
+        </button>
+        <button onclick="switchTab('gallery')" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-pink-50 hover:text-pink-700 transition">
+          <i class="fa-solid fa-images text-pink-500 w-5"></i> ഫോട്ടോ ഗാലറി (Events)
+        </button>
+      </nav>
+    </div>
+
+    <!-- Official Contacts -->
+    <div class="p-4 bg-slate-50 border-t border-slate-100 space-y-1.5 text-xs">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-extrabold text-[9px] text-indigo-600 uppercase">ADMIN</p>
+          <p class="font-bold text-slate-900">RASHIDALI FAIZY</p>
+        </div>
+        <a href="tel:6238403492" class="text-indigo-700 font-black">6238403492</a>
+      </div>
+      <div class="flex justify-between items-center pt-1 border-t border-slate-200/60">
+        <div>
+          <p class="font-extrabold text-[9px] text-purple-600 uppercase">SADAR MUALLIM</p>
+          <p class="font-bold text-slate-900">SHAFI DARIMI</p>
+        </div>
+        <a href="tel:9605169230" class="text-purple-700 font-black">9605169230</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main View Container -->
+  <main class="max-w-md mx-auto w-full px-4 pt-3 flex-grow">
+
+    <!-- 1. HOME SCREEN -->
+    <section id="tab-home" class="space-y-4">
+      
+      <!-- Notice Board with Rotating Class First Ranks -->
+      <div class="bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden border border-white/10">
+        <div class="flex items-center justify-between mb-3">
+          <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md text-white text-[10px] font-black uppercase px-3 py-1 rounded-full border border-white/10">
+            <span class="w-2 h-2 rounded-full bg-pink-400 animate-ping"></span> നോട്ടീസ് ബോർഡ് (NOTICE)
+          </span>
+          <span class="text-[10px] font-black text-amber-300">KALLOOR-KOOTHALI</span>
+        </div>
+
+        <div class="min-h-[110px] flex flex-col justify-center py-1">
+          <h2 id="notice-title" class="text-base font-black tracking-tight leading-snug">
+            WELCOME TO MALHARUL ULOOM MADRASA KALLOOR-KOOTHALI
+          </h2>
+          <p id="notice-desc" class="text-xs text-purple-100 mt-2 leading-relaxed">
+            വിദ്യാർത്ഥികളുടെ പഠന പുരോഗതിയും മദ്റസയിലെ തത്സമയ വിവരങ്ങളും ഇവിടെ ലഭ്യമാണ്.
+          </p>
+
+          <!-- Rotating First Ranks Display -->
+          <div id="notice-rank-rotation-box" class="hidden mt-3 p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black text-amber-300 uppercase tracking-wider">🥇 ഒന്നാം റാങ്ക് ജേതാക്കൾ:</span>
+              <span id="rot-rank-class" class="text-[10px] font-bold text-white bg-pink-500 px-2 py-0.5 rounded-full">Class 1</span>
+            </div>
+            <h4 id="rot-rank-name" class="text-sm font-black text-white mt-1">--</h4>
+            <p id="rot-rank-score" class="text-[10px] text-amber-200 font-bold">Total: -- / 300 (Top Scorer)</p>
+          </div>
+        </div>
+
+        <!-- Result Check Banner -->
+        <div id="notice-result-banner" class="hidden mt-3 pt-3 border-t border-white/20 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-amber-300 block">പരീക്ഷാ ഫലം ലഭ്യമാണ്</span>
+            <h4 id="notice-exam-name" class="text-xs font-black text-white">Quarterly Exam</h4>
+          </div>
+          <button onclick="switchTab('result-check')" class="bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 text-slate-900 text-xs font-black px-4 py-2 rounded-2xl shadow-md transition flex items-center gap-1.5 active:scale-95">
+            <i class="fa-solid fa-square-poll-vertical"></i> ചെക്ക് റിസൾട്ട്
+          </button>
+        </div>
+
+        <div class="absolute -right-8 -bottom-8 w-36 h-36 bg-pink-500/20 rounded-full blur-2xl pointer-events-none"></div>
+      </div>
+
+      <!-- Colorful Services Grid -->
+      <div class="space-y-2.5">
+        <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">QUICK SERVICES</h3>
+
+        <div class="grid grid-cols-4 gap-2.5">
+          <!-- Prayer Tracker App Link -->
+          <a href="https://mu-madrasa.vercel.app/" target="_blank" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-emerald-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-500 text-white flex flex-col items-center justify-center shadow-md shadow-emerald-200">
+              <span class="font-black text-[11px] leading-tight">MUM</span>
+              <span class="text-[7px] font-bold text-emerald-200">PRAYER</span>
+            </div>
+            <span class="text-[10px] font-black text-emerald-800 text-center leading-tight">PRAYER APP</span>
+          </a>
+
+          <!-- Class & Subjects -->
+          <button onclick="switchTab('class-notes')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-blue-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-500 to-cyan-400 text-white text-lg flex items-center justify-center shadow-md shadow-blue-200">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <span class="text-[10px] font-black text-slate-700">CLASS</span>
+          </button>
+
+          <!-- Check Result -->
+          <button onclick="switchTab('result-check')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-teal-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 text-white text-lg flex items-center justify-center shadow-md shadow-teal-200">
+              <i class="fa-solid fa-square-poll-vertical"></i>
+            </div>
+            <span class="text-[10px] font-black text-slate-700">RESULT</span>
+          </button>
+
+          <!-- Time Table -->
+          <button onclick="switchTab('timetable')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-amber-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-400 text-white text-lg flex items-center justify-center shadow-md shadow-amber-200">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <span class="text-[10px] font-black text-slate-700 text-center leading-tight">TIMETABLE</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2.5">
+          <!-- Staff & Management -->
+          <button onclick="switchTab('staff-mgmt-view')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-indigo-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 text-white text-lg flex items-center justify-center shadow-md shadow-indigo-200">
+              <i class="fa-solid fa-users-viewfinder"></i>
+            </div>
+            <span class="text-[9px] font-black text-slate-700 text-center leading-tight">STAFF & MGMT</span>
+          </button>
+
+          <!-- Madrasa Basic Details -->
+          <button onclick="switchTab('madrasa-details')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-purple-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 to-indigo-500 text-white text-lg flex items-center justify-center shadow-md shadow-purple-200">
+              <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <span class="text-[10px] font-black text-slate-700 text-center leading-tight">DETAILS</span>
+          </button>
+
+          <!-- Photo Gallery -->
+          <button onclick="switchTab('gallery')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-rose-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-500 text-white text-lg flex items-center justify-center shadow-md shadow-rose-200">
+              <i class="fa-solid fa-images"></i>
+            </div>
+            <span class="text-[10px] font-black text-slate-700">GALLERY</span>
+          </button>
+
+          <!-- Toppers Leaderboard -->
+          <button onclick="switchTab('students-dash')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-yellow-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-yellow-500 to-amber-500 text-white text-lg flex items-center justify-center shadow-md shadow-yellow-200">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <span class="text-[10px] font-black text-slate-700">TOPPERS</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Daily Hadith Card -->
+      <div class="p-4 bg-white rounded-3xl border border-indigo-100/70 shadow-xs space-y-1.5">
+        <div class="flex items-center gap-2 text-indigo-700 font-bold text-xs">
+          <i class="fa-solid fa-quote-left text-pink-500"></i>
+          <span>ഇന്നത്തെ സന്ദേശം (Daily Message)</span>
+        </div>
+        <p class="text-xs text-slate-700 font-semibold leading-relaxed">
+          "നിങ്ങളിൽ ഏറ്റവും ഉത്തമർ ഖുർആൻ പഠിക്കുകയും അത് മറ്റുള്ളവർക്ക് പഠിപ്പിച്ചുകൊടുക്കുകയും ചെയ്യുന്നവരാണ്." (സ്വഹീഹുൽ ബുഖാരി)
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. MADRASA BASIC DETAILS -->
+    <section id="tab-madrasa-details" class="hidden space-y-4">
+      <div class="bg-gradient-to-r from-emerald-800 to-teal-800 text-white p-5 rounded-3xl shadow-lg space-y-1">
+        <span class="text-[9px] font-black uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">MADRASA STATS</span>
+        <h3 class="text-sm font-black">മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്</h3>
+        <p class="text-[11px] text-emerald-100">ഉസ്താദുമാർ ചേർത്ത വിദ്യാർത്ഥികളുടെ തത്സമയ സ്ഥിതിവിവരക്കണക്കുകൾ</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-xs text-center">
+          <span class="text-[10px] font-black text-slate-400 uppercase">ആകെ കുട്ടികൾ</span>
+          <h4 id="stat-total-students" class="text-lg font-black text-indigo-600 mt-0.5">0</h4>
+        </div>
+        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-xs text-center">
+          <span class="text-[10px] font-black text-blue-500 uppercase">ആൺകുട്ടികൾ</span>
+          <h4 id="stat-total-boys" class="text-lg font-black text-blue-600 mt-0.5">0</h4>
+        </div>
+        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-xs text-center">
+          <span class="text-[10px] font-black text-pink-500 uppercase">പെൺകുട്ടികൾ</span>
+          <h4 id="stat-total-girls" class="text-lg font-black text-pink-600 mt-0.5">0</h4>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h4 class="text-xs font-black text-slate-800 border-b pb-2">ഓരോ ക്ലാസിലെയും കുട്ടികളുടെ എണ്ണം (Class 1 to 10)</h4>
+        <div id="class-breakdown-list" class="grid grid-cols-2 gap-2 text-xs"></div>
+      </div>
+    </section>
+
+    <!-- 3. STUDENT & PARENT PROFILE -->
+    <section id="tab-student-profile" class="hidden space-y-4">
+      <div class="bg-gradient-to-r from-purple-800 via-indigo-800 to-pink-800 text-white p-5 rounded-3xl shadow-lg flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img id="sp-photo" src="https://via.placeholder.com/100" class="w-14 h-14 rounded-2xl object-cover border-2 border-white shadow-sm">
+          <div>
+            <span class="text-[9px] font-black uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-full">STUDENT PORTAL</span>
+            <h3 id="sp-name" class="text-sm font-black mt-1">--</h3>
+            <p id="sp-class-uid" class="text-[11px] text-purple-200 font-bold">Class: -- • UID: --</p>
+          </div>
+        </div>
+        <button onclick="logoutStudent()" class="text-xs bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-xl font-bold">
+          LOGOUT
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2.5">
+        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-xs">
+          <span class="text-[10px] font-black text-slate-400 uppercase block">ഇന്നത്തെ ഹോംവർക്ക്</span>
+          <h4 id="sp-hw-status" class="text-xs font-black text-emerald-600 mt-1">DONE ✅</h4>
+          <p class="text-[10px] text-slate-400">അധ്യാപകൻ അടയാളപ്പെടുത്തിയത്</p>
+        </div>
+
+        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-xs">
+          <span class="text-[10px] font-black text-slate-400 uppercase block">ഡെയ്‌ലി ആക്ടിവിറ്റി സ്കോർ</span>
+          <h4 id="sp-daily-score" class="text-sm font-black text-purple-600 mt-1">25 / 25</h4>
+          <p class="text-[10px] text-slate-400">ഹാജർ & ആക്ടിവിറ്റികൾ</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥി പുരോഗതി ഗ്രാഫ്</h4>
+          <select id="sp-exam-selector" onchange="renderStudentProfileMarks()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold outline-none">
+            <option value="quarterly">Quarterly</option>
+            <option value="halfYearly">Half Yearly</option>
+            <option value="annual">Annual</option>
+          </select>
+        </div>
+
+        <div class="h-44">
+          <canvas id="spProgressChart"></canvas>
+        </div>
+
+        <div id="sp-marks-table" class="space-y-1.5 text-xs pt-2"></div>
+
+        <div class="p-3 bg-indigo-50 rounded-2xl border border-indigo-100 flex justify-between items-center text-xs">
+          <span class="font-bold text-indigo-950">ആകെ സ്കോർ:</span>
+          <span id="sp-total-score" class="font-black text-indigo-700 text-sm">--</span>
+        </div>
+
+        <button onclick="window.print()" class="w-full bg-slate-900 hover:bg-black text-white font-black text-xs py-3 rounded-2xl shadow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-file-arrow-down text-red-400"></i> പ്രോഗ്രസ് കാർഡ് പ്രിന്റ് ചെയ്യുക (PDF)
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. CHECK RESULT TAB -->
+    <section id="tab-result-check" class="hidden space-y-4">
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <div class="text-center">
+          <h3 class="text-sm font-black text-slate-800">CHECK EXAM RESULT</h3>
+          <p class="text-[11px] text-slate-400">പരീക്ഷ തിരഞ്ഞെടുത്ത് അഡ്മിഷൻ നമ്പറും പാസ്‌വേഡും നൽകുക</p>
+        </div>
+
+        <div class="space-y-2.5">
+          <select id="stud-exam-type" class="w-full p-3 bg-slate-50 border rounded-2xl text-xs font-bold outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="quarterly">പാദവാർഷിക പരീക്ഷ (Quarterly)</option>
+            <option value="halfYearly">അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly)</option>
+            <option value="annual">വാർഷിക പരീക്ഷ (Annual)</option>
+          </select>
+
+          <input id="stud-search-id" type="text" placeholder="Admission Number അല്ലെങ്കിൽ പേര്" class="w-full p-3 bg-slate-50 border rounded-2xl text-xs font-bold outline-none focus:ring-2 focus:ring-indigo-500">
+          <input id="stud-search-pwd" type="password" placeholder="പാസ്‌വേഡ്" class="w-full p-3 bg-slate-50 border rounded-2xl text-xs font-bold outline-none focus:ring-2 focus:ring-indigo-500">
+
+          <button onclick="searchStudentResult()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black text-xs py-3.5 rounded-2xl shadow-md shadow-indigo-200 hover:opacity-90 transition">
+            റിസൾട്ട് പരിശോധിക്കുക
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Result Card -->
+      <div id="result-card-box" class="hidden space-y-3">
+        <div id="printable-report" class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl space-y-4">
+          <div class="text-center border-b pb-3">
+            <h2 class="text-sm font-amiri font-bold text-indigo-950">مدرسة مظهر العلوم</h2>
+            <h3 class="text-xs font-black text-indigo-800 uppercase">MALHARUL ULOOM MADRASA (1283)</h3>
+            <p class="text-[10px] font-bold text-slate-400">Kalloor-Koothali</p>
+            <span id="rep-exam-badge" class="inline-block mt-1 bg-indigo-50 text-indigo-700 text-[10px] font-black px-3 py-0.5 rounded-full uppercase">Quarterly Exam</span>
+          </div>
+
+          <div class="flex items-center gap-3.5">
+            <img id="res-photo" src="https://via.placeholder.com/100" class="w-16 h-16 rounded-2xl object-cover border-2 border-indigo-500 shadow-xs">
+            <div>
+              <h3 id="res-name" class="font-black text-sm text-slate-800 leading-tight">--</h3>
+              <p id="res-class" class="text-xs font-bold text-slate-500">Class: --</p>
+              <p id="res-adm" class="text-[10px] text-slate-400">Adm No: --</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="p-2.5 rounded-2xl bg-blue-50/70 border border-blue-100">
+              <span class="text-[9px] font-black text-blue-500 uppercase block">ഹാജർ നില</span>
+              <span id="res-att" class="font-extrabold text-slate-800">--</span>
+            </div>
+            <div class="p-2.5 rounded-2xl bg-emerald-50/70 border border-emerald-100">
+              <span class="text-[9px] font-black text-emerald-500 uppercase block">റിസൾട്ട്</span>
+              <span id="res-status" class="font-black text-emerald-600">PASSED</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-[11px] font-black text-slate-700 uppercase tracking-wider mb-1.5">വിഷയങ്ങൾ & മാർക്കുകൾ (Max 50)</h4>
+            <div id="res-subjects-list" class="space-y-1.5 text-xs"></div>
+          </div>
+
+          <div class="p-3 bg-gradient-to-r from-slate-900 to-indigo-950 text-white rounded-2xl flex justify-between items-center text-xs">
+            <span class="font-bold">ആകെ മാർക്ക് (Total):</span>
+            <span id="res-total" class="font-black text-amber-300 text-sm">--</span>
+          </div>
+
+          <div class="pt-2">
+            <canvas id="progressChart" class="h-40"></canvas>
+          </div>
+        </div>
+
+        <button onclick="window.print()" class="w-full bg-slate-900 hover:bg-black text-white font-black text-xs py-3.5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-file-pdf text-red-400"></i> PRINT / SAVE PROGRESS REPORT (PDF)
+        </button>
+      </div>
+    </section>
+
+    <!-- 5. CLASSES & SUBJECTS TAB -->
+    <section id="tab-class-notes" class="hidden space-y-4">
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h3 class="text-sm font-black text-slate-800">CLASSES & SUBJECTS</h3>
+        <p class="text-[11px] text-slate-400">ക്ലാസ് തിരഞ്ഞെടുക്കുമ്പോൾ അധ്യാപകൻ ചേർത്ത വിഷയങ്ങളും നോട്ടുകളും കാണാം</p>
+        
+        <div class="flex gap-2 overflow-x-auto hide-scrollbar py-1">
+          <button onclick="filterClassNotes('Class 1')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white whitespace-nowrap">Class 1</button>
+          <button onclick="filterClassNotes('Class 2')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 2</button>
+          <button onclick="filterClassNotes('Class 3')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 3</button>
+          <button onclick="filterClassNotes('Class 4')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 4</button>
+          <button onclick="filterClassNotes('Class 5')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 5</button>
+          <button onclick="filterClassNotes('Class 6')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 6</button>
+          <button onclick="filterClassNotes('Class 7')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 7</button>
+          <button onclick="filterClassNotes('Class 8')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 8</button>
+          <button onclick="filterClassNotes('Class 9')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 9</button>
+          <button onclick="filterClassNotes('Class 10')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 10</button>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-xs space-y-2">
+        <h4 id="class-subjects-header" class="text-xs font-black text-slate-800">Class 1 വിഷയങ്ങൾ:</h4>
+        <div id="class-subjects-buttons" class="flex flex-wrap gap-1.5"></div>
+      </div>
+
+      <div id="class-notes-feed" class="space-y-2.5"></div>
+    </section>
+
+    <!-- 6. TIMETABLE TAB -->
+    <section id="tab-timetable" class="hidden space-y-4">
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-black text-slate-800">MADRASA TIMETABLE</h3>
+          <span class="text-[9px] font-black bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full">ROUTINE</span>
+        </div>
+        <p class="text-[11px] text-slate-400">സ്ഥിരമായ ക്ലാസ് ടൈംടേബിൾ ഷെഡ്യൂൾ</p>
+        
+        <select id="tt-class-select" onchange="renderTimeTable()" class="w-full p-3 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
+          <option value="Class 1">ക്ലാസ് 1</option>
+          <option value="Class 2">ക്ലാസ് 2</option>
+          <option value="Class 3">ക്ലാസ് 3</option>
+          <option value="Class 4">ക്ലാസ് 4</option>
+          <option value="Class 5" selected>ക്ലാസ് 5</option>
+          <option value="Class 6">ക്ലാസ് 6</option>
+          <option value="Class 7">ക്ലാസ് 7</option>
+          <option value="Class 8">ക്ലാസ് 8</option>
+          <option value="Class 9">ക്ലാസ് 9</option>
+          <option value="Class 10">ക്ലാസ് 10</option>
+        </select>
+      </div>
+
+      <div id="timetable-display" class="space-y-2.5"></div>
+    </section>
+
+    <!-- 7. COMBINED STAFF & MANAGEMENT VIEW -->
+    <section id="tab-staff-mgmt-view" class="hidden space-y-4">
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-black text-slate-800">STAFF & MANAGEMENT</h3>
+          <span class="text-[9px] font-black bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full">OFFICIALS</span>
+        </div>
+        
+        <div class="flex p-1 bg-slate-100 rounded-2xl">
+          <button onclick="toggleStaffMgmtSub('staff')" id="btn-sub-staff" class="flex-1 py-1.5 text-xs font-black rounded-xl bg-white text-indigo-700 shadow-xs">അധ്യാപകർ (Teachers)</button>
+          <button onclick="toggleStaffMgmtSub('mgmt')" id="btn-sub-mgmt" class="flex-1 py-1.5 text-xs font-black rounded-xl text-slate-500">മാനേജ്‌മെന്റ് (Committee)</button>
+        </div>
+      </div>
+
+      <!-- Staff List -->
+      <div id="subview-staff-list" class="space-y-2.5">
+        <div class="p-3.5 rounded-3xl bg-white border border-slate-100 shadow-xs flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-black text-xs shadow-sm">RF</div>
+            <div>
+              <span class="text-[9px] font-black text-indigo-600 uppercase bg-indigo-50 px-2 py-0.5 rounded-md">ADMIN</span>
+              <h4 class="text-xs font-black text-slate-800 mt-1">RASHIDALI FAIZY</h4>
+              <p class="text-[10px] text-slate-500 font-bold">All Classes Monitoring</p>
+            </div>
+          </div>
+          <a href="tel:6238403492" class="w-9 h-9 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center shadow-xs"><i class="fa-solid fa-phone text-xs"></i></a>
+        </div>
+
+        <div class="p-3.5 rounded-3xl bg-white border border-slate-100 shadow-xs flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center font-black text-xs shadow-sm">SD</div>
+            <div>
+              <span class="text-[9px] font-black text-purple-600 uppercase bg-purple-50 px-2 py-0.5 rounded-md">SADAR MUALLIM</span>
+              <h4 class="text-xs font-black text-slate-800 mt-1">SHAFI DARIMI</h4>
+              <p class="text-[10px] text-slate-500 font-bold">Class: 9 & 10</p>
+            </div>
+          </div>
+          <a href="tel:9605169230" class="w-9 h-9 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center shadow-xs"><i class="fa-solid fa-phone text-xs"></i></a>
+        </div>
+
+        <div id="dynamic-staff-cards" class="space-y-2.5"></div>
+      </div>
+
+      <!-- Management Committee List -->
+      <div id="subview-mgmt-list" class="hidden space-y-2.5">
+        <div class="p-3.5 rounded-3xl bg-white border border-slate-100 shadow-xs flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-black text-xs shadow-sm">MC</div>
+            <div>
+              <span class="text-[9px] font-black text-indigo-600 uppercase bg-indigo-50 px-2 py-0.5 rounded-md">PRESIDENT</span>
+              <h4 class="text-xs font-black text-slate-800 mt-1">മദ്റസ മാനേജ്‌മെന്റ് പ്രസിഡന്റ്</h4>
+              <p class="text-[10px] text-slate-500 font-bold">Kalloor-Koothali Committee</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. PHOTO GALLERY & EVENTS -->
+    <section id="tab-gallery" class="hidden space-y-4">
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h3 class="text-sm font-black text-slate-800">PHOTO GALLERY & EVENTS</h3>
+        <p class="text-[11px] text-slate-400">മദ്റസയിലെ പ്രധാന പരിപാടികളും ഫോട്ടോകളും</p>
+      </div>
+
+      <div id="gallery-events-container" class="space-y-3"></div>
+    </section>
+
+    <!-- 9. TOPPERS LEADERBOARD -->
+    <section id="tab-students-dash" class="hidden space-y-4">
+      <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-black text-slate-800">TOPPERS LEADERBOARD</h3>
+          <span class="text-[9px] font-black bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full">RANKS</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 p-1 bg-slate-100 rounded-2xl">
+          <button onclick="setLeaderboardType('daily')" id="btn-lb-daily" class="py-2 text-xs font-black rounded-xl bg-white text-indigo-700 shadow-xs">DAILY</button>
+          <button onclick="setLeaderboardType('monthly')" id="btn-lb-monthly" class="py-2 text-xs font-black rounded-xl text-slate-500">MONTHLY</button>
+          <button onclick="setLeaderboardType('overall')" id="btn-lb-overall" class="py-2 text-xs font-black rounded-xl text-slate-500">OVERALL</button>
+        </div>
+
+        <select id="leaderboard-class-select" onchange="loadLeaderboardData()" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold outline-none">
+          <option value="All">All Classes</option>
+          <option value="Class 1">Class 1</option>
+          <option value="Class 2">Class 2</option>
+          <option value="Class 3">Class 3</option>
+          <option value="Class 4">Class 4</option>
+          <option value="Class 5">Class 5</option>
+          <option value="Class 6">Class 6</option>
+          <option value="Class 7">Class 7</option>
+          <option value="Class 8">Class 8</option>
+          <option value="Class 9">Class 9</option>
+          <option value="Class 10">Class 10</option>
+        </select>
+      </div>
+
+      <div id="leaderboard-list-box" class="space-y-2"></div>
+    </section>
+
+    <!-- 10. PROTECTED STAFF & TEACHERS DASHBOARD -->
+    <section id="tab-staff-dashboard" class="hidden space-y-4">
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-purple-950 text-white p-5 rounded-3xl shadow-lg flex items-center justify-between">
+        <div>
+          <span id="logged-role-badge" class="text-[9px] font-black uppercase tracking-wider bg-indigo-500 text-white px-2.5 py-0.5 rounded-full">TEACHER</span>
+          <h3 id="logged-user-name" class="text-xs font-black mt-1">അധ്യാപക ഡാഷ്‌ബോർഡ്</h3>
+          <p id="assigned-classes-hint" class="text-[10px] text-purple-300 font-bold mt-0.5">Class: All</p>
+        </div>
+        <button onclick="logoutStaff()" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-xl font-bold">LOGOUT</button>
+      </div>
+
+      <!-- Quick Options Grid -->
+      <div class="grid grid-cols-4 gap-2">
+        <button onclick="openStaffPanel('student-mgmt')" id="snav-student-mgmt" class="p-2.5 bg-white border border-indigo-300 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-indigo-800">
+          <i class="fa-solid fa-users text-sm text-indigo-600"></i>
+          <span class="text-[9px]">Students</span>
+        </button>
+        <button onclick="openStaffPanel('daily-tracker')" id="snav-daily-tracker" class="p-2.5 bg-white border border-slate-100 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-calendar-check text-sm text-pink-600"></i>
+          <span class="text-[9px]">Daily/HW</span>
+        </button>
+        <button onclick="openStaffPanel('marks-entry')" id="snav-marks-entry" class="p-2.5 bg-white border border-slate-100 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-pen-nib text-sm text-teal-600"></i>
+          <span class="text-[9px]">Exam Marks</span>
+        </button>
+        <button onclick="openStaffPanel('subject-mgmt')" id="snav-subject-mgmt" class="p-2.5 bg-white border border-slate-100 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-book text-sm text-blue-600"></i>
+          <span class="text-[9px]">Subjects</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-4 gap-2">
+        <button onclick="openStaffPanel('tt-mgmt')" id="snav-tt-mgmt" class="p-2.5 bg-white border border-slate-100 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-clock text-sm text-amber-600"></i>
+          <span class="text-[9px]">Timetable</span>
+        </button>
+        <button onclick="openStaffPanel('upload-notes')" id="snav-upload-notes" class="p-2.5 bg-white border border-slate-100 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-cloud-arrow-up text-sm text-cyan-600"></i>
+          <span class="text-[9px]">Notes</span>
+        </button>
+        <button onclick="openStaffPanel('teacher-setup')" id="snav-teacher-setup" class="p-2.5 bg-white border border-slate-100 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-user-plus text-sm text-purple-600"></i>
+          <span class="text-[9px]">Staff Assign</span>
+        </button>
+        <button onclick="openStaffPanel('publish-center')" id="snav-publish-center" class="p-2.5 bg-white border border-slate-100 rounded-2xl flex flex-col items-center gap-1 shadow-xs font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-bullhorn text-sm text-emerald-600"></i>
+          <span class="text-[9px]">Notice/Rank</span>
+        </button>
+      </div>
+
+      <!-- PANEL A: STUDENT MGMT -->
+      <div id="panel-student-mgmt" class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h4 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥി വിവരങ്ങൾ നൽകുക / തിരുത്തുക</h4>
+        <div class="space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <input id="input-adm" type="text" placeholder="Admission No *" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+            <input id="input-uid" type="text" placeholder="UID No" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          </div>
+          <input id="input-name" type="text" placeholder="വിദ്യാർത്ഥിയുടെ പേര് *" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          
+          <div class="grid grid-cols-2 gap-2">
+            <select id="input-class" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+            <select id="input-gender" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+              <option value="Boy">ആൺകുട്ടി (Boy)</option>
+              <option value="Girl">പെൺകുട്ടി (Girl)</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <input id="input-pwd" type="text" placeholder="Password *" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+            <input id="input-phone" type="tel" placeholder="രക്ഷിതാവിന്റെ ഫോൺ (91...)" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          </div>
+
+          <label class="block text-[10px] font-bold text-slate-500 pt-1">ഫോട്ടോ (ക്യാമറ / ഗാലറി):</label>
+          <input id="input-photo-file" type="file" accept="image/*" class="w-full text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-[11px] file:font-bold file:bg-indigo-50 file:text-indigo-700">
+
+          <button onclick="saveStudentData()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs py-3 rounded-2xl shadow transition mt-2">
+            വിദ്യാർത്ഥിയെ സേവ് ചെയ്യുക
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL B: DAILY TRACKER & HOMEWORK -->
+      <div id="panel-daily-tracker" class="hidden bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <div class="flex items-center justify-between border-b pb-2">
+          <h4 class="text-xs font-black text-slate-800">ഡെയ്‌ലി ടോപ്പേഴ്‌സ് & ഹോംവർക്ക് ട്രാക്കർ</h4>
+          <select id="dt-class-select" onchange="loadStudentsForDailyTracker()" class="p-1.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+        </div>
+
+        <p class="text-[10px] text-slate-400">ഹാജർ, ഹോംവർക്ക്, ആക്ടിവിറ്റികൾ രേഖപ്പെടുത്തി സേവ് ചെയ്യുക.</p>
+        <div id="daily-students-list" class="space-y-2 max-h-60 overflow-y-auto"></div>
+
+        <button onclick="saveDailyTrackerBatch()" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-black text-xs py-2.5 rounded-2xl shadow transition">
+          ഡെയ്‌ലി സ്കോറുകൾ സേവ് ചെയ്യുക
+        </button>
+
+        <button onclick="broadcastHomeworkAlert()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs py-2.5 rounded-2xl shadow transition flex items-center justify-center gap-1.5">
+          <i class="fa-brands fa-whatsapp text-sm"></i> ഹോംവർക്ക് ചെയ്യാത്തവർക്ക് വാട്സാപ്പ് അയക്കുക
+        </button>
+      </div>
+
+      <!-- PANEL C: EXAM MARKS ENTRY -->
+      <div id="panel-marks-entry" class="hidden bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs font-black text-slate-800">പരീക്ഷാ മാർക്കുകൾ രേഖപ്പെടുത്തുക</h4>
+          <span class="text-[9px] font-black bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full">MAX: 50 / PASS: 18</span>
+        </div>
+
+        <div class="space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <input id="m-adm" type="text" placeholder="അഡ്മിഷൻ നമ്പർ" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+            <select id="m-exam" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+              <option value="quarterly">പാദവാർഷിക പരീക്ഷ (Quarterly)</option>
+              <option value="halfYearly">അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly)</option>
+              <option value="annual">വാർഷിക പരീക്ഷ (Annual)</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <input id="m-att-p" type="number" placeholder="ഹാജർ (Present)" class="p-2 border rounded-xl text-xs font-bold">
+            <input id="m-att-t" type="number" placeholder="ആകെ ദിവസങ്ങൾ (Total)" class="p-2 border rounded-xl text-xs font-bold">
+          </div>
+
+          <div class="border-t pt-2 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] font-black text-slate-500 uppercase">വിഷയങ്ങൾ (പരമാവധി 50 മാർക്ക്):</span>
+              <span id="live-auto-total-badge" class="text-xs font-black text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-md">Total: 0</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <label class="text-[9px] font-bold text-slate-500 block">ഖുർആൻ (പാസ് 20):</label>
+                <input id="sub-quran" type="number" max="50" oninput="calculateLiveTotal()" placeholder="Max 50" class="w-full p-2 border rounded-xl">
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-500 block">ഫിഖ്ഹ് (പാസ് 18):</label>
+                <input id="sub-fiqh" type="number" max="50" oninput="calculateLiveTotal()" placeholder="Max 50" class="w-full p-2 border rounded-xl">
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-500 block">അഖീദ (പാസ് 18):</label>
+                <input id="sub-aqeeda" type="number" max="50" oninput="calculateLiveTotal()" placeholder="Max 50" class="w-full p-2 border rounded-xl">
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-500 block">താരീഖ് (പാസ് 18):</label>
+                <input id="sub-tareekh" type="number" max="50" oninput="calculateLiveTotal()" placeholder="Max 50" class="w-full p-2 border rounded-xl">
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-500 block">അഖ്ലാഖ് (പാസ് 18):</label>
+                <input id="sub-akhlaq" type="number" max="50" oninput="calculateLiveTotal()" placeholder="Max 50" class="w-full p-2 border rounded-xl">
+              </div>
+              <div>
+                <label class="text-[9px] font-bold text-slate-500 block">ലിസാൻ (പാസ് 18):</label>
+                <input id="sub-lisan" type="number" max="50" oninput="calculateLiveTotal()" placeholder="Max 50" class="w-full p-2 border rounded-xl">
+              </div>
+            </div>
+          </div>
+
+          <button onclick="saveStudentMarks()" class="w-full bg-slate-900 hover:bg-black text-white font-black text-xs py-3 rounded-2xl shadow transition mt-2">
+            മാർക്ക് സേവ് ചെയ്യുക (ഓട്ടോ ടോട്ടൽ & സ്റ്റാറ്റസ്)
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL D: SUBJECT MANAGEMENT -->
+      <div id="panel-subject-mgmt" class="hidden bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h4 class="text-xs font-black text-slate-800">ക്ലാസുകളിലേക്ക് വിഷയങ്ങൾ ചേർക്കുക</h4>
+        <div class="space-y-2">
+          <select id="sm-class-select" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+          <input id="sm-subject-name" type="text" placeholder="വിഷയത്തിന്റെ പേര് (ഉദാ: തജ്‌വീദ്)" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <button onclick="saveClassSubject()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-xs py-2.5 rounded-2xl shadow transition">
+            വിഷയം ആഡ് ചെയ്യുക
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL E: TIMETABLE MGMT -->
+      <div id="panel-tt-mgmt" class="hidden bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h4 class="text-xs font-black text-slate-800">ക്ലാസ് ടൈംടേബിൾ നൽകുക (ദിവസവും വിഷയങ്ങളും)</h4>
+        <div class="space-y-2">
+          <select id="tt-input-class" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+          <select id="tt-input-day" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+            <option value="Sunday">ഞായർ (Sunday)</option>
+            <option value="Monday">തിങ്കൾ (Monday)</option>
+            <option value="Tuesday">ചൊവ്വ (Tuesday)</option>
+            <option value="Wednesday">ബുധൻ (Wednesday)</option>
+            <option value="Thursday">വ്യാഴം (Thursday)</option>
+            <option value="Saturday">ശനി (Saturday)</option>
+          </select>
+          <input id="tt-period-1" type="text" placeholder="പീരിയഡ് 1 (വിഷയം & സമയം)" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <input id="tt-period-2" type="text" placeholder="പീരിയഡ് 2 (വിഷയം & സമയം)" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <input id="tt-period-3" type="text" placeholder="പീരിയഡ് 3 (വിഷയം & സമയം)" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <button onclick="saveDailyRoutineTT()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-black text-xs py-3 rounded-2xl shadow transition">
+            ടൈംടേബിൾ സേവ് ചെയ്യുക
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL F: UPLOAD NOTES -->
+      <div id="panel-upload-notes" class="hidden bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h4 class="text-xs font-black text-slate-800">ക്ലാസ് നോട്ടുകൾ ചേർക്കുക</h4>
+        <div class="space-y-2">
+          <input id="note-title" type="text" placeholder="വിഷയം / നോട്ടിന്റെ തലക്കെട്ട്" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <select id="note-class" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+          <input id="note-link" type="url" placeholder="Google Drive ലിങ്ക് (URL)" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <button onclick="publishClassNote()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-black text-xs py-3 rounded-2xl shadow transition">
+            ലിങ്ക് ആപ്പിൽ ചേർക്കുക
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL G: TEACHER ALLOCATION (Admin Only) -->
+      <div id="panel-teacher-setup" class="hidden bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h4 class="text-xs font-black text-slate-800">അധ്യാപകരെ നിയമിക്കുക & ക്ലാസുകൾ നൽകുക</h4>
+        <div class="space-y-2">
+          <input id="t-name" type="text" placeholder="അധ്യാപകന്റെ പേര് *" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <div class="grid grid-cols-2 gap-2">
+            <input id="t-user" type="text" placeholder="യൂസർനെയിം *" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+            <input id="t-pwd" type="text" placeholder="പാസ്‌വേഡ് *" class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          </div>
+          <input id="t-phone" type="tel" placeholder="ഫോൺ നമ്പർ" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          
+          <label class="block text-[10px] font-bold text-slate-500 pt-1">അധ്യാപകന് നൽകുന്ന ക്ലാസുകൾ:</label>
+          <div id="t-classes-checkboxes" class="grid grid-cols-5 gap-1.5 text-[10px] font-bold p-2 bg-slate-50 rounded-xl border">
+            <label><input type="checkbox" value="Class 1"> 1</label>
+            <label><input type="checkbox" value="Class 2"> 2</label>
+            <label><input type="checkbox" value="Class 3"> 3</label>
+            <label><input type="checkbox" value="Class 4"> 4</label>
+            <label><input type="checkbox" value="Class 5"> 5</label>
+            <label><input type="checkbox" value="Class 6"> 6</label>
+            <label><input type="checkbox" value="Class 7"> 7</label>
+            <label><input type="checkbox" value="Class 8"> 8</label>
+            <label><input type="checkbox" value="Class 9"> 9</label>
+            <label><input type="checkbox" value="Class 10"> 10</label>
+          </div>
+
+          <label class="block text-[10px] font-bold text-slate-500 pt-1">ഫോട്ടോ:</label>
+          <input id="t-photo-file" type="file" accept="image/*" class="w-full text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-[11px] file:font-bold file:bg-purple-50 file:text-purple-700">
+
+          <button onclick="saveTeacherProfile()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-black text-xs py-3 rounded-2xl shadow transition mt-1">
+            അധ്യാപകനെ സേവ് ചെയ്യുക
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL H: NOTICE & FIRST RANK ROTATION TOGGLE (Admin Only) -->
+      <div id="panel-publish-center" class="hidden bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+        <h4 class="text-xs font-black text-slate-800">നോട്ടീസ് ബോർഡ് & റാങ്ക് റൊട്ടേഷൻ കൺട്രോൾ</h4>
+        <div class="space-y-2">
+          <select id="admin-exam-choice" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+            <option value="പാദവാർഷിക പരീക്ഷ (Quarterly Exam)">പാദവാർഷിക പരീക്ഷ (Quarterly Exam)</option>
+            <option value="അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly Exam)">അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly Exam)</option>
+            <option value="വാർഷിക പരീക്ഷ (Annual Exam)">വാർഷിക പരീക്ഷ (Annual Exam)</option>
+          </select>
+
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-2xl border">
+            <span class="text-xs font-bold text-slate-800">ഒന്നാം റാങ്കുകാരെ നോട്ടീസ് ബോർഡിൽ കാണിക്കുക:</span>
+            <input type="checkbox" id="admin-toggle-ranks-switch" class="w-4 h-4 accent-indigo-600" checked>
+          </div>
+
+          <button onclick="adminTogglePublish(true)" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs py-3 rounded-2xl shadow transition">
+            റിസൾട്ട് & റാങ്ക് നോട്ടീസ് ബോർഡിൽ പബ്ലിഷ് ചെയ്യുക
+          </button>
+          <button onclick="adminTogglePublish(false)" class="w-full bg-slate-200 text-slate-700 font-bold text-xs py-2 rounded-xl transition">
+            പബ്ലിഷ് പിൻവലിക്കുക (Show Welcome Board)
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Login Options Modal -->
+  <div id="login-options-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h4 class="text-xs font-black text-slate-800">PORTAL LOGIN</h4>
+        <button onclick="closeLoginOptionsModal()" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-2 pt-1">
+        <button onclick="openStudentLoginModal()" class="w-full p-3 rounded-2xl bg-purple-50 border border-purple-100 flex items-center gap-3 hover:bg-purple-100 transition">
+          <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center text-lg">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="text-left">
+            <h5 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥി / രക്ഷിതാവ്</h5>
+            <p class="text-[10px] text-slate-500">Student & Parent Portal</p>
+          </div>
+        </button>
+
+        <button onclick="openStaffModalDirect()" class="w-full p-3 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center gap-3 hover:bg-indigo-100 transition">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-lg">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div class="text-left">
+            <h5 class="text-xs font-black text-slate-800">സ്റ്റാഫ് / അഡ്മിൻ ലോഗിൻ</h5>
+            <p class="text-[10px] text-slate-500">Teachers, Sadar & Admin</p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Login Modal -->
+  <div id="student-login-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h4 class="text-xs font-black text-purple-800">STUDENT LOGIN</h4>
+        <button onclick="closeStudentLoginModal()" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-2">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase">അഡ്മിഷൻ നമ്പർ അല്ലെങ്കിൽ പേര്:</label>
+        <input id="st-login-id" type="text" placeholder="Admission No / Name" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+        
+        <label class="block text-[10px] font-bold text-slate-500 uppercase">പാസ്‌വേഡ്:</label>
+        <input id="st-login-pwd" type="password" placeholder="Password" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+
+        <button onclick="submitStudentLogin()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-black text-xs py-3 rounded-2xl shadow transition mt-1">
+          പ്രവേശിക്കുക
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Staff Login Modal -->
+  <div id="staff-login-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h4 class="text-xs font-black text-slate-800">STAFF LOGIN</h4>
+        <button onclick="closeStaffModal()" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-2">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase">ROLE:</label>
+        <select id="login-role" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <option value="TEACHERS">TEACHER</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="SWADAR">SWADAR</option>
+        </select>
+
+        <input id="login-username" type="text" placeholder="Username / മൊബൈൽ നമ്പർ" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+        <input id="login-pass" type="password" placeholder="Password" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+
+        <button onclick="submitStaffLogin()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs py-3 rounded-2xl shadow transition mt-1">
+          പ്രവേശിക്കുക
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-xl border-t border-indigo-100 px-3 py-2 z-40 shadow-xl">
+    <div class="max-w-md mx-auto flex items-center justify-around">
+      <button onclick="switchTab('home')" id="b-home" class="flex flex-col items-center gap-0.5 text-indigo-600 font-black transition">
+        <div class="w-10 h-7 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 text-white flex items-center justify-center shadow-xs">
+          <i class="fa-solid fa-house text-xs"></i>
+        </div>
+        <span class="text-[9px]">Home</span>
+      </button>
+
+      <button onclick="switchTab('result-check')" id="b-result-check" class="flex flex-col items-center gap-0.5 text-slate-400 font-black transition">
+        <div class="w-10 h-7 rounded-full bg-gradient-to-tr from-teal-500 to-cyan-400 text-white flex items-center justify-center shadow-xs">
+          <i class="fa-solid fa-square-poll-vertical text-xs"></i>
+        </div>
+        <span class="text-[9px]">Result</span>
+      </button>
+
+      <button onclick="switchTab('class-notes')" id="b-class-notes" class="flex flex-col items-center gap-0.5 text-slate-400 font-black transition">
+        <div class="w-10 h-7 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-400 text-white flex items-center justify-center shadow-xs">
+          <i class="fa-solid fa-graduation-cap text-xs"></i>
+        </div>
+        <span class="text-[9px]">Class</span>
+      </button>
+
+      <button onclick="switchTab('students-dash')" id="b-students-dash" class="flex flex-col items-center gap-0.5 text-slate-400 font-black transition">
+        <div class="w-10 h-7 rounded-full bg-gradient-to-tr from-amber-500 to-orange-400 text-white flex items-center justify-center shadow-xs">
+          <i class="fa-solid fa-trophy text-xs"></i>
+        </div>
+        <span class="text-[9px]">Toppers</span>
+      </button>
+
+      <button onclick="openLoginOptionsModal()" id="b-staff-dashboard" class="flex flex-col items-center gap-0.5 text-slate-400 font-black transition">
+        <div class="w-10 h-7 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 text-white flex items-center justify-center shadow-xs">
+          <i class="fa-solid fa-user-lock text-xs"></i>
+        </div>
+        <span class="text-[9px]">Login</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // 1. Updated Firebase Configuration Provided by User
+    const firebaseConfig = {
+      apiKey: "AIzaSyCv5BoZc-PDbHON45GsQsoU8ePPe_RNvuM",
+      authDomain: "mum-smart-5c296.firebaseapp.com",
+      projectId: "mum-smart-5c296",
+      storageBucket: "mum-smart-5c296.firebasestorage.app",
+      messagingSenderId: "896770940551",
+      appId: "1:896770940551:web:8ad97faf2d15f2c1542222",
+      measurementId: "G-RZ6QZFBTP0"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    let chartObj = null;
+    let spChartObj = null;
+    let activeUser = null;
+    let activeStudent = null;
+    let rankInterval = null;
+
+    // 2. Navigation Switcher
+    function switchTab(tId) {
+      const all = ['home', 'madrasa-details', 'student-profile', 'result-check', 'class-notes', 'timetable', 'staff-mgmt-view', 'gallery', 'students-dash', 'staff-dashboard'];
+      all.forEach(id => {
+        const el = document.getElementById('tab-' + id);
+        if (el) el.classList.add('hidden');
+      });
+
+      const curr = document.getElementById('tab-' + tId);
+      if (curr) curr.classList.remove('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (tId === 'madrasa-details') calculateMadrasaStats();
+      if (tId === 'class-notes') filterClassNotes('Class 1');
+      if (tId === 'timetable') renderTimeTable();
+      if (tId === 'staff-mgmt-view') renderCombinedStaffMgmt();
+      if (tId === 'gallery') renderGalleryEvents();
+      if (tId === 'students-dash') loadLeaderboardData();
+    }
+
+    function toggleSidebar() {
+      const s = document.getElementById('sidebar');
+      const o = document.getElementById('sidebar-overlay');
+      const hidden = s.classList.contains('-translate-x-full');
+      if (hidden) {
+        s.classList.remove('-translate-x-full');
+        o.classList.remove('hidden');
+      } else {
+        s.classList.add('-translate-x-full');
+        o.classList.add('hidden');
+      }
+    }
+
+    // 3. Login Modal Controls
+    function openLoginOptionsModal() { document.getElementById('login-options-popup').classList.remove('hidden'); }
+    function closeLoginOptionsModal() { document.getElementById('login-options-popup').classList.add('hidden'); }
+    function openStudentLoginModal() { closeLoginOptionsModal(); document.getElementById('student-login-popup').classList.remove('hidden'); }
+    function closeStudentLoginModal() { document.getElementById('student-login-popup').classList.add('hidden'); }
+    function openStaffModalDirect() { closeLoginOptionsModal(); document.getElementById('staff-login-popup').classList.remove('hidden'); }
+    function closeStaffModal() { document.getElementById('staff-login-popup').classList.add('hidden'); }
+
+    // 4. Student Login
+    async function submitStudentLogin() {
+      const id = document.getElementById('st-login-id').value.trim();
+      const pwd = document.getElementById('st-login-pwd').value.trim();
+
+      if (!id || !pwd) {
+        alert("അഡ്മിഷൻ നമ്പറും പാസ്‌വേഡും നൽകുക.");
+        return;
+      }
+
+      let doc = await db.collection('students').doc(id).get();
+      let sData = null;
+
+      if (doc.exists && doc.data().pwd === pwd) {
+        sData = doc.data();
+      } else {
+        const snap = await db.collection('students').where('name', '==', id).where('pwd', '==', pwd).get();
+        if (!snap.empty) sData = snap.docs[0].data();
+      }
+
+      if (!sData) {
+        alert("വിവരങ്ങൾ കണ്ടെത്താനായില്ല അല്ലെങ്കിൽ പാസ്‌വേഡ് തെറ്റാണ്!");
+        return;
+      }
+
+      activeStudent = sData;
+      closeStudentLoginModal();
+      setupStudentProfileUI();
+      switchTab('student-profile');
+    }
+
+    function setupStudentProfileUI() {
+      document.getElementById('sp-name').innerText = activeStudent.name;
+      document.getElementById('sp-class-uid').innerText = `Class: ${activeStudent.class || '-'} • UID: ${activeStudent.uid || activeStudent.adm}`;
+      document.getElementById('sp-photo').src = activeStudent.photo || "https://via.placeholder.com/100";
+
+      document.getElementById('sp-hw-status').innerText = activeStudent.hwDone ? "DONE ✅" : "NOT DONE ❌";
+      document.getElementById('sp-hw-status').className = activeStudent.hwDone ? "text-xs font-black text-emerald-600 mt-1" : "text-xs font-black text-rose-600 mt-1";
+      document.getElementById('sp-daily-score').innerText = `${activeStudent.dailyScore || 25} / 25 Pts`;
+
+      renderStudentProfileMarks();
+    }
+
+    function renderStudentProfileMarks() {
+      if (!activeStudent) return;
+      const exam = document.getElementById('sp-exam-selector').value;
+      const examData = activeStudent.exams ? activeStudent.exams[exam] : null;
+
+      const table = document.getElementById('sp-marks-table');
+      table.innerHTML = '';
+
+      const subs = (examData && examData.subjects) ? examData.subjects : { 'ഖുർആൻ': 0, 'ഫിഖ്ഹ്': 0, 'അഖീദ': 0, 'താരീഖ്': 0, 'അഖ്ലാഖ്': 0, 'ലിസാൻ': 0 };
+      let total = 0;
+      let labels = [];
+      let scores = [];
+
+      for (let s in subs) {
+        const sc = Number(subs[s]);
+        total += sc;
+        labels.push(s);
+        scores.push(sc);
+        const passMark = s === 'ഖുർആൻ' ? 20 : 18;
+        const pass = sc >= passMark;
+
+        table.innerHTML += `
+          <div class="flex justify-between items-center p-2 bg-slate-50 rounded-xl">
+            <span class="font-bold text-slate-700">${s}</span>
+            <div class="flex items-center gap-2">
+              <span class="font-black text-slate-900">${sc} / 50</span>
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded-md ${pass ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}">${pass ? 'P' : 'F'}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('sp-total-score').innerText = `${total} / 300`;
+
+      const ctx = document.getElementById('spProgressChart').getContext('2d');
+      if (spChartObj) spChartObj.destroy();
+      spChartObj = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{ data: scores, backgroundColor: '#4f46e5', borderRadius: 6 }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, max: 50 } }
+        }
+      });
+    }
+
+    function logoutStudent() {
+      activeStudent = null;
+      switchTab('home');
+    }
+
+    // 5. Calculate Live Madrasa Basic Details
+    async function calculateMadrasaStats() {
+      const snap = await db.collection('students').get();
+      let total = snap.size;
+      let boys = 0;
+      let girls = 0;
+      let classCounts = {
+        'Class 1': 0, 'Class 2': 0, 'Class 3': 0, 'Class 4': 0, 'Class 5': 0,
+        'Class 6': 0, 'Class 7': 0, 'Class 8': 0, 'Class 9': 0, 'Class 10': 0
+      };
+
+      snap.forEach(doc => {
+        const d = doc.data();
+        if (d.gender === 'Girl') girls++;
+        else boys++;
+
+        if (d.class && classCounts.hasOwnProperty(d.class)) {
+          classCounts[d.class]++;
+        }
+      });
+
+      document.getElementById('stat-total-students').innerText = total;
+      document.getElementById('stat-total-boys').innerText = boys;
+      document.getElementById('stat-total-girls').innerText = girls;
+
+      const bdList = document.getElementById('class-breakdown-list');
+      bdList.innerHTML = '';
+      for (let c in classCounts) {
+        bdList.innerHTML += `
+          <div class="p-2.5 bg-slate-50 rounded-2xl border flex justify-between items-center">
+            <span class="font-bold text-slate-700">${c}:</span>
+            <span class="font-black text-indigo-700">${classCounts[c]} കുട്ടികൾ</span>
+          </div>
+        `;
+      }
+    }
+
+    // 6. Staff Login
+    async function submitStaffLogin() {
+      const role = document.getElementById('login-role').value;
+      const u = document.getElementById('login-username').value.trim();
+      const p = document.getElementById('login-pass').value.trim();
+
+      if (role === 'ADMIN' && p === '776695') {
+        activeUser = { role: 'ADMIN', name: 'RASHIDALI FAIZY', classes: ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10'] };
+      } else if (role === 'SWADAR' && (p === '1283' || p === '776695')) {
+        activeUser = { role: 'SWADAR', name: 'SHAFI DARIMI', classes: ['Class 9', 'Class 10'] };
+      } else {
+        const snap = await db.collection('teachers').where('username', '==', u).where('password', '==', p).get();
+        if (!snap.empty) {
+          const tDoc = snap.docs[0].data();
+          activeUser = { role: 'TEACHER', name: tDoc.name, classes: tDoc.classes || ['Class 1'] };
+        } else if (p === '1283') {
+          activeUser = { role: 'TEACHER', name: 'Usthad', classes: ['Class 5'] };
+        } else {
+          alert("ലോഗിൻ വിവരങ്ങൾ തെറ്റാണ്!");
+          return;
+        }
+      }
+
+      closeStaffModal();
+      setupStaffDashboardUI();
+      switchTab('staff-dashboard');
+    }
+
+    function setupStaffDashboardUI() {
+      document.getElementById('logged-role-badge').innerText = activeUser.role;
+      document.getElementById('logged-user-name').innerText = activeUser.name;
+      document.getElementById('assigned-classes-hint').innerText = "Classes: " + activeUser.classes.join(', ');
+
+      const cDrop = document.getElementById('input-class');
+      const dtDrop = document.getElementById('dt-class-select');
+      const smDrop = document.getElementById('sm-class-select');
+      const nDrop = document.getElementById('note-class');
+      const tDrop = document.getElementById('tt-input-class');
+
+      [cDrop, dtDrop, smDrop, nDrop, tDrop].forEach(dp => {
+        if (!dp) return;
+        dp.innerHTML = '';
+        activeUser.classes.forEach(c => { dp.innerHTML += `<option value="${c}">${c}</option>`; });
+      });
+
+      const tSetup = document.getElementById('snav-teacher-setup');
+      const pAlert = document.getElementById('snav-publish-center');
+
+      if (activeUser.role === 'ADMIN') {
+        tSetup.classList.remove('hidden');
+        pAlert.classList.remove('hidden');
+      } else {
+        tSetup.classList.add('hidden');
+        pAlert.classList.add('hidden');
+      }
+
+      openStaffPanel('student-mgmt');
+    }
+
+    function logoutStaff() { activeUser = null; switchTab('home'); }
+
+    function openStaffPanel(pId) {
+      ['student-mgmt', 'daily-tracker', 'marks-entry', 'subject-mgmt', 'tt-mgmt', 'upload-notes', 'teacher-setup', 'publish-center'].forEach(p => {
+        const el = document.getElementById('panel-' + p);
+        if (el) el.classList.add('hidden');
+      });
+      const curr = document.getElementById('panel-' + pId);
+      if (curr) curr.classList.remove('hidden');
+
+      if (pId === 'daily-tracker') loadStudentsForDailyTracker();
+    }
+
+    function toBase64(file) {
+      return new Promise((res) => {
+        if (!file) return res("https://via.placeholder.com/100");
+        const r = new FileReader();
+        r.onload = (e) => res(e.target.result);
+        r.readAsDataURL(file);
+      });
+    }
+
+    // 7. Save Student
+    async function saveStudentData() {
+      const adm = document.getElementById('input-adm').value.trim();
+      const uid = document.getElementById('input-uid').value.trim() || adm;
+      const name = document.getElementById('input-name').value.trim();
+      const sClass = document.getElementById('input-class').value;
+      const gender = document.getElementById('input-gender').value;
+      const pwd = document.getElementById('input-pwd').value.trim();
+      const phone = document.getElementById('input-phone').value.trim();
+      const photoFile = document.getElementById('input-photo-file').files[0];
+
+      if (!adm || !name || !pwd) {
+        alert("അഡ്മിഷൻ നമ്പർ, പേര്, പാസ്‌വേഡ് എന്നിവ നൽകുക.");
+        return;
+      }
+
+      const photo = await toBase64(photoFile);
+
+      await db.collection('students').doc(adm).set({
+        adm, uid, name, class: sClass, gender, pwd, phone, photo,
+        hwDone: true, dailyScore: 25,
+        updatedAt: new Date()
+      }, { merge: true });
+
+      alert("വിദ്യാർത്ഥിയുടെ വിവരങ്ങൾ സേവ് ചെയ്തു!");
+      document.getElementById('input-adm').value = '';
+      document.getElementById('input-name').value = '';
+    }
+
+    // 8. Daily Tracker & Homework Management
+    let trackerStudents = [];
+    async function loadStudentsForDailyTracker() {
+      const sClass = document.getElementById('dt-class-select').value;
+      const box = document.getElementById('daily-students-list');
+      box.innerHTML = "<p class='text-xs text-center text-slate-400 py-2'>വിദ്യാർത്ഥികളെ ലോഡ് ചെയ്യുന്നു...</p>";
+
+      const snap = await db.collection('students').where('class', '==', sClass).get();
+      if (snap.empty) {
+        box.innerHTML = "<p class='text-xs text-center text-slate-400 py-2'>കുട്ടികൾ ലഭ്യമല്ല.</p>";
+        return;
+      }
+
+      box.innerHTML = '';
+      trackerStudents = [];
+      snap.forEach(doc => {
+        const d = doc.data();
+        trackerStudents.push(d);
+        box.innerHTML += `
+          <div class="p-2.5 bg-slate-50 border rounded-2xl flex items-center justify-between text-xs" id="dt-row-${d.adm}">
+            <div>
+              <h5 class="font-bold text-slate-800">${d.name} (${d.adm})</h5>
+              <p class="text-[10px] text-slate-400">${d.phone || 'No Phone'}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <label class="flex items-center gap-1 text-[10px] font-bold text-slate-600">
+                <input type="checkbox" id="hw-${d.adm}" ${d.hwDone ? 'checked' : ''} class="accent-emerald-600"> HW
+              </label>
+              <input type="number" id="act-${d.adm}" value="${d.dailyScore || 25}" max="25" class="w-12 p-1 border rounded-lg text-center font-bold">
+              ${d.phone ? `<a href="https://wa.me/${d.phone}?text=${encodeURIComponent('മദ്റസ അറിയിപ്പ്: നിങ്ങളുടെ കുട്ടി ('+d.name+') ഇന്ന് ഹോംവർക്ക് ചെയ്തിട്ടില്ല. ദയവായി ശ്രദ്ധിക്കുക.')}" target="_blank" class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center"><i class="fa-brands fa-whatsapp text-xs"></i></a>` : ''}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    async function saveDailyTrackerBatch() {
+      const b = db.batch();
+      trackerStudents.forEach(st => {
+        const hwEl = document.getElementById(`hw-${st.adm}`);
+        const actEl = document.getElementById(`act-${st.adm}`);
+        if (hwEl && actEl) {
+          const docRef = db.collection('students').doc(st.adm);
+          b.update(docRef, {
+            hwDone: hwEl.checked,
+            dailyScore: Number(actEl.value) || 0
+          });
+        }
+      });
+      await b.commit();
+      alert("ഡെയ്‌ലി ടോപ്പേഴ്‌സ് & ഹോംവർക്ക് സ്കോറുകൾ വിജയകരമായി രേഖപ്പെടുത്തി!");
+    }
+
+    function broadcastHomeworkAlert() {
+      const missing = trackerStudents.filter(st => {
+        const el = document.getElementById(`hw-${st.adm}`);
+        return el && !el.checked && st.phone;
+      });
+
+      if (missing.length === 0) {
+        alert("ഹോംവർക്ക് ചെയ്യാത്തവരായി ഫോൺ നമ്പറുള്ള കുട്ടികൾ ആരുമില്ല!");
+        return;
+      }
+
+      missing.forEach(m => {
+        const text = encodeURIComponent(`മദ്റസ അറിയിപ്പ്: ${m.name} (ക്ലാസ്: ${m.class}) ഇന്ന് ഹോംവർക്ക് ചെയ്തിട്ടില്ല. ദയവായി ശ്രദ്ധിക്കുക.`);
+        window.open(`https://wa.me/${m.phone}?text=${text}`, '_blank');
+      });
+    }
+
+    // 9. Auto-Calculate Live Total for Marks
+    function calculateLiveTotal() {
+      const q = Number(document.getElementById('sub-quran').value) || 0;
+      const f = Number(document.getElementById('sub-fiqh').value) || 0;
+      const a = Number(document.getElementById('sub-aqeeda').value) || 0;
+      const t = Number(document.getElementById('sub-tareekh').value) || 0;
+      const ak = Number(document.getElementById('sub-akhlaq').value) || 0;
+      const l = Number(document.getElementById('sub-lisan').value) || 0;
+
+      const total = q + f + a + t + ak + l;
+      document.getElementById('live-auto-total-badge').innerText = `Total: ${total} / 300`;
+      return { total, subjects: { 'ഖുർആൻ': q, 'ഫിഖ്ഹ്': f, 'അഖീദ': a, 'താരീഖ്': t, 'അഖ്ലാഖ്': ak, 'ലിസാൻ': l } };
+    }
+
+    async function saveStudentMarks() {
+      const adm = document.getElementById('m-adm').value.trim();
+      const exam = document.getElementById('m-exam').value;
+      const p = Number(document.getElementById('m-att-p').value) || 0;
+      const t = Number(document.getElementById('m-att-t').value) || 0;
+
+      if (!adm) {
+        alert("അഡ്മിഷൻ നമ്പർ നൽകുക.");
+        return;
+      }
+
+      const { total, subjects } = calculateLiveTotal();
+
+      let isPassed = subjects['ഖുർആൻ'] >= 20;
+      for (let s in subjects) {
+        if (s !== 'ഖുർആൻ' && subjects[s] < 18) isPassed = false;
+      }
+
+      await db.collection('students').doc(adm).set({
+        exams: {
+          [exam]: { subjects, totalMarks: total, isPassed, teacherPublished: true }
+        },
+        attendance: { present: p, total: t }
+      }, { merge: true });
+
+      alert(`മാർക്കുകൾ സേവ് ചെയ്തു! Total: ${total}/300 (Status: ${isPassed ? 'Passed' : 'Failed'})`);
+    }
+
+    // 10. Subject Management for Class
+    async function saveClassSubject() {
+      const sClass = document.getElementById('sm-class-select').value;
+      const subName = document.getElementById('sm-subject-name').value.trim();
+
+      if (!subName) {
+        alert("വിഷയത്തിന്റെ പേര് നൽകുക.");
+        return;
+      }
+
+      await db.collection('class_subjects').add({ class: sClass, name: subName });
+      alert(`${sClass}-ലേക്ക് ${subName} ചേർത്തു!`);
+      document.getElementById('sm-subject-name').value = '';
+    }
+
+    // 11. Rotating Notice Board with Class First Ranks
+    function adminTogglePublish(status) {
+      if (!activeUser || activeUser.role !== 'ADMIN') {
+        alert("അഡ്മിന് മാത്രമേ ഇത് മാറ്റാൻ അധികാരമുള്ളൂ.");
+        return;
+      }
+
+      const examChoice = document.getElementById('admin-exam-choice').value;
+      const showRanks = document.getElementById('admin-toggle-ranks-switch').checked;
+
+      const titleEl = document.getElementById('notice-title');
+      const descEl = document.getElementById('notice-desc');
+      const bannerEl = document.getElementById('notice-result-banner');
+      const nameEl = document.getElementById('notice-exam-name');
+      const rankBox = document.getElementById('notice-rank-rotation-box');
+
+      if (status) {
+        titleEl.innerText = `${examChoice} ഫലങ്ങൾ പ്രസിദ്ധീകരിച്ചു!`;
+        descEl.innerText = "വിദ്യാർത്ഥികൾക്ക് അഡ്മിഷൻ നമ്പറും പാസ്‌വേഡും നൽകി പ്രോഗ്രസ് റിപ്പോർട്ട് പരിശോധിക്കാം.";
+        nameEl.innerText = examChoice;
+        bannerEl.classList.remove('hidden');
+
+        if (showRanks) {
+          rankBox.classList.remove('hidden');
+          startRankRotation(examChoice);
+        } else {
+          rankBox.classList.add('hidden');
+          if (rankInterval) clearInterval(rankInterval);
+        }
+
+        alert("റിസൾട്ട് നോട്ടീസ് ബോർഡിൽ പബ്ലിഷ് ചെയ്തു!");
+      } else {
+        titleEl.innerText = "WELCOME TO MALHARUL ULOOM MADRASA KALLOOR-KOOTHALI";
+        descEl.innerText = "വിദ്യാർത്ഥികളുടെ പഠന പുരോഗതിയും മദ്റസയിലെ തത്സമയ വിവരങ്ങളും ഇവിടെ ലഭ്യമാണ്.";
+        bannerEl.classList.add('hidden');
+        rankBox.classList.add('hidden');
+        if (rankInterval) clearInterval(rankInterval);
+        alert("നോട്ടീസ് ബോർഡ് സാധാരണ നിലയിലേക്ക് മാറ്റി.");
+      }
+    }
+
+    async function startRankRotation(examName) {
+      if (rankInterval) clearInterval(rankInterval);
+
+      let classFirstRanks = [];
+      const classes = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10'];
+
+      for (let c of classes) {
+        const snap = await db.collection('students').where('class', '==', c).get();
+        let bestStudent = null;
+        let maxScore = -1;
+
+        snap.forEach(doc => {
+          const d = doc.data();
+          const examData = d.exams ? (d.exams.quarterly || d.exams.halfYearly || d.exams.annual) : null;
+          if (examData && examData.totalMarks > maxScore) {
+            maxScore = examData.totalMarks;
+            bestStudent = { name: d.name, class: c, score: maxScore };
+          }
+        });
+
+        if (bestStudent) classFirstRanks.push(bestStudent);
+      }
+
+      if (classFirstRanks.length === 0) {
+        classFirstRanks = [
+          { name: "മുഹമ്മദ് സിനാൻ", class: "Class 5", score: 285 },
+          { name: "ഫാത്തിമ നസ്റീൻ", class: "Class 7", score: 292 }
+        ];
+      }
+
+      let idx = 0;
+      const updateRotationUI = () => {
+        const cur = classFirstRanks[idx];
+        document.getElementById('rot-rank-class').innerText = cur.class;
+        document.getElementById('rot-rank-name').innerText = cur.name;
+        document.getElementById('rot-rank-score').innerText = `Total Score: ${cur.score} / 300`;
+        idx = (idx + 1) % classFirstRanks.length;
+      };
+
+      updateRotationUI();
+      rankInterval = setInterval(updateRotationUI, 3500);
+    }
+
+    // 12. Public Result Search
+    async function searchStudentResult() {
+      const q = document.getElementById('stud-search-id').value.trim();
+      const pwd = document.getElementById('stud-search-pwd').value.trim();
+      const exam = document.getElementById('stud-exam-type').value;
+
+      if (!q || !pwd) {
+        alert("അഡ്മിഷൻ നമ്പറും പാസ്‌വേഡും നൽകുക.");
+        return;
+      }
+
+      let doc = await db.collection('students').doc(q).get();
+      let sData = null;
+
+      if (doc.exists && doc.data().pwd === pwd) {
+        sData = doc.data();
+      } else {
+        const snap = await db.collection('students').where('name', '==', q).where('pwd', '==', pwd).get();
+        if (!snap.empty) sData = snap.docs[0].data();
+      }
+
+      if (!sData) {
+        alert("വിവരങ്ങൾ കണ്ടെത്താനായില്ല അല്ലെങ്കിൽ പാസ്‌വേഡ് തെറ്റാണ്!");
+        return;
+      }
+
+      const examData = sData.exams ? sData.exams[exam] : null;
+
+      document.getElementById('result-card-box').classList.remove('hidden');
+      document.getElementById('res-name').innerText = sData.name;
+      document.getElementById('res-class').innerText = "Class: " + sData.class;
+      document.getElementById('res-adm').innerText = "Adm No: " + sData.adm;
+      document.getElementById('res-photo').src = sData.photo || "https://via.placeholder.com/100";
+
+      const att = sData.attendance || { present: 0, total: 0 };
+      document.getElementById('res-att').innerText = `${att.present} / ${att.total} Days`;
+
+      const list = document.getElementById('res-subjects-list');
+      list.innerHTML = '';
+
+      const subs = (examData && examData.subjects) ? examData.subjects : { 'ഖുർആൻ': 0, 'ഫിഖ്ഹ്': 0, 'അഖീദ': 0, 'താരീഖ്': 0, 'അഖ്ലാഖ്': 0, 'ലിസാൻ': 0 };
+      let labels = [];
+      let scores = [];
+      let isPassed = examData ? examData.isPassed : true;
+
+      for (let s in subs) {
+        labels.push(s);
+        scores.push(subs[s]);
+        const passMark = s === 'ഖുർആൻ' ? 20 : 18;
+        const pass = subs[s] >= passMark;
+
+        list.innerHTML += `
+          <div class="flex justify-between p-2 bg-slate-50 rounded-xl">
+            <span class="font-bold text-slate-700">${s}</span>
+            <div class="flex items-center gap-2">
+              <span class="font-black text-slate-900">${subs[s]} / 50</span>
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded-md ${pass ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}">${pass ? 'PASSED' : 'FAILED'}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      const total = examData ? examData.totalMarks : scores.reduce((a, b) => a + b, 0);
+      document.getElementById('res-total').innerText = `${total} / 300`;
+      document.getElementById('res-status').innerText = isPassed ? "PASSED" : "FAILED";
+      document.getElementById('res-status').className = isPassed ? "font-black text-emerald-600" : "font-black text-red-600";
+
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      if (chartObj) chartObj.destroy();
+      chartObj = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{ data: scores, backgroundColor: '#4f46e5', borderRadius: 6 }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, max: 50 } }
+        }
+      });
+    }
+
+    // 13. Class Notes & Subjects View
+    async function filterClassNotes(c) {
+      document.getElementById('class-subjects-header').innerText = `${c} വിഷയങ്ങൾ:`;
+      const btnBox = document.getElementById('class-subjects-buttons');
+      btnBox.innerHTML = '';
+
+      const sSnap = await db.collection('class_subjects').where('class', '==', c).get();
+      if (!sSnap.empty) {
+        sSnap.forEach(d => {
+          btnBox.innerHTML += `<span class="px-2.5 py-1 rounded-xl bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">${d.data().name}</span>`;
+        });
+      } else {
+        btnBox.innerHTML = '<span class="text-xs text-slate-400">ഖുർആൻ, ഫിഖ്ഹ്, അഖീദ, താരീഖ്, അഖ്ലാഖ്, ലിസാൻ</span>';
+      }
+
+      const feed = document.getElementById('class-notes-feed');
+      feed.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>നോട്ടുകൾ ലോഡ് ചെയ്യുന്നു...</p>";
+
+      const snap = await db.collection('notes').where('class', '==', c).get();
+      if (snap.empty) {
+        feed.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>പുതിയ നോട്ടുകൾ ലഭ്യമല്ല.</p>";
+        return;
+      }
+
+      feed.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        feed.innerHTML += `
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-100 flex items-center justify-between shadow-xs">
+            <div>
+              <span class="text-[9px] font-black text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">${d.class}</span>
+              <h4 class="font-black text-xs text-slate-800 mt-1">${d.title}</h4>
+            </div>
+            <a href="${d.link}" target="_blank" class="px-3 py-1.5 rounded-xl bg-blue-50 text-blue-600 font-black text-xs hover:bg-blue-100 transition">
+              VIEW <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i>
+            </a>
+          </div>
+        `;
+      });
+    }
+
+    async function publishClassNote() {
+      const title = document.getElementById('note-title').value.trim();
+      const sClass = document.getElementById('note-class').value;
+      const link = document.getElementById('note-link').value.trim();
+
+      if (!title || !link) {
+        alert("തലക്കെട്ടും ഡ്രൈവ് ലിങ്കും നൽകുക.");
+        return;
+      }
+
+      await db.collection('notes').add({ title, class: sClass, link, date: new Date() });
+      alert("നോട്ട് വിജയകരമായി ചേർത്തു!");
+      document.getElementById('note-title').value = '';
+      document.getElementById('note-link').value = '';
+    }
+
+    // 14. Routine Timetable Management
+    async function saveDailyRoutineTT() {
+      const sClass = document.getElementById('tt-input-class').value;
+      const day = document.getElementById('tt-input-day').value;
+      const p1 = document.getElementById('tt-period-1').value.trim();
+      const p2 = document.getElementById('tt-period-2').value.trim();
+      const p3 = document.getElementById('tt-period-3').value.trim();
+
+      await db.collection('routines').doc(`${sClass}_${day}`).set({
+        class: sClass, day: day, periods: [p1, p2, p3], updatedAt: new Date()
+      }, { merge: true });
+
+      alert(`${sClass} ${day} ടൈംടേബിൾ സേവ് ചെയ്തു!`);
+    }
+
+    async function renderTimeTable() {
+      const sClass = document.getElementById('tt-class-select').value;
+      const disp = document.getElementById('timetable-display');
+      disp.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ടൈംടേബിൾ പരിശോധിക്കുന്നു...</p>";
+
+      const snap = await db.collection('routines').where('class', '==', sClass).get();
+
+      if (snap.empty) {
+        disp.innerHTML = `
+          <div class="p-4 bg-white rounded-3xl border border-slate-100 shadow-xs space-y-2">
+            <div class="flex items-center justify-between border-b pb-2">
+              <span class="text-xs font-black text-indigo-900">${sClass} സ്ഥിരമായ ടൈംടേബിൾ</span>
+              <span class="text-[10px] text-slate-400">7:00 AM - 9:00 AM</span>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-700">
+              <div class="flex justify-between p-2 bg-slate-50 rounded-xl"><span class="font-bold">ഞായർ:</span> <span>ഖുർആൻ, ഫിഖ്ഹ്, ലിസാൻ</span></div>
+              <div class="flex justify-between p-2 bg-slate-50 rounded-xl"><span class="font-bold">തിങ്കൾ:</span> <span>ഖുർആൻ, അഖീദ, അഖ്ലാഖ്</span></div>
+              <div class="flex justify-between p-2 bg-slate-50 rounded-xl"><span class="font-bold">ചൊവ്വ:</span> <span>ഖുർആൻ, താരീഖ്, ഫിഖ്ഹ്</span></div>
+              <div class="flex justify-between p-2 bg-slate-50 rounded-xl"><span class="font-bold">ബുധൻ:</span> <span>ഖുർആൻ, തജ്‌വീദ്, ലിസാൻ</span></div>
+              <div class="flex justify-between p-2 bg-slate-50 rounded-xl"><span class="font-bold">വ്യാഴം:</span> <span>ഖുർആൻ, ദുആ & ദിക്ർ, അഖ്ലാഖ്</span></div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      disp.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        disp.innerHTML += `
+          <div class="p-3.5 bg-white rounded-3xl border border-slate-100 shadow-xs space-y-1.5">
+            <span class="text-xs font-black text-indigo-800 block">${d.day}</span>
+            <div class="text-xs space-y-1">
+              ${d.periods[0] ? `<p class="p-2 bg-slate-50 rounded-xl font-bold text-slate-700">1: ${d.periods[0]}</p>` : ''}
+              ${d.periods[1] ? `<p class="p-2 bg-slate-50 rounded-xl font-bold text-slate-700">2: ${d.periods[1]}</p>` : ''}
+              ${d.periods[2] ? `<p class="p-2 bg-slate-50 rounded-xl font-bold text-slate-700">3: ${d.periods[2]}</p>` : ''}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // 15. Staff Allocation
+    async function saveTeacherProfile() {
+      const name = document.getElementById('t-name').value.trim();
+      const username = document.getElementById('t-user').value.trim();
+      const password = document.getElementById('t-pwd').value.trim();
+      const phone = document.getElementById('t-phone').value.trim();
+      const photoFile = document.getElementById('t-photo-file').files[0];
+
+      if (!name || !username || !password) {
+        alert("പേര്, യൂസർനെയിം, പാസ്‌വേഡ് എന്നിവ നൽകുക.");
+        return;
+      }
+
+      const checkboxes = document.querySelectorAll('#t-classes-checkboxes input[type="checkbox"]:checked');
+      const selectedClasses = Array.from(checkboxes).map(cb => cb.value);
+
+      const photo = await toBase64(photoFile);
+
+      await db.collection('teachers').add({
+        name, username, password, phone, classes: selectedClasses, photo, createdAt: new Date()
+      });
+
+      alert("അധ്യാപകനെ വിജയകരമായി രജിസ്റ്റർ ചെയ്തു!");
+      document.getElementById('t-name').value = '';
+      document.getElementById('t-user').value = '';
+    }
+
+    // 16. Combined Staff & Management Views
+    function toggleStaffMgmtSub(type) {
+      if (type === 'staff') {
+        document.getElementById('subview-staff-list').classList.remove('hidden');
+        document.getElementById('subview-mgmt-list').classList.add('hidden');
+        document.getElementById('btn-sub-staff').className = 'flex-1 py-1.5 text-xs font-black rounded-xl bg-white text-indigo-700 shadow-xs';
+        document.getElementById('btn-sub-mgmt').className = 'flex-1 py-1.5 text-xs font-black rounded-xl text-slate-500';
+      } else {
+        document.getElementById('subview-staff-list').classList.add('hidden');
+        document.getElementById('subview-mgmt-list').classList.remove('hidden');
+        document.getElementById('btn-sub-mgmt').className = 'flex-1 py-1.5 text-xs font-black rounded-xl bg-white text-indigo-700 shadow-xs';
+        document.getElementById('btn-sub-staff').className = 'flex-1 py-1.5 text-xs font-black rounded-xl text-slate-500';
+      }
+    }
+
+    async function renderCombinedStaffMgmt() {
+      const sContainer = document.getElementById('dynamic-staff-cards');
+      const snap = await db.collection('teachers').get();
+      sContainer.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        sContainer.innerHTML += `
+          <div class="p-3.5 rounded-3xl bg-white border border-slate-100 shadow-xs flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="${d.photo || 'https://via.placeholder.com/80'}" class="w-12 h-12 rounded-2xl object-cover border border-purple-200">
+              <div>
+                <span class="text-[9px] font-black text-purple-600 uppercase bg-purple-50 px-2 py-0.5 rounded-md">TEACHER</span>
+                <h4 class="text-xs font-black text-slate-800 mt-1">${d.name}</h4>
+                <p class="text-[10px] text-slate-500 font-bold">Classes: ${d.classes ? d.classes.join(', ') : '-'}</p>
+              </div>
+            </div>
+            ${d.phone ? `<a href="tel:${d.phone}" class="w-9 h-9 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center shadow-xs"><i class="fa-solid fa-phone text-xs"></i></a>` : ''}
+          </div>
+        `;
+      });
+    }
+
+    // 17. Leaderboard
+    let currentLb = 'daily';
+    function setLeaderboardType(t) {
+      currentLb = t;
+      ['daily', 'monthly', 'overall'].forEach(id => {
+        document.getElementById('btn-lb-' + id).classList.remove('bg-white', 'text-indigo-700', 'shadow-xs');
+        document.getElementById('btn-lb-' + id).classList.add('text-slate-500');
+      });
+      document.getElementById('btn-lb-' + t).classList.add('bg-white', 'text-indigo-700', 'shadow-xs');
+      document.getElementById('btn-lb-' + t).classList.remove('text-slate-500');
+      loadLeaderboardData();
+    }
+
+    async function loadLeaderboardData() {
+      const box = document.getElementById('leaderboard-list-box');
+      const c = document.getElementById('leaderboard-class-select').value;
+      box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ലോഡ് ചെയ്യുന്നു...</p>";
+
+      let q = db.collection('students');
+      if (c !== 'All') q = q.where('class', '==', c);
+
+      const snap = await q.limit(10).get();
+      if (snap.empty) {
+        box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>വിവരങ്ങൾ ലഭ്യമല്ല.</p>";
+        return;
+      }
+
+      box.innerHTML = '';
+      let rank = 1;
+      snap.forEach(doc => {
+        const d = doc.data();
+        box.innerHTML += `
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-100 flex items-center justify-between shadow-xs">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl ${rank === 1 ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700'} flex items-center justify-center font-black text-xs">
+                ${rank === 1 ? '🥇' : rank}
+              </span>
+              <div>
+                <h4 class="font-black text-xs text-slate-800">${d.name}</h4>
+                <p class="text-[10px] text-slate-400 font-bold">${d.class}</p>
+              </div>
+            </div>
+            <span class="font-black text-indigo-600 text-xs">Top Performer</span>
+          </div>
+        `;
+        rank++;
+      });
+    }
+
+    async function renderGalleryEvents() {
+      const box = document.getElementById('gallery-events-container');
+      box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ഫോട്ടോകൾ പരിശോധിക്കുന്നു...</p>";
+      const snap = await db.collection('events').orderBy('date', 'desc').get();
+      if (snap.empty) {
+        box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>പുതിയ ഫോട്ടോകൾ ലഭ്യമല്ല.</p>";
+        return;
+      }
+      box.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        box.innerHTML += `
+          <div class="bg-white p-3 rounded-3xl border border-slate-100 shadow-xs space-y-2">
+            <div class="rounded-2xl overflow-hidden aspect-video bg-slate-100">
+              <img src="${d.photo}" class="w-full h-full object-cover">
+            </div>
+            <h4 class="font-black text-xs text-slate-800 px-1">${d.name}</h4>
+          </div>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
