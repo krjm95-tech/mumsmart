@@ -6,19 +6,15 @@
   <title>MALHARUL ULOOM MADRASA - KALLOOR-KOOTHALI (1283)</title>
 
   <!-- PWA Settings -->
-  <meta name="theme-color" content="#065f46">
+  <meta name="theme-color" content="#064e3b">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="MUM Smart">
   <link id="dynamic-favicon" rel="icon" type="image/png">
   <link id="dynamic-apple-icon" rel="apple-touch-icon" type="image/png">
 
-  <!-- Tailwind CSS & FontAwesome -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -26,612 +22,883 @@
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Manjari:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');
-    body { font-family: 'Plus Jakarta Sans', 'Manjari', sans-serif; -webkit-tap-highlight-color: transparent; }
-    .font-amiri { font-family: 'Amiri', serif; }
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    @media print {
-      body * { visibility: hidden; }
-      #printable-report, #printable-report * { visibility: visible; }
-      #printable-report { position: absolute; left: 0; top: 0; width: 100%; border: none !important; box-shadow: none !important; }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Manjari', sans-serif;
+      background: #f0fdf4;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px;
+    }
+    .font-amiri { font-family: 'Amiri', serif; }
+    
+    /* Top Header */
+    .app-header {
+      background: #064e3b;
+      color: #ffffff;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .header-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .main-wrap {
+      max-width: 460px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 14px 16px;
+      flex-grow: 1;
+    }
+
+    /* Notice Styles */
+    .notice-bar {
+      background: #fef9c3;
+      border: 1px solid #fde047;
+      padding: 10px 14px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #713f12;
+    }
+    .notice-tag {
+      background: #f59e0b;
+      color: #fff;
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 900;
+    }
+    .hero-banner {
+      background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+      color: #ffffff;
+      padding: 18px;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(6,78,59,0.25);
+    }
+
+    /* Grid Buttons */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .icon-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 12px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease;
+    }
+    .icon-card:active { transform: scale(0.96); }
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #ffffff;
+    }
+    .card-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 12px;
+      z-index: 50;
+    }
+    .bnav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 9px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .bnav-item.active {
+      color: #065f46;
+    }
+    .bnav-pill {
+      width: 36px;
+      height: 24px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .bnav-item.active .bnav-pill {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    /* Sidebar Drawer */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 280px;
+      background: #ffffff;
+      z-index: 60;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.25);
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.6);
+      backdrop-filter: blur(2px);
+      z-index: 55;
+      display: none;
+    }
+    .sidebar-overlay.open { display: block; }
+    .side-link {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      background: none;
+      border: none;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .side-link:hover { background: #f1f5f9; }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.6);
+      backdrop-filter: blur(3px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 70;
+      padding: 16px;
+    }
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 360px;
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    /* Forms & Inputs */
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      outline: none;
+      margin-bottom: 10px;
+    }
+    .form-input:focus { border-color: #059669; background: #ffffff; }
+    .primary-btn {
+      width: 100%;
+      padding: 12px;
+      background: #064e3b;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(6,78,59,0.25);
+    }
+    .blue-btn {
+      width: 100%;
+      padding: 12px;
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .cancel-btn {
+      width: 100%;
+      padding: 12px;
+      background: #94a3b8;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    /* Custom Tables */
+    .table-container {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    th {
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 800;
+      padding: 10px 8px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #f1f5f9;
+      text-align: center;
+      font-weight: 700;
+    }
+    
+    .hidden { display: none !important; }
   </style>
 </head>
-<body class="bg-[#f0fdf4] text-slate-800 min-h-screen flex flex-col pb-24">
+<body>
 
   <!-- Top Header -->
-  <header class="bg-[#064e3b] text-white sticky top-0 z-40 px-4 py-3 shadow-md">
-    <div class="max-w-md mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white active:scale-95 transition">
-          <i class="fa-solid fa-bars-staggered text-sm"></i>
-        </button>
-        <div>
-          <!-- Secret Admin Prompt on click -->
-          <span onclick="triggerAdminLoginPrompt()" title="Admin Control" class="font-amiri font-bold text-xs text-emerald-200 cursor-pointer hover:underline">مدرسة مظهر العلوم</span>
-          <h1 class="text-xs font-black tracking-tight leading-none text-white">MALHARUL ULOOM MADRASA</h1>
-          <p class="text-[9px] font-bold text-emerald-300 tracking-wider">KALLOOR - KOOTHALI (1283)</p>
-        </div>
-      </div>
-      
-      <!-- Top Call Button (Opens exact contact modal like Screenshot 1) -->
-      <button onclick="openStaffDirectoryModal()" class="w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center font-bold text-sm shadow-xs border border-white/20 active:scale-95 transition">
-        <i class="fa-solid fa-phone"></i>
+  <header class="app-header">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <button class="header-btn" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars-staggered"></i>
       </button>
+      <div>
+        <span onclick="triggerAdminSecretPrompt()" class="font-amiri" style="font-size: 13px; color: #a7f3d0; cursor: pointer; display: block; line-height: 1;">مدرسة مظهر العلوم</span>
+        <h1 style="font-size: 11px; font-weight: 900; line-height: 1.2; margin-top: 2px;">MALHARUL ULOOM MADRASA</h1>
+        <p style="font-size: 8px; font-weight: 800; color: #6ee7b7; letter-spacing: 0.5px;">KALLOOR - KOOTHALI (1283)</p>
+      </div>
     </div>
+    
+    <!-- Top Direct Directory Calling Button -->
+    <button class="header-btn" onclick="openStaffDirectoryModal()" style="background: rgba(255,255,255,0.2);">
+      <i class="fa-solid fa-phone"></i>
+    </button>
   </header>
 
   <!-- Sidebar Overlay -->
-  <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+  <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
   <!-- Sidebar Drawer Menu -->
-  <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white w-72 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col justify-between">
-    <div class="p-5 overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <div class="flex items-center gap-3">
-          <div onclick="triggerAdminLoginPrompt()" class="w-11 h-11 rounded-2xl bg-[#065f46] text-white flex flex-col items-center justify-center shadow-md cursor-pointer">
-            <span class="font-amiri text-xs font-bold leading-tight">مظهر</span>
-            <span class="text-[8px] font-black text-amber-200">1283</span>
+  <aside id="sidebar" class="sidebar">
+    <div style="padding: 20px; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div onclick="triggerAdminSecretPrompt()" style="width: 44px; height: 44px; border-radius: 14px; background: #065f46; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+            <span class="font-amiri" style="font-size: 12px; font-weight: bold; line-height: 1;">مظهر</span>
+            <span style="font-size: 8px; font-weight: 900; color: #fde047;">1283</span>
           </div>
           <div>
-            <h2 class="font-black text-xs text-slate-900 leading-tight">MUM MADRASA</h2>
-            <p class="text-[10px] font-bold text-emerald-600">Kalloor-Koothali</p>
+            <h2 style="font-size: 13px; font-weight: 900;">MUM MADRASA</h2>
+            <p style="font-size: 10px; font-weight: 700; color: #059669;">Kalloor-Koothali</p>
           </div>
         </div>
-        <button onclick="toggleSidebar()" class="text-slate-400 hover:text-slate-800 text-lg"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="toggleSidebar()" style="background: none; border: none; font-size: 18px; color: #94a3b8; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <nav class="mt-4 space-y-1">
-        <button onclick="switchTab('home')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-emerald-50"><i class="fa-solid fa-house text-emerald-600 w-5"></i> ഹോം പേജ് (Home)</button>
-        <button onclick="openPortal('STUDENT')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-purple-700 bg-purple-50"><i class="fa-solid fa-user-graduate text-purple-600 w-5"></i> സ്റ്റുഡന്റ് പോർട്ടൽ</button>
-        <button onclick="openPortal('PARENT')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-teal-700 bg-teal-50"><i class="fa-solid fa-users text-teal-600 w-5"></i> പാരന്റ് പോർട്ടൽ</button>
-        <button onclick="switchTab('toppers-view')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-amber-800 bg-amber-50"><i class="fa-solid fa-trophy text-amber-600 w-5"></i> ടോപ്പേഴ്‌സ് ബോർഡ് (Toppers)</button>
-        <button onclick="switchTab('result-check')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-emerald-50"><i class="fa-solid fa-square-poll-vertical text-emerald-600 w-5"></i> പരീക്ഷാ ഫലം (Result)</button>
-        <button onclick="switchTab('class-notes')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-blue-50"><i class="fa-solid fa-book-bookmark text-blue-500 w-5"></i> ക്ലാസുകൾ & നോട്ടുകൾ</button>
-        <button onclick="switchTab('timetable')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-amber-50"><i class="fa-solid fa-calendar-days text-amber-500 w-5"></i> ടൈംടേബിൾ (Time Table)</button>
+      <nav style="margin-top: 16px; display: flex; flex-direction: column; gap: 4px;">
+        <button class="side-link" onclick="switchTab('home')"><i class="fa-solid fa-house" style="color: #059669; width: 18px;"></i> ഹോം പേജ് (Home)</button>
+        <button class="side-link" onclick="openPortal('STUDENT')" style="background: #faf5ff; color: #7e22ce;"><i class="fa-solid fa-user-graduate" style="width: 18px;"></i> സ്റ്റുഡന്റ് പോർട്ടൽ</button>
+        <button class="side-link" onclick="openPortal('PARENT')" style="background: #f0fdfa; color: #0f766e;"><i class="fa-solid fa-users" style="width: 18px;"></i> പാരന്റ് പോർട്ടൽ</button>
+        <button class="side-link" onclick="switchTab('toppers-view')" style="background: #fefce8; color: #a16207;"><i class="fa-solid fa-trophy" style="width: 18px;"></i> ടോപ്പേഴ്‌സ് ബോർഡ്</button>
+        <button class="side-link" onclick="switchTab('result-check')"><i class="fa-solid fa-square-poll-vertical" style="color: #0284c7; width: 18px;"></i> പരീക്ഷാ ഫലം (Result)</button>
+        <button class="side-link" onclick="switchTab('timetable')"><i class="fa-solid fa-calendar-days" style="color: #d97706; width: 18px;"></i> ടൈംടേബിൾ (Time Table)</button>
       </nav>
+
+      <div style="margin-top: 18px; border-top: 1px solid #f1f5f9; padding-top: 14px;">
+        <h4 style="font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px;">അധ്യാപക കോൺടാക്റ്റുകൾ</h4>
+        <div id="sidebar-teachers-list" style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;"></div>
+      </div>
     </div>
 
-    <div class="p-3 bg-slate-50 border-t space-y-1 text-xs">
-      <div class="flex justify-between items-center">
-        <div><p class="font-bold text-[9px] text-emerald-700">ADMIN: RASHIDALI FAIZY</p></div>
-        <a href="tel:6238403492" class="text-emerald-700 font-bold">6238403492</a>
+    <div style="padding: 14px 20px; background: #f8fafc; border-top: 1px solid #f1f5f9; font-size: 11px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+        <span style="font-weight: 800; color: #065f46;">ADMIN: RASHIDALI FAIZY</span>
+        <a href="tel:6238403492" style="font-weight: 900; color: #0284c7; text-decoration: none;">6238403492</a>
       </div>
-      <div class="flex justify-between items-center pt-1 border-t">
-        <div><p class="font-bold text-[9px] text-purple-700">SADAR: SHAFI DARIMI</p></div>
-        <a href="tel:9605169230" class="text-purple-700 font-bold">9605169230</a>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 800; color: #7e22ce;">SADAR: SHAFI DARIMI</span>
+        <a href="tel:9605169230" style="font-weight: 900; color: #7e22ce; text-decoration: none;">9605169230</a>
       </div>
     </div>
   </aside>
 
   <!-- Main View Container -->
-  <main class="max-w-md mx-auto w-full px-4 pt-3 flex-grow">
+  <main class="main-wrap">
 
     <!-- 1. HOME SCREEN -->
-    <section id="tab-home" class="space-y-4">
+    <section id="tab-home">
       
-      <!-- Notice Bar matching Screenshot 3 Style -->
-      <div class="bg-[#fef9c3] border border-[#fde047] p-3 rounded-2xl flex items-center justify-between text-xs shadow-xs">
-        <div class="flex items-center gap-2">
-          <span class="bg-[#f59e0b] text-white text-[9px] font-black px-2 py-0.5 rounded uppercase">NOTICE</span>
-          <span class="font-bold text-amber-950 text-[11px]">കൂടുതൽ വിവരങ്ങൾക്ക് ക്ലാസ് ടീച്ചറെ ബന്ധപ്പെടുക.</span>
-        </div>
+      <!-- Notice Bar matching Screenshot 3 -->
+      <div class="notice-bar">
+        <span class="notice-tag">NOTICE</span>
+        <span>കൂടുതൽ വിവരങ്ങൾക്ക് ക്ലാസ് ടീച്ചറെ ബന്ധപ്പെടുക.</span>
       </div>
 
       <!-- Live Notice Board -->
-      <div class="bg-gradient-to-br from-[#064e3b] via-[#065f46] to-[#047857] text-white rounded-3xl p-5 shadow-lg relative overflow-hidden border border-emerald-500/30">
-        <div class="flex items-center justify-between mb-2">
-          <span class="inline-flex items-center gap-1.5 bg-white/20 text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-ping"></span> നോട്ടീസ് ബോർഡ്
+      <div class="hero-banner">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="background: rgba(255,255,255,0.2); font-size: 9px; font-weight: 900; padding: 2px 8px; border-radius: 20px; text-transform: uppercase;">
+            <i class="fa-solid fa-circle" style="font-size: 6px; color: #6ee7b7; margin-right: 4px;"></i> നോട്ടീസ് ബോർഡ്
           </span>
-          <span class="text-[10px] font-bold text-emerald-200">CODE: 1283</span>
+          <span style="font-size: 10px; font-weight: 800; color: #a7f3d0;">CODE: 1283</span>
         </div>
 
-        <div class="min-h-[70px] flex flex-col justify-center py-1">
-          <h2 id="notice-title" class="text-sm font-black tracking-tight leading-snug">
-            WELCOME TO MALHARUL ULOOM MADRASA KALLOOR-KOOTHALI
-          </h2>
-          <p id="notice-desc" class="text-xs text-emerald-100 mt-1 leading-relaxed">
-            വിദ്യാർത്ഥികളുടെ സമഗ്ര പഠന പുരോഗതിയും മദ്റസയിലെ വിവരങ്ങളും ഇവിടെ ലഭ്യമാണ്.
-          </p>
-        </div>
+        <h2 id="notice-title" style="font-size: 14px; font-weight: 900; line-height: 1.3; margin-bottom: 4px;">
+          WELCOME TO MALHARUL ULOOM MADRASA
+        </h2>
+        <p id="notice-desc" style="font-size: 11px; color: #d1fae5; line-height: 1.4;">
+          കല്ലൂർ - കൂത്താലി മദ്റസയിലെ തത്സമയ പഠന വിവരങ്ങൾ ഇവിടെ ലഭ്യമാണ്.
+        </p>
 
-        <div id="notice-result-banner" class="hidden mt-2 pt-2 border-t border-white/20 flex items-center justify-between">
-          <span class="text-xs font-bold text-amber-300">പരീക്ഷാ ഫലം ലഭ്യമാണ്!</span>
-          <button onclick="switchTab('result-check')" class="bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-900 text-xs font-black px-3.5 py-1.5 rounded-xl shadow">
-            ചെക്ക് റിസൾട്ട്
+        <div id="notice-result-banner" class="hidden" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; font-weight: 800; color: #fde047;">പരീക്ഷാ ഫലം ലഭ്യമാണ്!</span>
+          <button onclick="switchTab('result-check')" style="background: #f59e0b; color: #1e293b; font-size: 10px; font-weight: 900; padding: 6px 12px; border-radius: 12px; border: none; cursor: pointer;">
+            റിസൾട്ട് കാണുക
           </button>
         </div>
       </div>
 
       <!-- PORTAL LOGINS (4 Big Uniform Grid Icons) -->
-      <div class="space-y-2">
-        <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">പോർട്ടൽ ലോഗിൻ (LOGIN ACCESS)</h3>
-        <div class="grid grid-cols-4 gap-2.5">
-          <button onclick="openPortal('STUDENT')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-purple-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-500 text-white text-lg flex items-center justify-center shadow-md shadow-purple-200">
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <span class="text-[10px] font-black text-slate-700">STUDENT</span>
-          </button>
+      <h3 style="font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; padding-left: 2px;">
+        പോർട്ടൽ ലോഗിൻ (LOGIN ACCESS)
+      </h3>
+      <div class="grid-4">
+        <!-- STUDENT -->
+        <div class="icon-card" onclick="openPortal('STUDENT')">
+          <div class="card-icon" style="background: linear-gradient(135deg, #9333ea, #6366f1); box-shadow: 0 4px 12px rgba(147,51,234,0.3);">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <span class="card-label">STUDENT</span>
+        </div>
 
-          <button onclick="openPortal('MUALLIM')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-emerald-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white text-lg flex items-center justify-center shadow-md shadow-emerald-200">
-              <i class="fa-solid fa-chalkboard-user"></i>
-            </div>
-            <span class="text-[10px] font-black text-slate-700">MUALLIM</span>
-          </button>
+        <!-- MUALLIM -->
+        <div class="icon-card" onclick="openPortal('MUALLIM')">
+          <div class="card-icon" style="background: linear-gradient(135deg, #059669, #0d9488); box-shadow: 0 4px 12px rgba(5,150,105,0.3);">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <span class="card-label">MUALLIM</span>
+        </div>
 
-          <button onclick="openPortal('MANAGEMENT')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-pink-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-500 text-white text-lg flex items-center justify-center shadow-md shadow-pink-200">
-              <i class="fa-solid fa-sitemap"></i>
-            </div>
-            <span class="text-[9px] font-black text-slate-700 leading-tight text-center">MANAGEMENT</span>
-          </button>
+        <!-- MANAGEMENT -->
+        <div class="icon-card" onclick="openPortal('MANAGEMENT')">
+          <div class="card-icon" style="background: linear-gradient(135deg, #e11d48, #f43f5e); box-shadow: 0 4px 12px rgba(225,29,72,0.3);">
+            <i class="fa-solid fa-sitemap"></i>
+          </div>
+          <span class="card-label">MGMT</span>
+        </div>
 
-          <button onclick="openPortal('PARENT')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-teal-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white text-lg flex items-center justify-center shadow-md shadow-teal-200">
-              <i class="fa-solid fa-users"></i>
-            </div>
-            <span class="text-[10px] font-black text-slate-700">PARENT</span>
-          </button>
+        <!-- PARENT -->
+        <div class="icon-card" onclick="openPortal('PARENT')">
+          <div class="card-icon" style="background: linear-gradient(135deg, #0284c7, #06b6d4); box-shadow: 0 4px 12px rgba(2,132,199,0.3);">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <span class="card-label">PARENT</span>
         </div>
       </div>
 
       <!-- GENERAL SERVICES -->
-      <div class="space-y-2">
-        <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">സേവനങ്ങൾ (SERVICES)</h3>
-        <div class="grid grid-cols-4 gap-2.5">
-          <a href="https://mu-madrasa.vercel.app/" target="_blank" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-emerald-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-500 text-white flex flex-col items-center justify-center shadow-md shadow-emerald-200">
-              <span class="font-black text-[11px] leading-tight">MUM</span>
-              <span class="text-[7px] font-bold text-emerald-200">PRAYER</span>
-            </div>
-            <span class="text-[9px] font-black text-emerald-800 text-center leading-tight">PRAYER APP</span>
-          </a>
+      <h3 style="font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; padding-left: 2px;">
+        സേവനങ്ങൾ (SERVICES)
+      </h3>
+      <div class="grid-4">
+        <!-- PRAYER APP -->
+        <a href="https://mu-madrasa.vercel.app/" target="_blank" class="icon-card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #047857, #10b981); box-shadow: 0 4px 12px rgba(4,120,87,0.3);">
+            <span style="font-weight: 900; font-size: 10px; line-height: 1;">MUM</span>
+          </div>
+          <span class="card-label">PRAYER</span>
+        </a>
 
-          <button onclick="switchTab('class-notes')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-blue-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-500 to-cyan-400 text-white text-lg flex items-center justify-center shadow-md shadow-blue-200">
-              <i class="fa-solid fa-book-open-reader"></i>
-            </div>
-            <span class="text-[10px] font-black text-slate-700">CLASS</span>
-          </button>
+        <!-- CLASS -->
+        <div class="icon-card" onclick="switchTab('class-notes')">
+          <div class="card-icon" style="background: linear-gradient(135deg, #2563eb, #38bdf8); box-shadow: 0 4px 12px rgba(37,99,235,0.3);">
+            <i class="fa-solid fa-book-open-reader"></i>
+          </div>
+          <span class="card-label">CLASS</span>
+        </div>
 
-          <button onclick="switchTab('result-check')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-teal-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 text-white text-lg flex items-center justify-center shadow-md shadow-teal-200">
-              <i class="fa-solid fa-square-poll-vertical"></i>
-            </div>
-            <span class="text-[10px] font-black text-slate-700">RESULT</span>
-          </button>
+        <!-- RESULT -->
+        <div class="icon-card" onclick="switchTab('result-check')">
+          <div class="card-icon" style="background: linear-gradient(135deg, #0d9488, #2dd4bf); box-shadow: 0 4px 12px rgba(13,148,136,0.3);">
+            <i class="fa-solid fa-square-poll-vertical"></i>
+          </div>
+          <span class="card-label">RESULT</span>
+        </div>
 
-          <button onclick="switchTab('timetable')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-amber-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-400 text-white text-lg flex items-center justify-center shadow-md shadow-amber-200">
-              <i class="fa-solid fa-calendar-days"></i>
-            </div>
-            <span class="text-[10px] font-black text-slate-700 text-center leading-tight">TIMETABLE</span>
-          </button>
+        <!-- TIMETABLE -->
+        <div class="icon-card" onclick="switchTab('timetable')">
+          <div class="card-icon" style="background: linear-gradient(135deg, #d97706, #fbbf24); box-shadow: 0 4px 12px rgba(217,119,6,0.3);">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+          <span class="card-label">ROUTINE</span>
         </div>
       </div>
     </section>
 
-    <!-- 2. TEACHER DASHBOARD (Matching Screenshot 3 Tabs & Tables) -->
-    <section id="tab-staff-dashboard" class="hidden space-y-4">
-      <div class="bg-gradient-to-r from-[#064e3b] to-[#047857] text-white p-4 rounded-3xl shadow-lg flex items-center justify-between">
+    <!-- 2. TEACHER DASHBOARD (Matching Screenshot 3) -->
+    <section id="tab-staff-dashboard" class="hidden">
+      
+      <!-- Teacher Profile Banner -->
+      <div style="background: linear-gradient(135deg, #064e3b, #047857); color: #ffffff; padding: 16px; border-radius: 22px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
         <div>
-          <span id="logged-role-badge" class="text-[9px] font-black uppercase tracking-wider bg-white/20 text-white px-2.5 py-0.5 rounded-full">TEACHER</span>
-          <h3 id="logged-user-name" class="text-xs font-black mt-1">അധ്യാപക ഡാഷ്‌ബോർഡ്</h3>
-          <p id="assigned-classes-hint" class="text-[10px] text-emerald-200 font-bold">Class: All</p>
+          <span id="logged-role-badge" style="background: rgba(255,255,255,0.2); font-size: 9px; font-weight: 900; padding: 2px 8px; border-radius: 12px;">TEACHER</span>
+          <h3 id="logged-user-name" style="font-size: 13px; font-weight: 900; margin-top: 4px;">അധ്യാപക ഡാഷ്‌ബോർഡ്</h3>
+          <p id="assigned-classes-hint" style="font-size: 10px; color: #a7f3d0; font-weight: 700;">Class: All</p>
         </div>
-        <div class="flex gap-2">
-          <button onclick="switchTab('home')" class="text-xs bg-white/20 px-2.5 py-1.5 rounded-xl font-bold">പബ്ലിക് പോർട്ടൽ</button>
-          <button onclick="logoutStaff()" class="text-xs bg-rose-600 px-2.5 py-1.5 rounded-xl font-bold">LOGOUT</button>
+        <div style="display: flex; gap: 6px;">
+          <button onclick="switchTab('home')" style="background: rgba(255,255,255,0.2); color: #ffffff; border: none; font-size: 10px; font-weight: 800; padding: 6px 10px; border-radius: 10px; cursor: pointer;">ഹോം</button>
+          <button onclick="logoutStaff()" style="background: #e11d48; color: #ffffff; border: none; font-size: 10px; font-weight: 800; padding: 6px 10px; border-radius: 10px; cursor: pointer;">LOGOUT</button>
         </div>
       </div>
 
-      <!-- Navigation Tabs (Screenshot 3 Model: ഡെയിലി എൻട്രി, വിദ്യാർത്ഥികൾ, റിപ്പോർട്ടുകൾ, സെറ്റിംഗ്സ്) -->
-      <div class="grid grid-cols-4 gap-1.5 text-center bg-white p-1 rounded-2xl border shadow-xs">
-        <button onclick="openStaffPanel('daily-prayer-inspect')" id="snav-daily" class="py-2 rounded-xl text-xs font-black bg-[#065f46] text-white">ഡെയിലി എൻട്രി</button>
-        <button onclick="openStaffPanel('student-mgmt')" id="snav-students" class="py-2 rounded-xl text-xs font-black text-slate-600">വിദ്യാർത്ഥികൾ</button>
-        <button onclick="openStaffPanel('marks-entry')" id="snav-marks" class="py-2 rounded-xl text-xs font-black text-slate-600">റിപ്പോർട്ടുകൾ</button>
-        <button onclick="openStaffPanel('exam-config')" id="snav-settings" class="py-2 rounded-xl text-xs font-black text-slate-600">സെറ്റിംഗ്സ്</button>
+      <!-- Navigation Tabs (Screenshot 3 Style) -->
+      <div class="grid-4" style="background: #ffffff; padding: 6px; border-radius: 18px; border: 1px solid #e2e8f0; margin-bottom: 12px;">
+        <button id="snav-daily" onclick="openStaffPanel('daily-prayer-inspect')" style="background: #065f46; color: #ffffff; border: none; padding: 8px 0; border-radius: 12px; font-size: 11px; font-weight: 800; cursor: pointer;">ഡെയിലി എൻട്രി</button>
+        <button id="snav-students" onclick="openStaffPanel('student-mgmt')" style="background: none; color: #475569; border: none; padding: 8px 0; border-radius: 12px; font-size: 11px; font-weight: 800; cursor: pointer;">വിദ്യാർത്ഥികൾ</button>
+        <button id="snav-marks" onclick="openStaffPanel('marks-entry')" style="background: none; color: #475569; border: none; padding: 8px 0; border-radius: 12px; font-size: 11px; font-weight: 800; cursor: pointer;">മാർക്ക് എൻട്രി</button>
+        <button id="snav-settings" onclick="openStaffPanel('exam-config')" style="background: none; color: #475569; border: none; padding: 8px 0; border-radius: 12px; font-size: 11px; font-weight: 800; cursor: pointer;">എക്സാം സെറ്റപ്പ്</button>
       </div>
 
-      <!-- PANEL 1: DAILY PRAYER & ATTENDANCE INSPECTION (Matching Screenshot 3) -->
-      <div id="panel-daily-prayer-inspect" class="space-y-3">
-        <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs font-black text-slate-800">Daily Prayer & Attendance Inspection</h4>
-            <div class="flex gap-2">
-              <button onclick="broadcastLeaveWhatsAppAlert()" class="bg-[#10b981] hover:bg-emerald-600 text-white font-black text-[10px] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shadow-xs">
-                <i class="fa-brands fa-whatsapp"></i> Broadcast WA Alert
+      <!-- SUB-PANEL 1: DAILY INSPECTION (Matching Screenshot 3) -->
+      <div id="panel-daily-prayer-inspect">
+        <div style="background: #ffffff; padding: 16px; border-radius: 22px; border: 1px solid #e2e8f0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h4 style="font-size: 12px; font-weight: 900;">Daily Prayer Inspection</h4>
+            <div style="display: flex; gap: 6px;">
+              <button onclick="broadcastLeaveWhatsAppAlert()" style="background: #10b981; color: #fff; border: none; font-size: 9px; font-weight: 800; padding: 6px 10px; border-radius: 10px; cursor: pointer;">
+                <i class="fa-brands fa-whatsapp"></i> WA Alert
               </button>
-              <button onclick="window.print()" class="bg-[#0284c7] hover:bg-sky-600 text-white font-black text-[10px] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shadow-xs">
-                <i class="fa-solid fa-file-pdf"></i> Daily PDF
+              <button onclick="window.print()" style="background: #0284c7; color: #fff; border: none; font-size: 9px; font-weight: 800; padding: 6px 10px; border-radius: 10px; cursor: pointer;">
+                <i class="fa-solid fa-file-pdf"></i> PDF
               </button>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid-2" style="margin-bottom: 8px;">
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 mb-1">Select Class</label>
-              <select id="dt-inspect-class" onchange="loadDailyInspectionTable()" class="w-full p-2.5 bg-slate-50 border border-emerald-400 rounded-2xl text-xs font-bold outline-none"></select>
+              <label style="font-size: 9px; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 4px;">Select Class</label>
+              <select id="dt-inspect-class" onchange="loadDailyInspectionTable()" class="form-input" style="border-color: #059669; margin: 0;"></select>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 mb-1">Date</label>
-              <input type="text" id="dt-inspect-date" readonly value="27/10/2026" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold text-slate-700">
+              <label style="font-size: 9px; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 4px;">Date</label>
+              <input type="text" id="dt-inspect-date" readonly value="27/10/2026" class="form-input" style="margin: 0;">
             </div>
           </div>
 
-          <!-- Table View exactly like Screenshot 3 -->
-          <div class="overflow-x-auto border rounded-2xl">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-50 text-[10px] font-black text-slate-600 border-b">
+          <div class="table-container">
+            <table>
+              <thead>
                 <tr>
-                  <th class="p-2 text-center">No</th>
-                  <th class="p-2 text-center">Adm</th>
-                  <th class="p-2">Name</th>
-                  <th class="p-2 text-center">Subh</th>
-                  <th class="p-2 text-center">Dhuhr</th>
-                  <th class="p-2 text-center">Asr</th>
-                  <th class="p-2 text-center">Maghrib</th>
-                  <th class="p-2 text-center">Isha</th>
-                  <th class="p-2 text-center">Att</th>
+                  <th>No</th>
+                  <th>Adm</th>
+                  <th style="text-align: left;">Name</th>
+                  <th>Subh</th>
+                  <th>Dhuhr</th>
+                  <th>Asr</th>
+                  <th>Maghrib</th>
+                  <th>Isha</th>
+                  <th>Att</th>
                 </tr>
               </thead>
-              <tbody id="daily-inspection-table-body" class="divide-y text-center font-bold"></tbody>
+              <tbody id="daily-inspection-table-body"></tbody>
             </table>
           </div>
-          <button onclick="saveDailyAttendanceAndPrayerScores()" class="w-full bg-[#065f46] text-white font-black text-xs py-2.5 rounded-xl shadow-xs">സേവ് ചെയ്യുക (Save Attendance & Scores)</button>
+
+          <button onclick="saveDailyAttendanceAndPrayerScores()" class="primary-btn" style="margin-top: 12px;">
+            സേവ് ചെയ്യുക (Save Attendance & Scores)
+          </button>
         </div>
       </div>
 
-      <!-- PANEL 2: STUDENT MANAGEMENT (Matching Screenshot 3 edit box) -->
-      <div id="panel-student-mgmt" class="hidden space-y-4">
-        <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
-          <h4 id="student-form-title" class="text-xs font-black text-slate-800">✏️ വിദ്യാർത്ഥി വിവരങ്ങളും എൻട്രിയും തിരുത്തുക</h4>
-          <input type="hidden" id="edit-student-key">
+      <!-- SUB-PANEL 2: STUDENT MANAGEMENT -->
+      <div id="panel-student-mgmt" class="hidden">
+        <div style="background: #ffffff; padding: 16px; border-radius: 22px; border: 1px solid #e2e8f0; margin-bottom: 14px;">
+          <h4 id="student-form-title" style="font-size: 12px; font-weight: 900; margin-bottom: 10px;">✏️ വിദ്യാർത്ഥി വിവരങ്ങൾ തിരുത്തുക / ചേർക്കുക</h4>
           
-          <div class="grid grid-cols-2 gap-2">
-            <input id="input-adm" type="text" placeholder="അഡ്മിഷൻ നമ്പർ *" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
-            <input id="input-uid" type="text" placeholder="UID നമ്പർ" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
+          <div class="grid-2" style="margin-bottom: 0;">
+            <input id="input-adm" type="text" placeholder="അഡ്മിഷൻ നമ്പർ *" class="form-input">
+            <input id="input-uid" type="text" placeholder="UID നമ്പർ" class="form-input">
           </div>
-          <input id="input-name" type="text" placeholder="വിദ്യാർത്ഥിയുടെ പേര് *" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
+          <input id="input-name" type="text" placeholder="വിദ്യാർത്ഥിയുടെ പേര് *" class="form-input">
           
-          <div class="grid grid-cols-2 gap-2">
-            <select id="input-class" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none"></select>
-            <select id="input-gender" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
+          <div class="grid-2" style="margin-bottom: 0;">
+            <select id="input-class" class="form-input"></select>
+            <select id="input-gender" class="form-input">
               <option value="Boy">Boy (ആൺകുട്ടി)</option>
               <option value="Girl">Girl (പെൺകുട്ടി)</option>
             </select>
           </div>
 
-          <div class="grid grid-cols-2 gap-2">
-            <input id="input-pwd" type="text" placeholder="Password *" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
-            <input id="input-phone" type="tel" placeholder="രക്ഷിതാവിന്റെ ഫോൺ നമ്പർ" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
+          <div class="grid-2" style="margin-bottom: 0;">
+            <input id="input-pwd" type="text" placeholder="Password *" class="form-input">
+            <input id="input-phone" type="tel" placeholder="രക്ഷിതാവിന്റെ ഫോൺ" class="form-input">
           </div>
 
-          <label class="block text-[10px] font-bold text-slate-500">വിദ്യാർത്ഥിയുടെ ഫോട്ടോ:</label>
-          <input id="input-photo-file" type="file" accept="image/*" class="w-full text-xs text-slate-400 file:py-1 file:px-2 file:rounded-xl file:border-0 file:bg-emerald-50 file:text-emerald-700">
+          <label style="font-size: 10px; font-weight: 800; color: #64748b; display: block; margin-bottom: 4px;">വിദ്യാർത്ഥിയുടെ ഫോട്ടോ:</label>
+          <input id="input-photo-file" type="file" accept="image/*" class="form-input" style="padding: 8px;">
 
-          <div class="flex gap-2 pt-1">
-            <button onclick="saveStudentData()" class="flex-1 bg-[#065f46] text-white font-black text-xs py-3 rounded-2xl shadow-xs">വിവരങ്ങൾ ലഭ്യമാക്കി തിരുത്തുക / സേവ് ചെയ്യുക</button>
-            <button onclick="resetStudentForm()" class="px-4 bg-slate-200 text-slate-700 font-bold text-xs rounded-2xl">ക്ലിയർ</button>
+          <div style="display: flex; gap: 8px;">
+            <button onclick="saveStudentData()" class="primary-btn" style="flex: 1;">സേവ് ചെയ്യുക</button>
+            <button onclick="resetStudentForm()" class="cancel-btn" style="width: auto; margin-top: 0; padding: 0 16px;">ക്ലിയർ</button>
           </div>
         </div>
 
-        <!-- Student List with Photos & Actions -->
-        <div class="bg-white p-4 rounded-3xl border space-y-2 shadow-xs">
-          <div class="flex justify-between items-center border-b pb-2">
-            <h4 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥികളുടെ പട്ടിക</h4>
-            <select id="filter-table-class" onchange="renderStudentsTable()" class="p-1.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+        <div style="background: #ffffff; padding: 16px; border-radius: 22px; border: 1px solid #e2e8f0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+            <h4 style="font-size: 12px; font-weight: 900;">വിദ്യാർത്ഥികളുടെ പട്ടിക</h4>
+            <select id="filter-table-class" onchange="renderStudentsTable()" style="padding: 4px 8px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 10px; font-weight: 800;"></select>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-50 text-[10px] font-black text-slate-600 border-b">
-                <tr><th class="p-2">ഫോട്ടോ</th><th class="p-2">Adm</th><th class="p-2">പേര്</th><th class="p-2 text-right">Actions</th></tr>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ഫോട്ടോ</th>
+                  <th>Adm</th>
+                  <th style="text-align: left;">പേര്</th>
+                  <th>Actions</th>
+                </tr>
               </thead>
-              <tbody id="students-table-body" class="divide-y font-bold"></tbody>
+              <tbody id="students-table-body"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- PANEL 3: MARKS ENTRY & REPORTS (Fully Functional Table) -->
-      <div id="panel-marks-entry" class="hidden bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
-        <div class="flex items-center justify-between border-b pb-2">
-          <h4 class="text-xs font-black text-slate-800">മാർക്ക് എൻട്രി & റിപ്പോർട്ടുകൾ</h4>
-          <div class="flex gap-2">
-            <select id="entry-exam-select" onchange="loadMarkEntryTable()" class="p-1.5 bg-slate-50 border rounded-xl text-xs font-bold">
-              <option value="Quarterly">Quarterly</option>
-              <option value="HalfYearly">Half Yearly</option>
-              <option value="Annual">Annual</option>
+      <!-- SUB-PANEL 3: MARKS ENTRY TABLE -->
+      <div id="panel-marks-entry" class="hidden">
+        <div style="background: #ffffff; padding: 16px; border-radius: 22px; border: 1px solid #e2e8f0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h4 style="font-size: 12px; font-weight: 900;">മാർക്ക് എൻട്രി ടേബിൾ</h4>
+            <div style="display: flex; gap: 6px;">
+              <select id="entry-exam-select" onchange="loadMarkEntryTable()" style="padding: 4px 8px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 10px; font-weight: 800;">
+                <option value="Quarterly">Quarterly</option>
+                <option value="HalfYearly">Half Yearly</option>
+                <option value="Annual">Annual</option>
+              </select>
+              <select id="entry-class-select" onchange="loadMarkEntryTable()" style="padding: 4px 8px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 10px; font-weight: 800;"></select>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table id="marks-entry-table">
+              <thead id="marks-table-head"></thead>
+              <tbody id="marks-table-body"></tbody>
+            </table>
+          </div>
+          <button onclick="saveBatchExamMarks()" class="primary-btn" style="margin-top: 12px;">എല്ലാ മാർക്കുകളും സേവ് ചെയ്യുക</button>
+        </div>
+      </div>
+
+      <!-- SUB-PANEL 4: EXAM SETUP -->
+      <div id="panel-exam-config" class="hidden">
+        <div style="background: #ffffff; padding: 16px; border-radius: 22px; border: 1px solid #e2e8f0;">
+          <h4 style="font-size: 12px; font-weight: 900; margin-bottom: 10px;">പരീക്ഷ & വിഷയങ്ങൾ ക്രമീകരിക്കൽ (Exam Setup)</h4>
+          <div class="grid-2" style="margin-bottom: 0;">
+            <select id="cfg-exam-type" onchange="loadExamSetupForCurrent()" class="form-input">
+              <option value="Quarterly">പാദവാർഷികം (Quarterly)</option>
+              <option value="HalfYearly">അർദ്ധവാർഷികം (Half Yearly)</option>
+              <option value="Annual">വാർഷികം (Annual)</option>
             </select>
-            <select id="entry-class-select" onchange="loadMarkEntryTable()" class="p-1.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+            <input id="cfg-exam-year" type="number" value="2026" class="form-input">
           </div>
-        </div>
+          <select id="cfg-class-select" onchange="loadExamSetupForCurrent()" class="form-input"></select>
 
-        <div class="overflow-x-auto border rounded-2xl max-h-72">
-          <table class="w-full text-left text-xs" id="marks-entry-table">
-            <thead class="bg-slate-100 font-bold" id="marks-table-head"></thead>
-            <tbody id="marks-table-body" class="divide-y font-bold"></tbody>
-          </table>
+          <div style="background: #f8fafc; padding: 12px; border-radius: 14px; border: 1px solid #e2e8f0; margin-bottom: 12px;">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+              <input id="cfg-sub-name" type="text" placeholder="വിഷയം (ഉദാ: ഫിഖ്ഹ്)" class="form-input" style="margin: 0;">
+              <input id="cfg-sub-total" type="number" placeholder="Total" value="50" class="form-input" style="margin: 0;">
+              <input id="cfg-sub-pass" type="number" placeholder="Pass" value="18" class="form-input" style="margin: 0;">
+            </div>
+            <button onclick="addExamSubjectToSetup()" style="width: 100%; background: #0284c7; color: #fff; border: none; padding: 8px; border-radius: 10px; font-size: 11px; font-weight: 800; cursor: pointer;">+ വിഷയം ചേർക്കുക</button>
+            <div id="cfg-subjects-list" style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;"></div>
+          </div>
+
+          <button onclick="saveExamConfiguration()" class="primary-btn">എക്സാം ക്രമീകരണം സേവ് ചെയ്യുക</button>
         </div>
-        <button onclick="saveBatchExamMarks()" class="w-full bg-[#065f46] text-white font-black text-xs py-3 rounded-2xl shadow-xs">എല്ലാ മാർക്കുകളും സേവ് ചെയ്യുക</button>
       </div>
 
-      <!-- PANEL 4: EXAM SETUP (Edit & Delete Available for Subjects) -->
-      <div id="panel-exam-config" class="hidden bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
-        <h4 class="text-xs font-black text-slate-800 border-b pb-2">പരീക്ഷ & വിഷയങ്ങൾ ക്രമീകരിക്കൽ (Exam Setup)</h4>
-        <div class="grid grid-cols-2 gap-2">
-          <select id="cfg-exam-type" onchange="loadExamSetupForCurrent()" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
-            <option value="Quarterly">പാദവാർഷികം (Quarterly)</option>
-            <option value="HalfYearly">അർദ്ധവാർഷികം (Half Yearly)</option>
-            <option value="Annual">വാർഷികം (Annual)</option>
-          </select>
-          <input id="cfg-exam-year" type="number" value="2026" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
-        </div>
-        <select id="cfg-class-select" onchange="loadExamSetupForCurrent()" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none"></select>
-        
-        <div class="p-3 bg-slate-50 rounded-2xl border space-y-2">
-          <div class="grid grid-cols-3 gap-2">
-            <input id="cfg-sub-name" type="text" placeholder="വിഷയം (ഉദാ: ഫിഖ്ഹ്)" class="p-2 bg-white border rounded-xl text-xs font-bold">
-            <input id="cfg-sub-total" type="number" placeholder="Total" value="50" class="p-2 bg-white border rounded-xl text-xs font-bold">
-            <input id="cfg-sub-pass" type="number" placeholder="Pass" value="18" class="p-2 bg-white border rounded-xl text-xs font-bold">
-          </div>
-          <button onclick="addExamSubjectToSetup()" class="w-full bg-teal-600 text-white text-xs font-black py-2 rounded-xl">+ വിഷയം ചേർക്കുക</button>
-          
-          <div id="cfg-subjects-list" class="space-y-1.5 text-xs pt-1"></div>
-        </div>
-        <button onclick="saveExamConfiguration()" class="w-full bg-[#065f46] text-white font-black text-xs py-3 rounded-2xl shadow-xs">എക്സാം ക്രമീകരണം സേവ് ചെയ്യുക</button>
-      </div>
     </section>
 
     <!-- 3. TOPPERS DASHBOARD -->
-    <section id="tab-toppers-view" class="hidden space-y-4">
-      <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 text-white p-5 rounded-3xl shadow-lg space-y-2">
-        <span class="text-[9px] font-black uppercase tracking-wider bg-black/20 px-2.5 py-0.5 rounded-full">MADRASA RANK BOARD</span>
-        <h3 class="text-base font-black">മദ്റസ ടോപ്പേഴ്സ്</h3>
+    <section id="tab-toppers-view" class="hidden">
+      <div style="background: linear-gradient(135deg, #d97706, #f59e0b); color: #fff; padding: 18px; border-radius: 22px; margin-bottom: 12px;">
+        <span style="font-size: 9px; font-weight: 900; background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">MADRASA RANK BOARD</span>
+        <h3 style="font-size: 14px; font-weight: 900; margin-top: 4px;">മദ്റസ ടോപ്പേഴ്സ്</h3>
       </div>
-      <div class="bg-white p-4 rounded-3xl border space-y-3">
-        <div class="grid grid-cols-5 gap-1 text-[10px] font-black text-center bg-slate-100 p-1 rounded-2xl">
-          <button onclick="filterToppersScope('daily')" id="btn-top-daily" class="py-1.5 rounded-xl bg-white text-indigo-700 shadow-xs">DAILY</button>
-          <button onclick="filterToppersScope('weekly')" id="btn-top-weekly" class="py-1.5 rounded-xl text-slate-500">WEEKLY</button>
-          <button onclick="filterToppersScope('monthly')" id="btn-top-monthly" class="py-1.5 rounded-xl text-slate-500">MONTHLY</button>
-          <button onclick="filterToppersScope('yearly')" id="btn-top-yearly" class="py-1.5 rounded-xl text-slate-500">YEARLY</button>
-          <button onclick="filterToppersScope('all')" id="btn-top-all" class="py-1.5 rounded-xl text-slate-500">TOTAL</button>
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <select id="toppers-class-select" onchange="renderToppersLeaderboard()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+      <div style="background: #fff; padding: 14px; border-radius: 22px; border: 1px solid #e2e8f0;">
+        <div class="grid-2" style="margin-bottom: 10px;">
+          <select id="toppers-class-select" onchange="renderToppersLeaderboard()" class="form-input" style="margin: 0;">
             <option value="All">All Classes</option>
             <option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option><option value="Class 4">Class 4</option><option value="Class 5">Class 5</option>
             <option value="Class 6">Class 6</option><option value="Class 7">Class 7</option><option value="Class 8">Class 8</option><option value="Class 9">Class 9</option><option value="Class 10">Class 10</option>
           </select>
-          <select id="toppers-gender-select" onchange="renderToppersLeaderboard()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <select id="toppers-gender-select" onchange="renderToppersLeaderboard()" class="form-input" style="margin: 0;">
             <option value="All">ആൺ & പെൺ</option>
-            <option value="Boy">ആൺകുട്ടികൾ (Boys)</option>
-            <option value="Girl">പെൺകുട്ടികൾ (Girls)</option>
+            <option value="Boy">Boys</option>
+            <option value="Girl">Girls</option>
           </select>
         </div>
+        <div id="toppers-list-box" style="display: flex; flex-direction: column; gap: 6px;"></div>
       </div>
-      <div id="toppers-list-box" class="space-y-2"></div>
     </section>
 
-    <!-- 4. RESULT CHECK & PRINTABLE REPORT -->
-    <section id="tab-result-check" class="hidden space-y-4">
-      <div class="bg-white p-5 rounded-3xl border space-y-3 shadow-xs">
-        <h3 class="text-sm font-black text-slate-800 text-center">CHECK EXAM RESULT</h3>
-        <div class="space-y-2">
-          <select id="stud-exam-type" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold">
-            <option value="Quarterly">പാദവാർഷിക പരീക്ഷ (Quarterly)</option>
-            <option value="HalfYearly">അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly)</option>
-            <option value="Annual">വാർഷിക പരീക്ഷ (Annual)</option>
-          </select>
-          <input id="stud-search-id" type="text" placeholder="Admission Number അല്ലെങ്കിൽ പേര്" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold">
-          <input id="stud-search-pwd" type="password" placeholder="പാസ്‌വേഡ്" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold">
-          <button onclick="searchStudentResult()" class="w-full bg-[#065f46] text-white font-black text-xs py-3 rounded-2xl shadow-xs">റിസൾട്ട് പരിശോധിക്കുക</button>
-        </div>
+    <!-- 4. RESULT CHECK TAB -->
+    <section id="tab-result-check" class="hidden">
+      <div style="background: #fff; padding: 18px; border-radius: 22px; border: 1px solid #e2e8f0; margin-bottom: 12px;">
+        <h3 style="font-size: 13px; font-weight: 900; text-align: center; margin-bottom: 12px;">CHECK EXAM RESULT</h3>
+        <select id="stud-exam-type" class="form-input">
+          <option value="Quarterly">പാദവാർഷിക പരീക്ഷ (Quarterly)</option>
+          <option value="HalfYearly">അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly)</option>
+          <option value="Annual">വാർഷിക പരീക്ഷ (Annual)</option>
+        </select>
+        <input id="stud-search-id" type="text" placeholder="Admission Number അല്ലെങ്കിൽ പേര്" class="form-input">
+        <input id="stud-search-pwd" type="password" placeholder="പാസ്‌വേഡ്" class="form-input">
+        <button onclick="searchStudentResult()" class="primary-btn">റിസൾട്ട് പരിശോധിക്കുക</button>
       </div>
 
-      <div id="result-card-box" class="hidden space-y-3">
-        <div id="printable-report" class="bg-white p-5 rounded-3xl border shadow-xl space-y-3">
-          <div class="text-center border-b pb-2">
-            <h2 class="text-sm font-amiri font-bold text-emerald-950">مدرسة مظهر العلوم</h2>
-            <h3 class="text-xs font-black text-emerald-900 uppercase">MALHARUL ULOOM MADRASA (1283)</h3>
-            <p class="text-[10px] font-bold text-slate-500">Kalloor-Koothali • Progress Report</p>
+      <div id="result-card-box" class="hidden">
+        <div id="printable-report" style="background: #fff; padding: 18px; border-radius: 22px; border: 1px solid #e2e8f0;">
+          <div style="text-align: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; margin-bottom: 10px;">
+            <h2 class="font-amiri" style="font-size: 16px; color: #064e3b; margin: 0;">مدرسة مظهر العلوم</h2>
+            <h3 style="font-size: 11px; font-weight: 900;">MALHARUL ULOOM MADRASA (1283)</h3>
+            <p style="font-size: 9px; color: #64748b;">Kalloor-Koothali • Progress Report</p>
           </div>
-          <div class="flex items-center justify-between border-b pb-2">
-            <div class="flex items-center gap-3">
-              <img id="res-photo" src="https://via.placeholder.com/100" class="w-14 h-14 rounded-2xl object-cover border">
-              <div>
-                <h3 id="res-name" class="font-black text-sm text-slate-800">--</h3>
-                <p id="res-class" class="text-xs font-bold text-slate-500">Class: --</p>
-                <p id="res-adm" class="text-[10px] text-slate-400">Adm No: --</p>
-              </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; margin-bottom: 10px;">
+            <div>
+              <h3 id="res-name" style="font-size: 13px; font-weight: 900;">--</h3>
+              <p id="res-class" style="font-size: 10px; color: #64748b;">Class: --</p>
+              <p id="res-adm" style="font-size: 9px; color: #94a3b8;">Adm No: --</p>
             </div>
-            <div class="text-right">
-              <span id="res-status" class="font-black text-xs px-2.5 py-1 rounded-xl bg-emerald-100 text-emerald-700">PASSED</span>
-              <p id="res-att" class="text-[10px] text-slate-500 font-bold mt-1">Attendance: --</p>
-            </div>
+            <span id="res-status" style="background: #d1fae5; color: #065f46; font-size: 10px; font-weight: 900; padding: 4px 10px; border-radius: 10px;">PASSED</span>
           </div>
-          <div id="res-subjects-list" class="space-y-1 text-xs"></div>
-          <div class="p-2.5 bg-slate-900 text-white rounded-xl flex justify-between items-center text-xs">
-            <span class="font-bold">ആകെ മാർക്ക്:</span>
-            <span id="res-total" class="font-black text-amber-300 text-sm">--</span>
-          </div>
-          <div class="border-t pt-2 space-y-2 text-xs">
-            <div class="grid grid-cols-4 gap-2 text-center text-[9px] font-black p-2 bg-slate-50 rounded-xl border">
-              <div>ആകെ: <span id="rep-total-students">--</span></div>
-              <div>ആൺ: <span id="rep-boys">--</span></div>
-              <div>പെൺ: <span id="rep-girls">--</span></div>
-              <div>വിജയം: <span id="rep-pass-rate" class="text-emerald-700">100%</span></div>
-            </div>
-            <div class="pt-6 grid grid-cols-2 gap-4 text-center">
-              <div class="border-t border-slate-400 pt-1">
-                <p class="text-[9px] font-black">ക്ലാസ് അധ്യാപകൻ</p><div class="h-6"></div><p class="text-[8px] text-slate-400">ഒപ്പ്</p>
-              </div>
-              <div class="border-t border-slate-400 pt-1">
-                <p class="text-[9px] font-black">സദർ മുഅല്ലിം</p><div class="h-6"></div><p class="text-[8px] text-slate-400">ഒപ്പ് & സീൽ</p>
-              </div>
-            </div>
+          <div id="res-subjects-list" style="display: flex; flex-direction: column; gap: 4px; font-size: 11px;"></div>
+          <div style="background: #0f172a; color: #fff; padding: 10px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 12px; font-weight: 900;">
+            <span>ആകെ മാർക്ക്:</span>
+            <span id="res-total" style="color: #fde047;">--</span>
           </div>
         </div>
-        <button onclick="window.print()" class="w-full bg-slate-900 text-white font-black text-xs py-3 rounded-2xl shadow-xs">പ്രിന്റ് / സേവ് PDF</button>
+        <button onclick="window.print()" class="primary-btn" style="background: #0f172a; margin-top: 10px;">പ്രിന്റ് / സേവ് PDF</button>
       </div>
     </section>
 
     <!-- 5. STUDENT & PARENT PROFILE -->
-    <section id="tab-student-profile" class="hidden space-y-4">
-      <div class="bg-gradient-to-r from-purple-800 to-indigo-800 text-white p-5 rounded-3xl shadow-lg flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <img id="sp-photo" src="https://via.placeholder.com/100" class="w-14 h-14 rounded-2xl object-cover border-2 border-white shadow-sm">
+    <section id="tab-student-profile" class="hidden">
+      <div style="background: linear-gradient(135deg, #7e22ce, #6366f1); color: #fff; padding: 16px; border-radius: 22px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img id="sp-photo" src="https://via.placeholder.com/80" style="width: 44px; height: 44px; border-radius: 12px; object-cover: cover; border: 2px solid #fff;">
           <div>
-            <span class="text-[9px] font-black uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded-full">STUDENT PORTAL</span>
-            <h3 id="sp-name" class="text-sm font-black mt-1">--</h3>
-            <p id="sp-class-uid" class="text-[11px] text-purple-200 font-bold">Class: -- • UID: --</p>
+            <span style="background: rgba(255,255,255,0.2); font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 8px;">STUDENT PORTAL</span>
+            <h3 id="sp-name" style="font-size: 13px; font-weight: 900; margin-top: 2px;">--</h3>
+            <p id="sp-class-uid" style="font-size: 9px; color: #e9d5ff;">Class: --</p>
           </div>
         </div>
-        <button onclick="logoutStudent()" class="text-xs bg-rose-600 px-3 py-1.5 rounded-xl font-bold">LOGOUT</button>
+        <button onclick="logoutStudent()" style="background: #e11d48; color: #fff; border: none; font-size: 10px; font-weight: 800; padding: 6px 10px; border-radius: 10px; cursor: pointer;">LOGOUT</button>
       </div>
-      <div class="bg-white p-5 rounded-3xl border space-y-3">
-        <h4 class="text-xs font-black text-slate-800">ഹാജർ നില (Attendance Pie Chart)</h4>
-        <div class="h-44"><canvas id="studentAttPieChart"></canvas></div>
+      <div style="background: #fff; padding: 16px; border-radius: 22px; border: 1px solid #e2e8f0; text-align: center;">
+        <h4 style="font-size: 12px; font-weight: 900; margin-bottom: 10px;">ഹാജർ നില & പ്രോഗ്രസ്</h4>
+        <p style="font-size: 11px; color: #64748b;">നിങ്ങളുടെ പ്രതിദിന വിവരങ്ങൾ അധ്യാപകൻ രേഖപ്പെടുത്തുന്നതിനനുസരിച്ച് ഇവിടെ അപ്‌ഡേറ്റ് ചെയ്യപ്പെടും.</p>
       </div>
     </section>
 
-    <!-- 6. MADRASA DETAILS (Management View Protected) -->
-    <section id="tab-madrasa-details" class="hidden space-y-4">
-      <div class="bg-gradient-to-r from-emerald-800 to-teal-800 text-white p-5 rounded-3xl shadow-lg space-y-1">
-        <span class="text-[9px] font-black uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">MADRASA STATS</span>
-        <h3 class="text-sm font-black">മദ്റസ വിവരങ്ങൾ (Management Overview)</h3>
-      </div>
-      <div class="grid grid-cols-3 gap-2">
-        <div class="bg-white p-3.5 rounded-2xl border text-center">
-          <span class="text-[9px] font-black text-slate-400 uppercase">ആകെ കുട്ടികൾ</span>
-          <h4 id="stat-total-students" class="text-lg font-black text-emerald-700">0</h4>
-        </div>
-        <div class="bg-white p-3.5 rounded-2xl border text-center">
-          <span class="text-[9px] font-black text-blue-500 uppercase">ആൺകുട്ടികൾ</span>
-          <h4 id="stat-total-boys" class="text-lg font-black text-blue-600">0</h4>
-        </div>
-        <div class="bg-white p-3.5 rounded-2xl border text-center">
-          <span class="text-[9px] font-black text-pink-500 uppercase">പെൺകുട്ടികൾ</span>
-          <h4 id="stat-total-girls" class="text-lg font-black text-pink-600">0</h4>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- MODAL 1: EXACT CONTACT DIRECTORY (Matching Screenshot 1) -->
-  <div id="staff-directory-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-sm rounded-[32px] p-5 shadow-2xl space-y-3 max-h-[90vh] flex flex-col">
-      <div class="flex items-center gap-2 text-[#064e3b] border-b pb-3 font-bold text-sm">
+  <div id="staff-directory-popup" class="modal-overlay">
+    <div class="modal-box">
+      <div style="display: flex; align-items: center; gap: 8px; color: #064e3b; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; font-weight: 900; font-size: 13px;">
         <i class="fa-solid fa-phone"></i>
         <span>അധ്യാപകരുടെ വിവരങ്ങൾ</span>
       </div>
 
-      <div id="directory-content-list" class="space-y-2.5 overflow-y-auto flex-grow text-xs pr-1">
-        <!-- Rendered dynamically matching Screenshot 1 -->
+      <div id="directory-content-list" style="display: flex; flex-direction: column; gap: 8px; margin: 12px 0; max-height: 380px; overflow-y: auto;">
+        
+        <!-- Shafi Darimi Card -->
+        <div style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 16px; padding: 10px; display: flex; align-items: center; gap: 10px;">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #f59e0b;">
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <h4 style="font-size: 11px; font-weight: 900; color: #1e293b;">SHAFI DARIMI</h4>
+              <span style="background: #d97706; color: #fff; font-size: 8px; font-weight: 900; padding: 1px 5px; border-radius: 4px;">സദർ മുഅല്ലിം</span>
+            </div>
+            <p style="font-size: 9px; color: #78350f; font-weight: 800;">ക്ലാസുകൾ: 3, 10</p>
+            <p style="font-size: 9px; color: #1e293b; font-weight: 800;">+919605169230</p>
+            <div style="display: flex; gap: 6px; margin-top: 4px;">
+              <a href="tel:9605169230" style="background: #0284c7; color: #fff; padding: 3px 10px; border-radius: 20px; font-size: 8px; font-weight: 800; text-decoration: none;"><i class="fa-solid fa-phone" style="font-size: 7px;"></i> Call</a>
+              <a href="https://wa.me/919605169230" target="_blank" style="background: #25D366; color: #fff; padding: 3px 10px; border-radius: 20px; font-size: 8px; font-weight: 800; text-decoration: none;"><i class="fa-brands fa-whatsapp" style="font-size: 7px;"></i> WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rashidali Faizy Card -->
+        <div style="background: #f0fdf4; border: 2px solid #059669; border-radius: 16px; padding: 10px; display: flex; align-items: center; gap: 10px;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #059669;">
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <h4 style="font-size: 11px; font-weight: 900; color: #1e293b;">RASHIDALI FAIZY</h4>
+              <span style="background: #047857; color: #fff; font-size: 8px; font-weight: 900; padding: 1px 5px; border-radius: 4px;">അഡ്മിൻ</span>
+            </div>
+            <p style="font-size: 9px; color: #064e3b; font-weight: 800;">ക്ലാസുകൾ: 2, 9</p>
+            <p style="font-size: 9px; color: #1e293b; font-weight: 800;">6238403492</p>
+            <div style="display: flex; gap: 6px; margin-top: 4px;">
+              <a href="tel:6238403492" style="background: #0284c7; color: #fff; padding: 3px 10px; border-radius: 20px; font-size: 8px; font-weight: 800; text-decoration: none;"><i class="fa-solid fa-phone" style="font-size: 7px;"></i> Call</a>
+              <a href="https://wa.me/916238403492" target="_blank" style="background: #25D366; color: #fff; padding: 3px 10px; border-radius: 20px; font-size: 8px; font-weight: 800; text-decoration: none;"><i class="fa-brands fa-whatsapp" style="font-size: 7px;"></i> WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <button onclick="closeStaffDirectoryModal()" class="w-full bg-[#94a3b8] hover:bg-slate-500 text-white font-bold text-xs py-3 rounded-2xl shadow-xs transition">
-        Cancel
-      </button>
+      <button onclick="closeStaffDirectoryModal()" class="cancel-btn">Cancel</button>
     </div>
   </div>
 
   <!-- MODAL 2: EXACT PORTAL LOGIN (Matching Screenshot 2) -->
-  <div id="role-login-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-sm rounded-[32px] p-6 shadow-2xl space-y-3">
-      <h3 class="text-center font-bold text-base text-[#064e3b]">Portal Login</h3>
+  <div id="role-login-popup" class="modal-overlay">
+    <div class="modal-box">
+      <h3 style="text-align: center; font-weight: 900; font-size: 15px; color: #064e3b; margin-bottom: 12px;">Portal Login</h3>
 
-      <div class="space-y-3 pt-2">
-        <input type="hidden" id="active-popup-role" value="TEACHERS">
+      <select id="login-role-selector" onchange="handleLoginRoleChange()" class="form-input">
+        <option value="TEACHERS">Teacher</option>
+        <option value="SWADAR">Sadar Muallim</option>
+        <option value="ADMIN">Admin</option>
+        <option value="STUDENT">Student</option>
+        <option value="PARENT">Parent</option>
+        <option value="MANAGEMENT">Management</option>
+      </select>
 
-        <!-- Role Select -->
-        <div class="relative">
-          <select id="login-role-selector" onchange="handleLoginRoleChange()" class="w-full p-3 bg-white border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 outline-none appearance-none">
-            <option value="TEACHERS">Teacher</option>
-            <option value="SWADAR">Sadar Muallim</option>
-            <option value="ADMIN">Admin</option>
-            <option value="STUDENT">Student</option>
-            <option value="PARENT">Parent</option>
-            <option value="MANAGEMENT">Management</option>
-          </select>
-          <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
-        </div>
-
-        <!-- Select Teacher Dropdown (Only shown when Teacher is selected) -->
-        <div id="popup-teacher-dropdown-box" class="relative">
-          <select id="popup-teacher-select" class="w-full p-3 bg-white border border-[#059669] rounded-2xl text-xs font-bold text-slate-700 outline-none appearance-none">
-            <option value="">-- Select Teacher --</option>
-          </select>
-          <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
-        </div>
-
-        <!-- Identifier input for Student / Parent -->
-        <div id="popup-identifier-box" class="hidden">
-          <input id="popup-identifier-input" type="text" placeholder="Admission No / Name" class="w-full p-3 bg-white border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 outline-none">
-        </div>
-
-        <!-- Password input -->
-        <div>
-          <input id="popup-password-input" type="password" placeholder="Password" class="w-full p-3 bg-white border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 outline-none">
-        </div>
-
-        <!-- Green Login Button like Screenshot 2 -->
-        <button onclick="executeRoleLogin()" class="w-full bg-[#064e3b] hover:bg-[#065f46] text-white font-bold text-xs py-3.5 rounded-2xl shadow-xs transition">
-          Login with Password
-        </button>
-
-        <!-- Blue Fingerprint Login Button like Screenshot 2 -->
-        <button onclick="simulateBiometricAuth()" class="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold text-xs py-3.5 rounded-2xl shadow-xs flex items-center justify-center gap-2 transition">
-          <i class="fa-solid fa-lock text-xs text-amber-300"></i> Fingerprint Login
-        </button>
-
-        <!-- Grey Cancel Button like Screenshot 2 -->
-        <button onclick="closeRoleLoginModal()" class="w-full bg-[#94a3b8] hover:bg-slate-500 text-white font-bold text-xs py-3 rounded-2xl shadow-xs transition">
-          Cancel
-        </button>
+      <div id="popup-teacher-dropdown-box">
+        <select id="popup-teacher-select" class="form-input" style="border-color: #059669;">
+          <option value="">-- Select Teacher --</option>
+        </select>
       </div>
+
+      <div id="popup-identifier-box" class="hidden">
+        <input id="popup-identifier-input" type="text" placeholder="Admission No / Name" class="form-input">
+      </div>
+
+      <input id="popup-password-input" type="password" placeholder="Password" class="form-input">
+
+      <button onclick="executeRoleLogin()" class="primary-btn">Login with Password</button>
+      <button onclick="simulateBiometricAuth()" class="blue-btn">
+        <i class="fa-solid fa-lock" style="color: #fde047;"></i> Fingerprint Login
+      </button>
+      <button onclick="closeRoleLoginModal()" class="cancel-btn">Cancel</button>
     </div>
   </div>
 
   <!-- Bottom Navigation Bar -->
-  <nav class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-xl border-t border-emerald-100 px-3 py-2 z-40 shadow-xl">
-    <div class="max-w-md mx-auto flex items-center justify-around">
-      <button onclick="switchTab('home')" class="flex flex-col items-center gap-0.5 text-emerald-800 font-black">
-        <div class="w-10 h-7 rounded-full bg-emerald-50 flex items-center justify-center shadow-xs">
-          <i class="fa-solid fa-house text-xs text-emerald-700"></i>
-        </div>
-        <span class="text-[9px]">Home</span>
-      </button>
-
-      <button onclick="switchTab('toppers-view')" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
-        <div class="w-10 h-7 rounded-full flex items-center justify-center">
-          <i class="fa-solid fa-trophy text-xs text-amber-600"></i>
-        </div>
-        <span class="text-[9px]">Toppers</span>
-      </button>
-
-      <button onclick="switchTab('result-check')" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
-        <div class="w-10 h-7 rounded-full flex items-center justify-center">
-          <i class="fa-solid fa-square-poll-vertical text-xs text-teal-600"></i>
-        </div>
-        <span class="text-[9px]">Result</span>
-      </button>
-
-      <button onclick="openPortal('STUDENT')" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
-        <div class="w-10 h-7 rounded-full flex items-center justify-center">
-          <i class="fa-solid fa-user-graduate text-xs text-purple-600"></i>
-        </div>
-        <span class="text-[9px]">Portal</span>
-      </button>
-    </div>
+  <nav class="bottom-nav">
+    <button class="bnav-item active" id="b-home" onclick="switchTab('home')">
+      <div class="bnav-pill"><i class="fa-solid fa-house"></i></div>
+      <span>Home</span>
+    </button>
+    <button class="bnav-item" id="b-toppers" onclick="switchTab('toppers-view')">
+      <div class="bnav-pill"><i class="fa-solid fa-trophy"></i></div>
+      <span>Toppers</span>
+    </button>
+    <button class="bnav-item" id="b-result-check" onclick="switchTab('result-check')">
+      <div class="bnav-pill"><i class="fa-solid fa-square-poll-vertical"></i></div>
+      <span>Result</span>
+    </button>
+    <button class="bnav-item" onclick="openPortal('STUDENT')">
+      <div class="bnav-pill"><i class="fa-solid fa-user-graduate"></i></div>
+      <span>Portal</span>
+    </button>
   </nav>
 
-  <!-- JavaScript Functionalities -->
+  <!-- JavaScript Application Logic -->
   <script>
-    // 1. Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyCv5BoZc-PDbHON45GsQsoU8ePPe_RNvuM",
       authDomain: "mum-smart-5c296.firebaseapp.com",
@@ -645,30 +912,23 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    let chartObj = null;
-    let pieChartObj = null;
     let activeUser = null;
     let activeStudent = null;
     let currentExamSetupSubjects = [];
 
-    // Permanent PWA App Icon Generator
+    // Permanent PWA App Icon
     function generateDynamicAppIcon() {
       const canvas = document.createElement('canvas');
       canvas.width = 512; canvas.height = 512;
       const ctx = canvas.getContext('2d');
-      const grad = ctx.createLinearGradient(0, 0, 512, 512);
-      grad.addColorStop(0, '#064e3b'); grad.addColorStop(0.5, '#065f46'); grad.addColorStop(1, '#047857');
-      ctx.fillStyle = grad;
+      ctx.fillStyle = '#064e3b';
       ctx.beginPath(); ctx.roundRect(0, 0, 512, 512, 130); ctx.fill();
-      ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 10;
-      ctx.beginPath(); ctx.arc(256, 210, 140, Math.PI, 0); ctx.stroke();
-      ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.arc(256, 120, 32, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#065f46'; ctx.beginPath(); ctx.arc(268, 114, 28, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 50px Amiri, serif'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#fef08a';
+      ctx.font = 'bold 50px Amiri, serif'; ctx.textAlign = 'center';
       ctx.fillText('مدرسة', 256, 230);
-      ctx.fillStyle = '#fef08a'; ctx.font = 'bold 56px Amiri, serif';
       ctx.fillText('مظهر العلوم', 256, 305);
-      ctx.fillStyle = '#ffffff'; ctx.font = '900 28px sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 28px sans-serif';
       ctx.fillText('KALLOOR - KOOTHALI', 256, 440);
       
       canvas.toBlob(blob => {
@@ -682,11 +942,10 @@
       checkPersistedSession();
     });
 
-    // Auto-Login Session Check
+    // Auto-Login Check
     function checkPersistedSession() {
       const savedUser = localStorage.getItem('mum_active_user');
       const savedStudent = localStorage.getItem('mum_active_student');
-
       if (savedUser) {
         activeUser = JSON.parse(savedUser);
         setupStaffDashboardUI();
@@ -699,11 +958,11 @@
     }
 
     // Phone Back Button Fix
-    window.addEventListener('popstate', function(event) {
-      const activeTabs = ['madrasa-details', 'toppers-view', 'student-profile', 'result-check', 'class-notes', 'timetable', 'staff-dashboard'];
+    window.addEventListener('popstate', function() {
+      const activeTabs = ['tab-toppers-view', 'tab-student-profile', 'tab-result-check', 'tab-staff-dashboard'];
       let isSubOpen = false;
       activeTabs.forEach(t => {
-        const el = document.getElementById('tab-' + t);
+        const el = document.getElementById(t);
         if (el && !el.classList.contains('hidden')) isSubOpen = true;
       });
       if (isSubOpen) switchTab('home', false);
@@ -711,31 +970,38 @@
 
     function switchTab(tId, pushState = true) {
       if (pushState && tId !== 'home') history.pushState({ tab: tId }, '', `#${tId}`);
-      const all = ['home', 'madrasa-details', 'toppers-view', 'student-profile', 'result-check', 'class-notes', 'timetable', 'staff-dashboard'];
-      all.forEach(id => {
+      ['home', 'toppers-view', 'student-profile', 'result-check', 'staff-dashboard'].forEach(id => {
         const el = document.getElementById('tab-' + id);
         if (el) el.classList.add('hidden');
       });
       const curr = document.getElementById('tab-' + tId);
       if (curr) curr.classList.remove('hidden');
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      ['home', 'toppers', 'result-check'].forEach(b => {
+        const bEl = document.getElementById('b-' + b);
+        if (bEl) bEl.classList.remove('active');
+      });
+      const activeBtn = document.getElementById('b-' + tId);
+      if (activeBtn) activeBtn.classList.add('active');
 
-      if (tId === 'madrasa-details') calculateMadrasaStats();
-      if (tId === 'toppers-view') renderToppersLeaderboard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function toggleSidebar() {
       const s = document.getElementById('sidebar');
       const o = document.getElementById('sidebar-overlay');
-      const hidden = s.classList.contains('-translate-x-full');
-      if (hidden) { s.classList.remove('-translate-x-full'); o.classList.remove('hidden'); renderSidebarTeachers(); }
-      else { s.classList.add('-translate-x-full'); o.classList.add('hidden'); }
+      if (s.classList.contains('open')) {
+        s.classList.remove('open');
+        o.classList.remove('open');
+      } else {
+        s.classList.add('open');
+        o.classList.add('open');
+      }
     }
 
-    function triggerAdminLoginPrompt() { openPortal('ADMIN'); }
+    function triggerAdminSecretPrompt() { openPortal('ADMIN'); }
 
-    // Portal Login Modal Controls (Matching Screenshot 2)
+    // Modal Portal Login
     async function openPortal(role) {
       const roleSel = document.getElementById('login-role-selector');
       if (role === 'MUALLIM') roleSel.value = 'TEACHERS';
@@ -743,11 +1009,11 @@
 
       handleLoginRoleChange();
       await populateTeacherDropdown();
-      document.getElementById('role-login-popup').classList.remove('hidden');
+      document.getElementById('role-login-popup').style.display = 'flex';
     }
 
     function closeRoleLoginModal() {
-      document.getElementById('role-login-popup').classList.add('hidden');
+      document.getElementById('role-login-popup').style.display = 'none';
     }
 
     async function populateTeacherDropdown() {
@@ -796,7 +1062,7 @@
         } else { alert("സദർ പാസ്‌വേഡ് തെറ്റാണ്!"); }
       } else if (role === 'TEACHERS') {
         const tName = document.getElementById('popup-teacher-select').value;
-        if (!tName) { alert("അധ്യാപകന്റെ പേര് തിരഞ്ഞെടുക്കുക!"); return; }
+        if (!tName) { alert("അധ്യാപകനെ തിരഞ്ഞെടുക്കുക!"); return; }
         const snap = await db.collection('teachers').where('name', '==', tName).where('password', '==', pwd).get();
         if (!snap.empty) {
           const tDoc = snap.docs[0].data();
@@ -806,9 +1072,6 @@
           setupStaffDashboardUI();
           switchTab('staff-dashboard');
         } else { alert("പാസ്‌വേഡ് തെറ്റാണ്!"); }
-      } else if (role === 'MANAGEMENT') {
-        closeRoleLoginModal();
-        switchTab('madrasa-details');
       } else {
         // STUDENT or PARENT
         let doc = await db.collection('students').doc(identifier).get();
@@ -827,96 +1090,15 @@
       }
     }
 
-    // Working Fingerprint Login
-    async function simulateBiometricAuth() {
-      if (window.PublicKeyCredential) {
-        try {
-          // Native WebAuthn check
-          const available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
-          if (available) {
-            alert("ഫിംഗർ പ്രിന്റ് സ്കാൻ വിജയകരമായി പൂർത്തിയായി!");
-            executeRoleLogin();
-            return;
-          }
-        } catch (e) {}
-      }
-      // Fallback
-      alert("ഫിംഗർ പ്രിന്റ് സ്ഥിരീകരിച്ചു!");
+    function simulateBiometricAuth() {
+      alert("ഫിംഗർ പ്രിന്റ് സ്കാൻ സ്ഥിരീകരിച്ചു.");
       executeRoleLogin();
     }
 
-    // Staff Directory Modal (Exact Screenshot 1 Cards)
-    async function openStaffDirectoryModal() {
-      const modal = document.getElementById('staff-directory-popup');
-      const list = document.getElementById('directory-content-list');
-      modal.classList.remove('hidden');
-      list.innerHTML = "<p class='text-slate-400 py-3 text-center'>ലോഡ് ചെയ്യുന്നു...</p>";
+    function openStaffDirectoryModal() { document.getElementById('staff-directory-popup').style.display = 'flex'; }
+    function closeStaffDirectoryModal() { document.getElementById('staff-directory-popup').style.display = 'none'; }
 
-      const snap = await db.collection('teachers').get();
-
-      // Core fixed heads matching Screenshot 1
-      list.innerHTML = `
-        <div class="bg-white border-2 border-[#f59e0b] rounded-2xl p-3 flex items-center justify-between shadow-xs">
-          <div class="flex items-center gap-3">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" class="w-12 h-12 rounded-full object-cover border-2 border-[#f59e0b]">
-            <div>
-              <div class="flex items-center gap-1.5">
-                <h4 class="font-bold text-xs text-slate-800">SHAFI DARIMI</h4>
-                <span class="bg-[#d97706] text-white text-[8px] font-black px-2 py-0.2 rounded-md">സദർ മുഅല്ലിം</span>
-              </div>
-              <p class="text-[10px] text-amber-900 font-bold">ക്ലാസുകൾ: 3, 10</p>
-              <p class="text-[10px] text-slate-700 font-bold">+919605169230</p>
-              <div class="flex gap-1.5 mt-1">
-                <a href="tel:9605169230" class="bg-[#0284c7] text-white px-3 py-1 rounded-full text-[9px] font-bold flex items-center gap-1"><i class="fa-solid fa-phone text-[8px]"></i> Call</a>
-                <a href="https://wa.me/919605169230" target="_blank" class="bg-[#25D366] text-white px-3 py-1 rounded-full text-[9px] font-bold flex items-center gap-1"><i class="fa-brands fa-whatsapp text-[8px]"></i> WhatsApp</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white border-2 border-[#059669] rounded-2xl p-3 flex items-center justify-between shadow-xs">
-          <div class="flex items-center gap-3">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" class="w-12 h-12 rounded-full object-cover border-2 border-[#059669]">
-            <div>
-              <div class="flex items-center gap-1.5">
-                <h4 class="font-bold text-xs text-slate-800">RASHIDALI FAIZY</h4>
-                <span class="bg-[#047857] text-white text-[8px] font-black px-2 py-0.2 rounded-md">അഡ്മിൻ</span>
-              </div>
-              <p class="text-[10px] text-emerald-900 font-bold">ക്ലാസുകൾ: 2, 9</p>
-              <p class="text-[10px] text-slate-700 font-bold">6238403492</p>
-              <div class="flex gap-1.5 mt-1">
-                <a href="tel:6238403492" class="bg-[#0284c7] text-white px-3 py-1 rounded-full text-[9px] font-bold flex items-center gap-1"><i class="fa-solid fa-phone text-[8px]"></i> Call</a>
-                <a href="https://wa.me/916238403492" target="_blank" class="bg-[#25D366] text-white px-3 py-1 rounded-full text-[9px] font-bold flex items-center gap-1"><i class="fa-brands fa-whatsapp text-[8px]"></i> WhatsApp</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-
-      snap.forEach(d => {
-        const t = d.data();
-        list.innerHTML += `
-          <div class="bg-white border border-slate-200 rounded-2xl p-3 flex items-center justify-between shadow-xs">
-            <div class="flex items-center gap-3">
-              <img src="${t.photo || 'https://via.placeholder.com/80'}" class="w-12 h-12 rounded-full object-cover border">
-              <div>
-                <h4 class="font-bold text-xs text-slate-800">${t.name}</h4>
-                <p class="text-[10px] text-slate-500 font-bold">ക്ലാസുകൾ: ${t.classes ? t.classes.join(', ') : '-'}</p>
-                <p class="text-[10px] text-slate-700 font-bold">${t.phone || ''}</p>
-                <div class="flex gap-1.5 mt-1">
-                  <a href="tel:${t.phone}" class="bg-[#0284c7] text-white px-3 py-1 rounded-full text-[9px] font-bold flex items-center gap-1"><i class="fa-solid fa-phone text-[8px]"></i> Call</a>
-                  <a href="https://wa.me/${t.phone}" target="_blank" class="bg-[#25D366] text-white px-3 py-1 rounded-full text-[9px] font-bold flex items-center gap-1"><i class="fa-brands fa-whatsapp text-[8px]"></i> WhatsApp</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    function closeStaffDirectoryModal() { document.getElementById('staff-directory-popup').classList.add('hidden'); }
-
-    // Staff Dashboard Navigation
+    // Staff Dashboard
     function setupStaffDashboardUI() {
       document.getElementById('logged-role-badge').innerText = activeUser.role;
       document.getElementById('logged-user-name').innerText = activeUser.name;
@@ -944,21 +1126,26 @@
       ['daily', 'students', 'marks', 'settings'].forEach(s => {
         const b = document.getElementById(`snav-${s}`);
         if (b) {
-          b.className = 'py-2 rounded-xl text-xs font-black text-slate-600';
+          b.style.background = 'none';
+          b.style.color = '#475569';
         }
       });
 
       if (pId === 'daily-prayer-inspect') {
-        document.getElementById('snav-daily').className = 'py-2 rounded-xl text-xs font-black bg-[#065f46] text-white';
+        document.getElementById('snav-daily').style.background = '#065f46';
+        document.getElementById('snav-daily').style.color = '#fff';
         loadDailyInspectionTable();
       } else if (pId === 'student-mgmt') {
-        document.getElementById('snav-students').className = 'py-2 rounded-xl text-xs font-black bg-[#065f46] text-white';
+        document.getElementById('snav-students').style.background = '#065f46';
+        document.getElementById('snav-students').style.color = '#fff';
         renderStudentsTable();
       } else if (pId === 'marks-entry') {
-        document.getElementById('snav-marks').className = 'py-2 rounded-xl text-xs font-black bg-[#065f46] text-white';
+        document.getElementById('snav-marks').style.background = '#065f46';
+        document.getElementById('snav-marks').style.color = '#fff';
         loadMarkEntryTable();
       } else if (pId === 'exam-config') {
-        document.getElementById('snav-settings').className = 'py-2 rounded-xl text-xs font-black bg-[#065f46] text-white';
+        document.getElementById('snav-settings').style.background = '#065f46';
+        document.getElementById('snav-settings').style.color = '#fff';
         loadExamSetupForCurrent();
       }
     }
@@ -969,16 +1156,16 @@
       switchTab('home');
     }
 
-    // Daily Prayer Inspection Table (Screenshot 3 Model)
+    // Daily Prayer Table (Screenshot 3 Style)
     let dailyInspectionStudents = [];
     async function loadDailyInspectionTable() {
       const sClass = document.getElementById('dt-inspect-class').value;
       const tbody = document.getElementById('daily-inspection-table-body');
-      tbody.innerHTML = "<tr><td colspan='9' class='p-3 text-slate-400'>വിദ്യാർത്ഥികളെ ലോഡ് ചെയ്യുന്നു...</td></tr>";
+      tbody.innerHTML = "<tr><td colspan='9' style='padding: 10px; color: #94a3b8;'>വിദ്യാർത്ഥികളെ ലോഡ് ചെയ്യുന്നു...</td></tr>";
 
       const snap = await db.collection('students').where('class', '==', sClass).get();
       if (snap.empty) {
-        tbody.innerHTML = "<tr><td colspan='9' class='p-3 text-slate-400'>കുട്ടികൾ ലഭ്യമല്ല.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='9' style='padding: 10px; color: #94a3b8;'>കുട്ടികൾ ലഭ്യമല്ല.</td></tr>";
         return;
       }
 
@@ -991,16 +1178,16 @@
         dailyInspectionStudents.push(st);
         const p = st.prayerLogs || {};
         tbody.innerHTML += `
-          <tr class="hover:bg-slate-50">
-            <td class="p-2 text-center">${no}</td>
-            <td class="p-2 text-center text-emerald-800 font-bold">${st.adm}</td>
-            <td class="p-2 text-left font-bold text-slate-800">${st.name} <span class="text-[9px] text-slate-400">(${st.gender === 'Girl' ? 'F' : 'M'})</span></td>
-            <td class="p-2 text-center"><input type="checkbox" id="pr-subh-${st.adm}" ${p.subh ? 'checked' : ''} class="w-3.5 h-3.5 accent-[#059669]"></td>
-            <td class="p-2 text-center"><input type="checkbox" id="pr-dhuhr-${st.adm}" ${p.dhuhr ? 'checked' : ''} class="w-3.5 h-3.5 accent-[#059669]"></td>
-            <td class="p-2 text-center"><input type="checkbox" id="pr-asr-${st.adm}" ${p.asr ? 'checked' : ''} class="w-3.5 h-3.5 accent-[#059669]"></td>
-            <td class="p-2 text-center"><input type="checkbox" id="pr-maghrib-${st.adm}" ${p.maghrib ? 'checked' : ''} class="w-3.5 h-3.5 accent-[#059669]"></td>
-            <td class="p-2 text-center"><input type="checkbox" id="pr-isha-${st.adm}" ${p.isha ? 'checked' : ''} class="w-3.5 h-3.5 accent-[#059669]"></td>
-            <td class="p-2 text-center"><input type="checkbox" id="att-chk-${st.adm}" checked class="w-3.5 h-3.5 accent-[#059669]"></td>
+          <tr>
+            <td>${no}</td>
+            <td style="color: #065f46; font-weight: 800;">${st.adm}</td>
+            <td style="text-align: left; font-weight: 800;">${st.name}</td>
+            <td><input type="checkbox" id="pr-subh-${st.adm}" ${p.subh ? 'checked' : ''}></td>
+            <td><input type="checkbox" id="pr-dhuhr-${st.adm}" ${p.dhuhr ? 'checked' : ''}></td>
+            <td><input type="checkbox" id="pr-asr-${st.adm}" ${p.asr ? 'checked' : ''}></td>
+            <td><input type="checkbox" id="pr-maghrib-${st.adm}" ${p.maghrib ? 'checked' : ''}></td>
+            <td><input type="checkbox" id="pr-isha-${st.adm}" ${p.isha ? 'checked' : ''}></td>
+            <td><input type="checkbox" id="att-chk-${st.adm}" checked></td>
           </tr>
         `;
         no++;
@@ -1039,7 +1226,7 @@
       });
     }
 
-    // Exam Setup (Fully functional Edit & Delete)
+    // Exam Setup
     async function loadExamSetupForCurrent() {
       const sClass = document.getElementById('cfg-class-select').value;
       const exam = document.getElementById('cfg-exam-type').value;
@@ -1067,11 +1254,11 @@
       box.innerHTML = '';
       currentExamSetupSubjects.forEach((s, idx) => {
         box.innerHTML += `
-          <div class="p-2 bg-white rounded-xl border flex justify-between items-center font-bold">
+          <div style="background: #ffffff; padding: 8px 12px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800;">
             <span>${s.name} (Max: ${s.total} / Pass: ${s.pass})</span>
-            <div class="flex gap-2">
-              <button onclick="editSetupSubject(${idx})" class="text-blue-600 hover:text-blue-800"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteSetupSubject(${idx})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+            <div style="display: flex; gap: 8px;">
+              <button onclick="editSetupSubject(${idx})" style="color: #2563eb; background: none; border: none; cursor: pointer;"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="deleteSetupSubject(${idx})" style="color: #e11d48; background: none; border: none; cursor: pointer;"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
         `;
@@ -1102,7 +1289,7 @@
       alert("എക്സാം സിലബസ് സേവ് ചെയ്തു!");
     }
 
-    // Mark Entry Table
+    // Mark Entry
     let currentExamConfig = null;
     let markEntryStudents = [];
     async function loadMarkEntryTable() {
@@ -1113,15 +1300,15 @@
 
       const cfgDoc = await db.collection('exam_configs').doc(`${sClass}_${exam}`).get();
       if (!cfgDoc.exists || !cfgDoc.data().subjects || cfgDoc.data().subjects.length === 0) {
-        thead.innerHTML = "<tr><th class='p-3 text-rose-600'>ആദ്യം 'സെറ്റിംഗ്സ്' എന്നതിൽ വിഷയങ്ങൾ ചേർക്കുക!</th></tr>";
+        thead.innerHTML = "<tr><th style='color: #e11d48; padding: 10px;'>ആദ്യം 'എക്സാം സെറ്റപ്പ്' എന്നതിൽ വിഷയങ്ങൾ ചേർക്കുക!</th></tr>";
         tbody.innerHTML = '';
         return;
       }
 
       currentExamConfig = cfgDoc.data();
-      let thHTML = "<tr class='bg-slate-100'><th class='p-2'>Adm</th><th class='p-2'>പേര്</th>";
-      currentExamConfig.subjects.forEach(s => thHTML += `<th class='p-2 text-center'>${s.name} (${s.total})</th>`);
-      thHTML += "<th class='p-2 text-right'>Action</th></tr>";
+      let thHTML = "<tr><th>Adm</th><th style='text-align: left;'>പേര്</th>";
+      currentExamConfig.subjects.forEach(s => thHTML += `<th>${s.name} (${s.total})</th>`);
+      thHTML += "</tr>";
       thead.innerHTML = thHTML;
 
       const snap = await db.collection('students').where('class', '==', sClass).get();
@@ -1131,23 +1318,14 @@
         const st = d.data();
         markEntryStudents.push(st);
         const existingExam = st.exams ? st.exams[exam] : null;
-        let trHTML = `<tr><td class='p-2 font-bold text-emerald-800'>${st.adm}</td><td class='p-2 font-bold text-slate-800'>${st.name}</td>`;
+        let trHTML = `<tr><td style="color: #065f46; font-weight: 800;">${st.adm}</td><td style="text-align: left; font-weight: 800;">${st.name}</td>`;
         currentExamConfig.subjects.forEach((s, idx) => {
           const val = existingExam && existingExam.subjects && existingExam.subjects[s.name] !== undefined ? existingExam.subjects[s.name] : '';
-          trHTML += `<td class='p-1 text-center'><input type='number' id='me-${st.adm}-${idx}' value='${val}' max='${s.total}' class='w-14 p-1 border rounded text-center font-bold'></td>`;
+          trHTML += `<td><input type='number' id='me-${st.adm}-${idx}' value='${val}' max='${s.total}' style='width: 50px; padding: 4px; text-align: center; border-radius: 6px; border: 1px solid #cbd5e1; font-weight: 800;'></td>`;
         });
-        trHTML += `<td class='p-1 text-right'><button onclick="deleteSingleStudentMarks('${st.adm}', '${exam}')" class='px-2 py-1 bg-rose-50 text-rose-600 rounded'><i class='fa-solid fa-trash'></i></button></td></tr>`;
+        trHTML += "</tr>";
         tbody.innerHTML += trHTML;
       });
-    }
-
-    async function deleteSingleStudentMarks(adm, exam) {
-      if (!confirm(`മാർക്ക് ഡിലീറ്റ് ചെയ്യട്ടെ?`)) return;
-      await db.collection('students').doc(adm).update({
-        [`exams.${exam}`]: firebase.firestore.FieldValue.delete()
-      });
-      alert("മാർക്ക് ഡിലീറ്റ് ചെയ്തു!");
-      loadMarkEntryTable();
     }
 
     async function saveBatchExamMarks() {
@@ -1169,11 +1347,11 @@
       alert("മാർക്കുകൾ വിജയകരമായി സേവ് ചെയ്തു!");
     }
 
-    // Student Management Table Helper with Inline Edit & Delete
+    // Students Management
     async function renderStudentsTable() {
       const tbody = document.getElementById('students-table-body');
       const cFilter = document.getElementById('filter-table-class').value;
-      tbody.innerHTML = "<tr><td colspan='4' class='p-3 text-center text-slate-400'>ലോഡ് ചെയ്യുന്നു...</td></tr>";
+      tbody.innerHTML = "<tr><td colspan='4' style='padding: 10px; color: #94a3b8;'>ലോഡ് ചെയ്യുന്നു...</td></tr>";
 
       let q = db.collection('students');
       if (cFilter !== 'All') q = q.where('class', '==', cFilter);
@@ -1183,13 +1361,13 @@
       snap.forEach(doc => {
         const d = doc.data();
         tbody.innerHTML += `
-          <tr class="hover:bg-slate-50 border-b">
-            <td class="p-2"><img src="${d.photo || 'https://via.placeholder.com/40'}" class="w-8 h-8 rounded-lg object-cover"></td>
-            <td class="p-2 font-bold text-emerald-800">${d.adm}</td>
-            <td class="p-2 font-bold text-slate-800">${d.name}</td>
-            <td class="p-2 text-right space-x-1 whitespace-nowrap">
-              <button onclick="editStudentInline('${d.adm}')" class="px-2 py-1 rounded bg-blue-50 text-blue-600"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteStudentInline('${d.adm}')" class="px-2 py-1 rounded bg-red-50 text-red-600"><i class="fa-solid fa-trash"></i></button>
+          <tr>
+            <td><img src="${d.photo || 'https://via.placeholder.com/40'}" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover;"></td>
+            <td style="color: #065f46; font-weight: 800;">${d.adm}</td>
+            <td style="text-align: left; font-weight: 800;">${d.name}</td>
+            <td>
+              <button onclick="editStudentInline('${d.adm}')" style="background: #e0f2fe; color: #0284c7; border: none; padding: 4px 8px; border-radius: 6px; cursor: pointer; margin-right: 4px;"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="deleteStudentInline('${d.adm}')" style="background: #ffe4e6; color: #e11d48; border: none; padding: 4px 8px; border-radius: 6px; cursor: pointer;"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>
         `;
@@ -1237,7 +1415,7 @@
 
       await db.collection('students').doc(adm).set({
         adm, uid, name, class: sClass, gender, pwd, phone, photo,
-        attendance: { present: 0, total: 0 }, feeStatus: 'Paid'
+        attendance: { present: 0, total: 0 }
       }, { merge: true });
 
       alert("വിദ്യാർത്ഥിയെ സേവ് ചെയ്തു!");
@@ -1251,7 +1429,7 @@
       document.getElementById('input-name').value = '';
       document.getElementById('input-pwd').value = '';
       document.getElementById('input-phone').value = '';
-      document.getElementById('student-form-title').innerText = "✏️ വിദ്യാർത്ഥി വിവരങ്ങളും എൻട്രിയും തിരുത്തുക";
+      document.getElementById('student-form-title').innerText = "✏️ വിദ്യാർത്ഥി വിവരങ്ങൾ തിരുത്തുക / ചേർക്കുക";
     }
 
     function toBase64(file) {
@@ -1280,49 +1458,15 @@
       document.getElementById('res-name').innerText = sData.name;
       document.getElementById('res-class').innerText = "Class: " + sData.class;
       document.getElementById('res-adm').innerText = "Adm No: " + sData.adm;
-      document.getElementById('res-photo').src = sData.photo || "https://via.placeholder.com/100";
-
-      const att = sData.attendance || { present: 0, total: 0 };
-      document.getElementById('res-att').innerText = `Attendance: ${att.present} Days`;
 
       const list = document.getElementById('res-subjects-list');
       list.innerHTML = '';
       const subs = (examData && examData.subjects) ? examData.subjects : {};
 
       for (let s in subs) {
-        list.innerHTML += `<div class="flex justify-between p-1.5 bg-slate-50 rounded-lg font-bold"><span>${s}</span><span>${subs[s]} / 50</span></div>`;
+        list.innerHTML += `<div style="display: flex; justify-content: space-between; padding: 6px; background: #f8fafc; border-radius: 8px;"><span>${s}</span><span style="font-weight: 900;">${subs[s]} / 50</span></div>`;
       }
-
       document.getElementById('res-total').innerText = examData ? examData.totalMarks : 0;
-
-      const allClassSnap = await db.collection('students').where('class', '==', sData.class).get();
-      let cTotal = allClassSnap.size, cBoys = 0, cGirls = 0;
-      allClassSnap.forEach(cd => { if (cd.data().gender === 'Girl') cGirls++; else cBoys++; });
-      document.getElementById('rep-total-students').innerText = cTotal;
-      document.getElementById('rep-boys').innerText = cBoys;
-      document.getElementById('rep-girls').innerText = cGirls;
-    }
-
-    function calculateMadrasaStats() {
-      db.collection('students').get().then(snap => {
-        let total = snap.size, boys = 0, girls = 0;
-        snap.forEach(d => { if (d.data().gender === 'Girl') girls++; else boys++; });
-        document.getElementById('stat-total-students').innerText = total;
-        document.getElementById('stat-total-boys').innerText = boys;
-        document.getElementById('stat-total-girls').innerText = girls;
-      });
-    }
-
-    function setupStudentProfileUI() {
-      document.getElementById('sp-name').innerText = activeStudent.name;
-      document.getElementById('sp-class-uid').innerText = `Class: ${activeStudent.class} • UID: ${activeStudent.uid || activeStudent.adm}`;
-      document.getElementById('sp-photo').src = activeStudent.photo || "https://via.placeholder.com/100";
-    }
-
-    function logoutStudent() {
-      activeStudent = null;
-      localStorage.removeItem('mum_active_student');
-      switchTab('home');
     }
   </script>
 </body>
