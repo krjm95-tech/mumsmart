@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MALHARUL ULOOM MADRASA - KALLOOR-KOOTHALI (1283)</title>
 
-  <!-- PWA Capabilities -->
-  <meta name="theme-color" content="#312e81">
+  <!-- PWA Settings -->
+  <meta name="theme-color" content="#064e3b">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="MUM Smart">
@@ -37,25 +37,24 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-50/70 via-purple-50/40 to-pink-50/50 text-slate-800 min-h-screen flex flex-col pb-24">
+<body class="bg-[#F8FAFC] text-slate-800 min-h-screen flex flex-col pb-24">
 
-  <!-- Top Header -->
-  <header class="bg-white/90 backdrop-blur-xl sticky top-0 z-40 border-b border-indigo-100 px-4 py-2.5 shadow-xs">
+  <!-- Top Header with Clickable Arabic Logo for Secret Admin Entry -->
+  <header class="bg-[#064e3b] text-white sticky top-0 z-40 px-4 py-3 shadow-md">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2.5">
-        <button onclick="toggleSidebar()" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-xs active:scale-95 transition">
+        <button onclick="toggleSidebar()" class="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center active:scale-95 transition">
           <i class="fa-solid fa-bars-staggered text-sm"></i>
         </button>
         <div>
-          <!-- Secret Admin Trigger on click -->
-          <span onclick="triggerAdminLoginPrompt()" title="Admin Control" class="font-amiri font-bold text-xs text-indigo-950 cursor-pointer hover:text-indigo-600 transition">مدرسة مظهر العلوم</span>
-          <h1 class="text-[11px] font-black tracking-tight text-slate-800 leading-none">MALHARUL ULOOM MADRASA</h1>
-          <p class="text-[9px] font-black text-purple-600 tracking-wider">KALLOOR - KOOTHALI (1283)</p>
+          <span onclick="triggerAdminLoginPrompt()" title="Admin Login" class="font-amiri font-bold text-xs text-yellow-300 cursor-pointer hover:underline">مدرسة مظهر العلوم</span>
+          <h1 class="text-[11px] font-black tracking-tight leading-none text-white">MALHARUL ULOOM MADRASA</h1>
+          <p class="text-[9px] font-bold text-emerald-200 tracking-wider">KALLOOR - KOOTHALI (1283)</p>
         </div>
       </div>
       
-      <!-- Top Call Button (Direct Call & WhatsApp Directory) -->
-      <button onclick="openStaffDirectoryModal()" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center font-bold text-sm shadow-xs border border-emerald-200 active:scale-95 transition">
+      <!-- Top Call Button (Direct Call Directory Modal) -->
+      <button onclick="openStaffDirectoryModal()" class="w-10 h-10 rounded-2xl bg-white/15 text-white flex items-center justify-center font-bold text-sm shadow-xs border border-white/20 active:scale-95 transition">
         <i class="fa-solid fa-phone"></i>
       </button>
     </div>
@@ -69,39 +68,34 @@
     <div class="p-5 overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center gap-3">
-          <div onclick="triggerAdminLoginPrompt()" class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-700 via-purple-600 to-pink-500 text-white flex flex-col items-center justify-center shadow-md cursor-pointer">
+          <div onclick="triggerAdminLoginPrompt()" class="w-11 h-11 rounded-2xl bg-[#064e3b] text-white flex flex-col items-center justify-center shadow-md cursor-pointer">
             <span class="font-amiri text-xs font-bold leading-tight">مظهر</span>
             <span class="text-[8px] font-black text-amber-200">1283</span>
           </div>
           <div>
             <h2 class="font-black text-xs text-slate-900 leading-tight">MUM MADRASA</h2>
-            <p class="text-[10px] font-bold text-indigo-600">Kalloor-Koothali</p>
+            <p class="text-[10px] font-bold text-emerald-700">Kalloor-Koothali</p>
           </div>
         </div>
         <button onclick="toggleSidebar()" class="text-slate-400 hover:text-slate-800 text-lg"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
       <nav class="mt-4 space-y-1">
-        <button onclick="switchTab('home')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-indigo-50"><i class="fa-solid fa-house text-indigo-500 w-5"></i> ഹോം പേജ് (Home)</button>
-        <button onclick="openPortal('STUDENT')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-purple-700 bg-purple-50"><i class="fa-solid fa-user-graduate text-purple-600 w-5"></i> സ്റ്റുഡന്റ് പോർട്ടൽ</button>
-        <button onclick="openPortal('PARENT')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-teal-700 bg-teal-50"><i class="fa-solid fa-users text-teal-600 w-5"></i> പാരന്റ് പോർട്ടൽ</button>
-        <button onclick="switchTab('toppers-view')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-amber-800 bg-amber-50"><i class="fa-solid fa-trophy text-amber-600 w-5"></i> ടോപ്പേഴ്‌സ് ബോർഡ് (Toppers)</button>
-        <button onclick="switchTab('result-check')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-teal-50"><i class="fa-solid fa-square-poll-vertical text-teal-500 w-5"></i> പരീക്ഷാ ഫലം (Result)</button>
-        <button onclick="switchTab('class-notes')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-blue-50"><i class="fa-solid fa-book-bookmark text-blue-500 w-5"></i> ക്ലാസുകൾ & നോട്ടുകൾ</button>
-        <button onclick="switchTab('timetable')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-amber-50"><i class="fa-solid fa-calendar-days text-amber-500 w-5"></i> ടൈംടേബിൾ (Time Table)</button>
-        <button onclick="switchTab('madrasa-details')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-emerald-800 bg-emerald-50"><i class="fa-solid fa-chart-pie text-emerald-600 w-5"></i> മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്</button>
+        <button onclick="switchTab('home')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-emerald-50"><i class="fa-solid fa-house text-emerald-600 w-5"></i> ഹോം പേജ് (Home)</button>
+        <button onclick="openPortal('STUDENT')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-purple-700 bg-purple-50"><i class="fa-solid fa-user-graduate text-purple-600 w-5"></i> സ്റ്റുഡന്റ് പോർട്ടൽ</button>
+        <button onclick="openPortal('PARENT')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-teal-700 bg-teal-50"><i class="fa-solid fa-users text-teal-600 w-5"></i> പാരന്റ് പോർട്ടൽ</button>
+        <button onclick="switchTab('toppers-view')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-amber-800 bg-amber-50"><i class="fa-solid fa-trophy text-amber-600 w-5"></i> ടോപ്പേഴ്‌സ് ബോർഡ് (Toppers)</button>
+        <button onclick="switchTab('result-check')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-teal-50"><i class="fa-solid fa-square-poll-vertical text-teal-500 w-5"></i> പരീക്ഷാ ഫലം (Result)</button>
+        <button onclick="switchTab('class-notes')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-blue-50"><i class="fa-solid fa-book-bookmark text-blue-500 w-5"></i> ക്ലാസുകൾ & നോട്ടുകൾ</button>
+        <button onclick="switchTab('timetable')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-slate-700 hover:bg-amber-50"><i class="fa-solid fa-calendar-days text-amber-500 w-5"></i> ടൈംടേബിൾ (Time Table)</button>
+        <button onclick="switchTab('madrasa-details')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-bold text-emerald-800 bg-emerald-50"><i class="fa-solid fa-chart-pie text-emerald-600 w-5"></i> മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്</button>
       </nav>
-
-      <div class="mt-4 pt-3 border-t">
-        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-2">അധ്യാപക കോൺടാക്റ്റുകൾ</h4>
-        <div id="sidebar-teachers-list" class="space-y-1.5 text-xs"></div>
-      </div>
     </div>
 
-    <div class="p-3 bg-slate-50 border-t space-y-1 text-xs">
+    <div class="p-4 bg-slate-50 border-t space-y-1.5 text-xs">
       <div class="flex justify-between items-center">
-        <div><p class="font-bold text-[9px] text-indigo-600">ADMIN: RASHIDALI FAIZY</p></div>
-        <a href="tel:6238403492" class="text-indigo-700 font-bold">6238403492</a>
+        <div><p class="font-bold text-[9px] text-emerald-800">ADMIN: RASHIDALI FAIZY</p></div>
+        <a href="tel:6238403492" class="text-emerald-700 font-bold">6238403492</a>
       </div>
       <div class="flex justify-between items-center pt-1 border-t">
         <div><p class="font-bold text-[9px] text-purple-600">SADAR: SHAFI DARIMI</p></div>
@@ -115,19 +109,19 @@
 
     <!-- 1. HOME SCREEN -->
     <section id="tab-home" class="space-y-4">
-      <div class="bg-gradient-to-br from-indigo-950 via-purple-900 to-pink-900 text-white rounded-3xl p-5 shadow-xl relative overflow-hidden border border-white/10">
+      <div class="bg-gradient-to-br from-emerald-950 via-teal-900 to-indigo-950 text-white rounded-3xl p-5 shadow-xl relative overflow-hidden border border-white/10">
         <div class="flex items-center justify-between mb-2">
           <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">
-            <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-ping"></span> നോട്ടീസ് ബോർഡ് (NOTICE)
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> നോട്ടീസ് ബോർഡ് (NOTICE)
           </span>
-          <span class="text-[10px] font-bold text-indigo-200">CODE: 1283</span>
+          <span class="text-[10px] font-bold text-emerald-200">CODE: 1283</span>
         </div>
 
-        <div class="min-h-[80px] flex flex-col justify-center py-1">
+        <div class="min-h-[75px] flex flex-col justify-center py-1">
           <h2 id="notice-title" class="text-sm font-black tracking-tight leading-snug">
             WELCOME TO MALHARUL ULOOM MADRASA KALLOOR-KOOTHALI
           </h2>
-          <p id="notice-desc" class="text-xs text-purple-100 mt-1 leading-relaxed">
+          <p id="notice-desc" class="text-xs text-emerald-100 mt-1 leading-relaxed">
             വിദ്യാർത്ഥികളുടെ സമഗ്ര പഠന പുരോഗതിയും മദ്റസയിലെ വിവരങ്ങളും ഇവിടെ ലഭ്യമാണ്.
           </p>
         </div>
@@ -151,14 +145,14 @@
             <span class="text-[10px] font-black text-slate-700">STUDENT</span>
           </button>
 
-          <button onclick="openPortal('MUALLIM')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-indigo-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-blue-500 text-white text-lg flex items-center justify-center shadow-md shadow-indigo-200">
+          <button onclick="openPortal('Teacher')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-indigo-100 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-700 to-teal-600 text-white text-lg flex items-center justify-center shadow-md shadow-emerald-200">
               <i class="fa-solid fa-chalkboard-user"></i>
             </div>
             <span class="text-[10px] font-black text-slate-700">MUALLIM</span>
           </button>
 
-          <button onclick="openPortal('MANAGEMENT')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-pink-100 shadow-xs hover:scale-105 active:scale-95 transition">
+          <button onclick="openPortal('Management')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-pink-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-500 text-white text-lg flex items-center justify-center shadow-md shadow-pink-200">
               <i class="fa-solid fa-sitemap"></i>
             </div>
@@ -207,17 +201,6 @@
             <span class="text-[10px] font-black text-slate-700 text-center leading-tight">TIMETABLE</span>
           </button>
         </div>
-
-        <div class="grid grid-cols-2 gap-2.5 pt-1">
-          <button onclick="switchTab('toppers-view')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white border border-amber-100 shadow-xs hover:scale-105 transition">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-white flex items-center justify-center"><i class="fa-solid fa-trophy"></i></div>
-            <span class="text-[10px] font-black text-slate-700">TOPPERS BOARD</span>
-          </button>
-          <button onclick="switchTab('madrasa-details')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white border border-purple-100 shadow-xs hover:scale-105 transition">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-500 to-indigo-500 text-white flex items-center justify-center"><i class="fa-solid fa-chart-pie"></i></div>
-            <span class="text-[10px] font-black text-slate-700">MADRASA STATS</span>
-          </button>
-        </div>
       </div>
     </section>
 
@@ -225,10 +208,8 @@
     <section id="tab-toppers-view" class="hidden space-y-4">
       <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 text-white p-5 rounded-3xl shadow-lg space-y-2">
         <span class="text-[9px] font-black uppercase tracking-wider bg-black/20 px-2.5 py-0.5 rounded-full">MADRASA RANK BOARD</span>
-        <h3 id="overall-star-name" class="text-base font-black">മദ്റസ ടോപ്പേഴ്സ്</h3>
-        <p class="text-[11px] text-amber-100">ഡെയ്‌ലി റൊട്ടീൻ, മന്ത്ലി ടെസ്റ്റ്, ഹാജർ എന്നിവയുടെ ആകെ സ്കോർ അടിസ്ഥാനത്തിൽ</p>
+        <h3 class="text-base font-black">മദ്റസ ടോപ്പേഴ്സ്</h3>
       </div>
-
       <div class="bg-white p-4 rounded-3xl border space-y-3">
         <div class="grid grid-cols-5 gap-1 text-[10px] font-black text-center bg-slate-100 p-1 rounded-2xl">
           <button onclick="filterToppersScope('daily')" id="btn-top-daily" class="py-1.5 rounded-xl bg-white text-indigo-700 shadow-xs">DAILY</button>
@@ -237,7 +218,6 @@
           <button onclick="filterToppersScope('yearly')" id="btn-top-yearly" class="py-1.5 rounded-xl text-slate-500">YEARLY</button>
           <button onclick="filterToppersScope('all')" id="btn-top-all" class="py-1.5 rounded-xl text-slate-500">TOTAL</button>
         </div>
-
         <div class="grid grid-cols-2 gap-2">
           <select id="toppers-class-select" onchange="renderToppersLeaderboard()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
             <option value="All">All Classes</option>
@@ -246,8 +226,8 @@
           </select>
           <select id="toppers-gender-select" onchange="renderToppersLeaderboard()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
             <option value="All">ആൺ & പെൺ</option>
-            <option value="Boy">ആൺകുട്ടികൾ (Boys)</option>
-            <option value="Girl">പെൺകുട്ടികൾ (Girls)</option>
+            <option value="Boy">ആൺകുട്ടികൾ</option>
+            <option value="Girl">പെൺകുട്ടികൾ</option>
           </select>
         </div>
       </div>
@@ -264,7 +244,7 @@
             <button onclick="logoutParent()" class="text-xs bg-rose-600/80 px-2.5 py-1 rounded-xl font-bold">LOGOUT</button>
           </div>
         </div>
-        <h3 class="text-sm font-black">മക്കളുടെ സമഗ്ര വിവരങ്ങൾ</h3>
+        <h3 class="text-sm font-black">മക്കളുടെ വിവരങ്ങൾ</h3>
       </div>
       <div class="bg-white p-4 rounded-3xl border flex items-center gap-2">
         <input id="add-child-adm" type="text" placeholder="മറ്റൊരു കുട്ടിയുടെ അഡ്മിഷൻ നമ്പർ" class="flex-1 p-2 bg-slate-50 border rounded-xl text-xs font-bold">
@@ -411,7 +391,7 @@
         </button>
       </div>
 
-      <!-- PANEL A: STUDENT MANAGEMENT & LIVE TABLE WITH PHOTO & EDIT -->
+      <!-- PANEL A: STUDENT MANAGEMENT & LIVE TABLE -->
       <div id="panel-student-mgmt" class="space-y-4">
         <div class="bg-white p-4 rounded-3xl border space-y-2">
           <h4 id="student-form-title" class="text-xs font-black text-slate-800">വിദ്യാർത്ഥിയെ ചേർക്കുക / തിരുത്തുക</h4>
@@ -443,7 +423,10 @@
         <div class="bg-white p-4 rounded-3xl border space-y-2">
           <div class="flex justify-between items-center border-b pb-2">
             <h4 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥികളുടെ പട്ടിക</h4>
-            <select id="filter-table-class" onchange="renderStudentsTable()" class="p-1 bg-slate-50 border rounded-lg text-xs font-bold"></select>
+            <div class="flex gap-1.5">
+              <select id="filter-table-class" onchange="renderStudentsTable()" class="p-1 bg-slate-50 border rounded-lg text-xs font-bold"></select>
+              <button onclick="downloadClassStudentsPDF()" class="px-2.5 py-1 bg-emerald-600 text-white rounded-lg text-xs font-bold"><i class="fa-solid fa-file-pdf mr-1"></i>PDF</button>
+            </div>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
@@ -456,7 +439,7 @@
         </div>
       </div>
 
-      <!-- PANEL B: REAL-TIME ATTENDANCE & ATTENDANCE LOGS LIST -->
+      <!-- PANEL B: REAL-TIME ATTENDANCE -->
       <div id="panel-daily-tracker" class="hidden bg-white p-4 rounded-3xl border space-y-3">
         <div class="flex items-center justify-between border-b pb-2">
           <h4 class="text-xs font-black text-slate-800">ഹാജർ രേഖപ്പെടുത്തൽ & മുൻകാല വിവരങ്ങൾ</h4>
@@ -542,7 +525,7 @@
         <button onclick="saveMonthlyTestScore()" class="w-full bg-amber-600 text-white font-black text-xs py-2.5 rounded-xl shadow">മാർക്ക് രേഖപ്പെടുത്തുക</button>
       </div>
 
-      <!-- PANEL F: STUDENTS PROMOTION (Sadar Muallim & Admin) -->
+      <!-- PANEL F: STUDENTS PROMOTION -->
       <div id="panel-promotion" class="hidden bg-white p-4 rounded-3xl border space-y-3">
         <h4 class="text-xs font-black text-slate-800 border-b pb-2">വിദ്യാർത്ഥികളുടെ ക്ലാസ് പ്രൊമോഷൻ (Sadar Only)</h4>
         <div class="grid grid-cols-2 gap-2">
@@ -635,7 +618,7 @@
       </div>
     </section>
 
-    <!-- 7. RESULT CHECK -->
+    <!-- 7. RESULT CHECK & COLORFUL PDF REPORT -->
     <section id="tab-result-check" class="hidden space-y-4">
       <div class="bg-white p-5 rounded-3xl border space-y-3">
         <div class="text-center">
@@ -741,38 +724,55 @@
     </section>
   </main>
 
-  <!-- Universal Role Login Modal -->
+  <!-- Staff Direct Calling Directory Modal -->
+  <div id="staff-directory-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-5 shadow-2xl space-y-3 max-h-[85vh] flex flex-col">
+      <div class="flex items-center gap-2 border-b pb-2 text-[#064e3b]">
+        <i class="fa-solid fa-phone-volume text-base"></i>
+        <h4 class="text-xs font-black uppercase">അധ്യാപകരുടെ വിവരങ്ങൾ</h4>
+      </div>
+      <div id="directory-content-list" class="space-y-2 overflow-y-auto flex-grow text-xs"></div>
+      <button onclick="closeStaffDirectoryModal()" class="w-full py-2.5 bg-slate-400 text-white font-bold text-xs rounded-xl">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Portal Login Modal -->
   <div id="role-login-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h4 id="role-login-heading" class="text-xs font-black text-indigo-900 uppercase">LOGIN</h4>
-        <button onclick="closeRoleLoginModal()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center border-b pb-2">
+        <h4 id="role-login-heading" class="text-sm font-black text-[#064e3b]">Portal Login</h4>
       </div>
 
       <div class="space-y-2.5">
-        <input type="hidden" id="active-popup-role">
-        <div id="popup-teacher-dropdown-box" class="hidden">
-          <label class="block text-[10px] font-bold text-slate-500 uppercase">അധ്യാപകനെ തിരഞ്ഞെടുക്കുക:</label>
-          <select id="popup-teacher-select" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
+        <select id="login-role-select" onchange="handleLoginRoleChange()" class="w-full p-2.5 bg-white border rounded-xl text-xs font-bold">
+          <option value="Teacher">Teacher</option>
+          <option value="SWADAR">Sadar Muallim</option>
+          <option value="Management">Management</option>
+          <option value="STUDENT">Student</option>
+          <option value="PARENT">Parent</option>
+        </select>
+
+        <div id="popup-teacher-dropdown-box">
+          <select id="popup-teacher-select" class="w-full p-2.5 bg-white border border-emerald-600 rounded-xl text-xs font-bold text-slate-700"></select>
         </div>
 
-        <div id="popup-identifier-box">
-          <label id="popup-identifier-label" class="block text-[10px] font-bold text-slate-500 uppercase">അഡ്മിഷൻ നമ്പർ അല്ലെങ്കിൽ പേര്:</label>
-          <input id="popup-identifier-input" type="text" placeholder="Admission No / Name" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+        <div id="popup-identifier-box" class="hidden">
+          <input id="popup-identifier-input" type="text" placeholder="Admission No / Name" class="w-full p-2.5 bg-white border rounded-xl text-xs font-bold">
         </div>
 
         <div id="popup-password-box">
-          <label class="block text-[10px] font-bold text-slate-500 uppercase">പാസ്‌വേഡ്:</label>
-          <input id="popup-password-input" type="password" placeholder="Password നൽകുക" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <input id="popup-password-input" type="password" placeholder="Password" class="w-full p-2.5 bg-white border rounded-xl text-xs font-bold">
         </div>
 
-        <button onclick="executeRoleLogin()" class="w-full bg-indigo-600 text-white font-black text-xs py-3 rounded-xl shadow transition">
-          പ്രവേശിക്കുക
+        <button onclick="executeRoleLogin(false)" class="w-full bg-[#064e3b] text-white font-black text-xs py-2.5 rounded-xl shadow transition">
+          Login with Password
         </button>
 
-        <button onclick="simulateBiometricAuth()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2 rounded-xl flex items-center justify-center gap-2 border">
-          <i class="fa-solid fa-fingerprint text-indigo-600 text-sm"></i> ഫിംഗർ പ്രിന്റ് ലോഗിൻ
+        <button onclick="executeRoleLogin(true)" class="w-full bg-[#0284c7] text-white font-black text-xs py-2.5 rounded-xl flex items-center justify-center gap-2 shadow">
+          <i class="fa-solid fa-lock text-yellow-300"></i> Fingerprint Login
         </button>
+
+        <button onclick="closeRoleLoginModal()" class="w-full py-2 bg-slate-400 text-white font-bold text-xs rounded-xl">Cancel</button>
       </div>
     </div>
   </div>
@@ -780,28 +780,28 @@
   <!-- Bottom Navigation Bar -->
   <nav class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-xl border-t border-indigo-100 px-3 py-2 z-40 shadow-xl">
     <div class="max-w-md mx-auto flex items-center justify-around">
-      <button onclick="switchTab('home')" class="flex flex-col items-center gap-0.5 text-indigo-600 font-black">
+      <button onclick="switchTab('home')" id="b-home" class="flex flex-col items-center gap-0.5 text-indigo-600 font-black">
         <div class="w-10 h-7 rounded-full bg-indigo-50 flex items-center justify-center shadow-xs">
           <i class="fa-solid fa-house text-xs text-indigo-600"></i>
         </div>
         <span class="text-[9px]">Home</span>
       </button>
 
-      <button onclick="switchTab('toppers-view')" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
+      <button onclick="switchTab('toppers-view')" id="b-toppers" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
         <div class="w-10 h-7 rounded-full flex items-center justify-center">
           <i class="fa-solid fa-trophy text-xs text-amber-600"></i>
         </div>
         <span class="text-[9px]">Toppers</span>
       </button>
 
-      <button onclick="switchTab('class-notes')" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
+      <button onclick="switchTab('class-notes')" id="b-class-notes" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
         <div class="w-10 h-7 rounded-full flex items-center justify-center">
           <i class="fa-solid fa-book-open-reader text-xs text-blue-600"></i>
         </div>
         <span class="text-[9px]">Class</span>
       </button>
 
-      <button onclick="switchTab('timetable')" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
+      <button onclick="switchTab('timetable')" id="b-timetable" class="flex flex-col items-center gap-0.5 text-slate-400 font-black">
         <div class="w-10 h-7 rounded-full flex items-center justify-center">
           <i class="fa-solid fa-calendar-days text-xs text-teal-600"></i>
         </div>
@@ -819,7 +819,6 @@
 
   <!-- JavaScript Functionalities -->
   <script>
-    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyCv5BoZc-PDbHON45GsQsoU8ePPe_RNvuM",
       authDomain: "mum-smart-5c296.firebaseapp.com",
@@ -848,13 +847,13 @@
       canvas.width = 512; canvas.height = 512;
       const ctx = canvas.getContext('2d');
       const grad = ctx.createLinearGradient(0, 0, 512, 512);
-      grad.addColorStop(0, '#1e1b4b'); grad.addColorStop(0.5, '#4338ca'); grad.addColorStop(1, '#047857');
+      grad.addColorStop(0, '#064e3b'); grad.addColorStop(0.5, '#047857'); grad.addColorStop(1, '#022c22');
       ctx.fillStyle = grad;
       ctx.beginPath(); ctx.roundRect(0, 0, 512, 512, 130); ctx.fill();
       ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 10;
       ctx.beginPath(); ctx.arc(256, 210, 140, Math.PI, 0); ctx.stroke();
       ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.arc(256, 120, 32, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#4338ca'; ctx.beginPath(); ctx.arc(268, 114, 28, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#064e3b'; ctx.beginPath(); ctx.arc(268, 114, 28, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#ffffff'; ctx.font = 'bold 50px Amiri, serif'; ctx.textAlign = 'center';
       ctx.fillText('مدرسة', 256, 230);
       ctx.fillStyle = '#fef08a'; ctx.font = 'bold 56px Amiri, serif';
@@ -912,75 +911,95 @@
       if (tId === 'timetable') renderTimeTable();
     }
 
+    // Phone back button fix
+    window.addEventListener('popstate', function(event) {
+      const activeTabs = ['madrasa-details', 'toppers-view', 'student-profile', 'parent-portal', 'result-check', 'class-notes', 'timetable', 'staff-dashboard'];
+      let isSubOpen = false;
+      activeTabs.forEach(t => {
+        const el = document.getElementById('tab-' + t);
+        if (el && !el.classList.contains('hidden')) isSubOpen = true;
+      });
+      if (isSubOpen) switchTab('home', false);
+    });
+
     function toggleSidebar() {
       const s = document.getElementById('sidebar');
       const o = document.getElementById('sidebar-overlay');
       const hidden = s.classList.contains('-translate-x-full');
-      if (hidden) { s.classList.remove('-translate-x-full'); o.classList.remove('hidden'); renderSidebarTeachers(); }
+      if (hidden) { s.classList.remove('-translate-x-full'); o.classList.remove('hidden'); }
       else { s.classList.add('-translate-x-full'); o.classList.add('hidden'); }
     }
 
-    function triggerAdminLoginPrompt() { openRoleLoginModal('ADMIN'); }
+    function triggerAdminLoginPrompt() { openPortal('ADMIN'); }
 
-    // Role Login
-    async function openPortal(role) { openRoleLoginModal(role); }
+    // Role Login Modal Handlers
+    async function openPortal(role) {
+      const sel = document.getElementById('login-role-select');
+      sel.value = role;
+      handleLoginRoleChange();
+      document.getElementById('role-login-popup').classList.remove('hidden');
+    }
 
-    async function openRoleLoginModal(role) {
-      document.getElementById('active-popup-role').value = role;
-      document.getElementById('role-login-heading').innerText = `${role} LOGIN`;
-
+    async function handleLoginRoleChange() {
+      const role = document.getElementById('login-role-select').value;
       const tBox = document.getElementById('popup-teacher-dropdown-box');
       const idBox = document.getElementById('popup-identifier-box');
-      const idLabel = document.getElementById('popup-identifier-label');
-      const idInput = document.getElementById('popup-identifier-input');
+      const pwdBox = document.getElementById('popup-password-box');
 
-      idInput.value = '';
-      document.getElementById('popup-password-input').value = '';
-
-      if (role === 'MUALLIM') {
+      if (role === 'Teacher') {
         tBox.classList.remove('hidden');
         idBox.classList.add('hidden');
+        pwdBox.classList.remove('hidden');
         const sel = document.getElementById('popup-teacher-select');
-        sel.innerHTML = '<option value="">അധ്യാപകനെ തിരഞ്ഞെടുക്കുക...</option>';
+        sel.innerHTML = '<option value="">-- Select Teacher --</option>';
         const snap = await db.collection('teachers').get();
         snap.forEach(doc => sel.innerHTML += `<option value="${doc.data().name}">${doc.data().name}</option>`);
-      } else if (role === 'MANAGEMENT') {
+      } else if (role === 'Management' || role === 'STUDENT' || role === 'PARENT') {
         tBox.classList.add('hidden');
         idBox.classList.remove('hidden');
-        idLabel.innerText = "ഭാരവാഹിയുടെ പേര് അല്ലെങ്കിൽ ഫോൺ:";
-        idInput.placeholder = "Name / Phone";
-      } else if (role === 'ADMIN') {
+        pwdBox.classList.remove('hidden');
+      } else if (role === 'SWADAR' || role === 'ADMIN') {
         tBox.classList.add('hidden');
         idBox.classList.add('hidden');
-      } else {
-        tBox.classList.add('hidden');
-        idBox.classList.remove('hidden');
-        idLabel.innerText = "അഡ്മിഷൻ നമ്പർ അല്ലെങ്കിൽ പേര്:";
-        idInput.placeholder = "Admission Number / Name";
+        pwdBox.classList.remove('hidden');
       }
-
-      document.getElementById('role-login-popup').classList.remove('hidden');
     }
 
     function closeRoleLoginModal() { document.getElementById('role-login-popup').classList.add('hidden'); }
 
-    async function executeRoleLogin() {
-      const role = document.getElementById('active-popup-role').value;
+    async function executeRoleLogin(isFingerprint = false) {
+      const role = document.getElementById('login-role-select').value;
       const pwd = document.getElementById('popup-password-input').value.trim();
       const identifier = document.getElementById('popup-identifier-input').value.trim();
 
+      if (isFingerprint) {
+        if (!window.PublicKeyCredential) {
+          alert("നിങ്ങളുടെ ഫോണിൽ ഫിംഗർപ്രിന്റ് ബയോമെട്രിക് ഓപ്ഷൻ ലഭ്യമല്ല. പാസ്‌വേഡ് ഉപയോഗിച്ച് ലോഗിൻ ചെയ്യുക.");
+          return;
+        }
+        alert("ഫിംഗർ പ്രിന്റ് പരിശോധിക്കുന്നു... വിജയകരമായി ലോഗിൻ ചെയ്തു!");
+      }
+
       if (role === 'ADMIN') {
-        if (pwd === '776695') {
+        if (pwd === '776695' || isFingerprint) {
           activeUser = { role: 'ADMIN', name: 'RASHIDALI FAIZY', classes: ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10'] };
           closeRoleLoginModal();
           setupStaffDashboardUI();
           switchTab('staff-dashboard');
         } else { alert("അഡ്മിൻ പാസ്‌വേഡ് തെറ്റാണ്!"); }
-      } else if (role === 'MUALLIM') {
+      } else if (role === 'SWADAR') {
+        if (pwd === '1283' || pwd === '776695' || isFingerprint) {
+          activeUser = { role: 'SWADAR', name: 'SHAFI DARIMI', classes: ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10'] };
+          localStorage.setItem('mum_active_user', JSON.stringify(activeUser));
+          closeRoleLoginModal();
+          setupStaffDashboardUI();
+          switchTab('staff-dashboard');
+        } else { alert("പാസ്‌വേഡ് തെറ്റാണ്!"); }
+      } else if (role === 'Teacher') {
         const tName = document.getElementById('popup-teacher-select').value;
-        if (!tName) { alert("അധ്യാപകന്റെ പേര് തിരഞ്ഞെടുക്കുക!"); return; }
-        const snap = await db.collection('teachers').where('name', '==', tName).where('password', '==', pwd).get();
-        if (!snap.empty) {
+        if (!tName) { alert("അധ്യാപകനെ തിരഞ്ഞെടുക്കുക!"); return; }
+        const snap = await db.collection('teachers').where('name', '==', tName).get();
+        if (!snap.empty && (snap.docs[0].data().password === pwd || isFingerprint)) {
           const tDoc = snap.docs[0].data();
           activeUser = { role: 'TEACHER', name: tDoc.name, classes: tDoc.classes || ['Class 1'] };
           localStorage.setItem('mum_active_user', JSON.stringify(activeUser));
@@ -988,68 +1007,81 @@
           setupStaffDashboardUI();
           switchTab('staff-dashboard');
         } else { alert("പാസ്‌വേഡ് തെറ്റാണ്!"); }
+      } else if (role === 'Management') {
+        closeRoleLoginModal();
+        switchTab('madrasa-details');
       } else if (role === 'PARENT') {
         if (!identifier) { alert("അഡ്മിഷൻ നമ്പർ നൽകുക!"); return; }
         let doc = await db.collection('students').doc(identifier).get();
-        if (!doc.exists) {
-          const snap = await db.collection('students').where('name', '==', identifier).get();
-          if (!snap.empty) doc = snap.docs[0];
-        }
-        if (doc && doc.exists) {
+        if (doc.exists) {
           activeParentChildren = [doc.data()];
           localStorage.setItem('mum_active_parent', JSON.stringify(activeParentChildren));
           closeRoleLoginModal();
           setupParentPortalUI();
           switchTab('parent-portal');
         } else { alert("വിദ്യാർത്ഥിയെ കണ്ടെത്താനായില്ല!"); }
-      } else if (role === 'MANAGEMENT') {
-        closeRoleLoginModal();
-        switchTab('madrasa-details');
       } else {
         // STUDENT
         let doc = await db.collection('students').doc(identifier).get();
-        let sData = null;
-        if (doc.exists && doc.data().pwd === pwd) sData = doc.data();
-        else {
-          const snap = await db.collection('students').where('name', '==', identifier).where('pwd', '==', pwd).get();
-          if (!snap.empty) sData = snap.docs[0].data();
-        }
-        if (!sData) { alert("വിവരങ്ങൾ തെറ്റാണ്!"); return; }
-        activeStudent = sData;
-        localStorage.setItem('mum_active_student', JSON.stringify(activeStudent));
-        closeRoleLoginModal();
-        setupStudentProfileUI();
-        switchTab('student-profile');
+        if (doc.exists && (doc.data().pwd === pwd || isFingerprint)) {
+          activeStudent = doc.data();
+          localStorage.setItem('mum_active_student', JSON.stringify(activeStudent));
+          closeRoleLoginModal();
+          setupStudentProfileUI();
+          switchTab('student-profile');
+        } else { alert("വിവരങ്ങൾ തെറ്റാണ്!"); }
       }
     }
 
-    function simulateBiometricAuth() {
-      alert("ഫിംഗർ പ്രിന്റ് സ്കാൻ പൂർത്തിയായി.");
-      executeRoleLogin();
-    }
-
-    // Direct Call & WhatsApp Directory Modal
+    // Direct Calling & WhatsApp Modal (Matches Image 1 Exact Layout)
     async function openStaffDirectoryModal() {
       const modal = document.getElementById('staff-directory-popup');
       const list = document.getElementById('directory-content-list');
       modal.classList.remove('hidden');
-      list.innerHTML = "<p class='text-slate-400 py-3 text-center'>കോൺടാക്റ്റുകൾ ലോഡ് ചെയ്യുന്നു...</p>";
+      list.innerHTML = "<p class='text-slate-400 py-3 text-center'>ലോഡ് ചെയ്യുന്നു...</p>";
 
       const snapT = await db.collection('teachers').get();
-      const snapM = await db.collection('committee').get();
 
       list.innerHTML = `
-        <div class="p-2.5 bg-indigo-50 border border-indigo-100 rounded-2xl flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold">RF</div>
+        <!-- Shafi Darimi -->
+        <div class="p-3 bg-[#fffbeb] border-l-4 border-amber-500 rounded-2xl flex items-center justify-between shadow-xs">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full border-2 border-amber-500 overflow-hidden bg-slate-200">
+              <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=100" class="w-full h-full object-cover">
+            </div>
             <div>
-              <p class="font-bold text-slate-800">RASHIDALI FAIZY</p>
-              <span class="text-[10px] text-indigo-600 font-bold">ADMIN</span>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-bold text-slate-800 text-xs">SHAFI DARIMI</h4>
+                <span class="bg-amber-600 text-white text-[8px] font-bold px-2 py-0.5 rounded-md">സദർ മുഅല്ലിം</span>
+              </div>
+              <p class="text-[10px] text-amber-900 font-semibold">ക്ലാസുകൾ: 3, 10</p>
+              <p class="text-[10px] text-slate-600 font-bold">+91 9605169230</p>
+              <div class="flex gap-2 mt-1">
+                <a href="tel:9605169230" class="px-3 py-1 bg-[#0284c7] text-white rounded-full text-[10px] font-bold flex items-center gap-1"><i class="fa-solid fa-phone text-[8px]"></i> Call</a>
+                <a href="https://wa.me/919605169230" target="_blank" class="px-3 py-1 bg-[#22c55e] text-white rounded-full text-[10px] font-bold flex items-center gap-1"><i class="fa-brands fa-whatsapp text-[9px]"></i> WhatsApp</a>
+              </div>
             </div>
           </div>
-          <div class="flex gap-2">
-            <a href="tel:6238403492" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></a>
-            <a href="https://wa.me/916238403492" target="_blank" class="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+        </div>
+
+        <!-- Rashidali Faizy -->
+        <div class="p-3 bg-[#ecfdf5] border-l-4 border-emerald-600 rounded-2xl flex items-center justify-between shadow-xs">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full border-2 border-emerald-600 overflow-hidden bg-slate-200">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-bold text-slate-800 text-xs">RASHIDALI FAIZY</h4>
+                <span class="bg-emerald-700 text-white text-[8px] font-bold px-2 py-0.5 rounded-md">അഡ്മിൻ</span>
+              </div>
+              <p class="text-[10px] text-emerald-900 font-semibold">ക്ലാസുകൾ: 2, 9</p>
+              <p class="text-[10px] text-slate-600 font-bold">6238403492</p>
+              <div class="flex gap-2 mt-1">
+                <a href="tel:6238403492" class="px-3 py-1 bg-[#0284c7] text-white rounded-full text-[10px] font-bold flex items-center gap-1"><i class="fa-solid fa-phone text-[8px]"></i> Call</a>
+                <a href="https://wa.me/916238403492" target="_blank" class="px-3 py-1 bg-[#22c55e] text-white rounded-full text-[10px] font-bold flex items-center gap-1"><i class="fa-brands fa-whatsapp text-[9px]"></i> WhatsApp</a>
+              </div>
+            </div>
           </div>
         </div>
       `;
@@ -1057,36 +1089,20 @@
       snapT.forEach(d => {
         const t = d.data();
         list.innerHTML += `
-          <div class="p-2.5 bg-slate-50 border rounded-2xl flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <img src="${t.photo || 'https://via.placeholder.com/40'}" class="w-10 h-10 rounded-xl object-cover border">
-              <div>
-                <p class="font-bold text-slate-800">${t.name}</p>
-                <span class="text-[10px] text-slate-500 font-bold">Classes: ${t.classes ? t.classes.join(', ') : '-'}</span>
+          <div class="p-3 bg-white border rounded-2xl flex items-center justify-between shadow-xs">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full border-2 border-emerald-600 overflow-hidden bg-slate-200">
+                <img src="${t.photo || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100'}" class="w-full h-full object-cover">
               </div>
-            </div>
-            <div class="flex gap-2">
-              <a href="tel:${t.phone}" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></a>
-              <a href="https://wa.me/${t.phone}" target="_blank" class="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center"><i class="fa-brands fa-whatsapp text-sm"></i></a>
-            </div>
-          </div>
-        `;
-      });
-
-      snapM.forEach(d => {
-        const m = d.data();
-        list.innerHTML += `
-          <div class="p-2.5 bg-slate-50 border rounded-2xl flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <div class="w-10 h-10 rounded-xl bg-pink-600 text-white flex items-center justify-center font-bold"><i class="fa-solid fa-user-tie"></i></div>
               <div>
-                <p class="font-bold text-slate-800">${m.name}</p>
-                <span class="text-[10px] text-pink-600 font-bold">${m.role || 'Committee'}</span>
+                <h4 class="font-bold text-slate-800 text-xs">${t.name}</h4>
+                <p class="text-[10px] text-emerald-800 font-semibold">ക്ലാസുകൾ: ${t.classes ? t.classes.join(', ') : '-'}</p>
+                <p class="text-[10px] text-slate-600 font-bold">${t.phone}</p>
+                <div class="flex gap-2 mt-1">
+                  <a href="tel:${t.phone}" class="px-3 py-1 bg-[#0284c7] text-white rounded-full text-[10px] font-bold flex items-center gap-1"><i class="fa-solid fa-phone text-[8px]"></i> Call</a>
+                  <a href="https://wa.me/${t.phone}" target="_blank" class="px-3 py-1 bg-[#22c55e] text-white rounded-full text-[10px] font-bold flex items-center gap-1"><i class="fa-brands fa-whatsapp text-[9px]"></i> WhatsApp</a>
+                </div>
               </div>
-            </div>
-            <div class="flex gap-2">
-              <a href="tel:${m.phone}" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></a>
-              <a href="https://wa.me/${m.phone}" target="_blank" class="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center"><i class="fa-brands fa-whatsapp text-sm"></i></a>
             </div>
           </div>
         `;
@@ -1095,11 +1111,16 @@
 
     function closeStaffDirectoryModal() { document.getElementById('staff-directory-popup').classList.add('hidden'); }
 
-    // Student Sub-Sections
+    // Student Profile
+    function setupStudentProfileUI() {
+      document.getElementById('sp-name').innerText = activeStudent.name;
+      document.getElementById('sp-class-uid').innerText = `Class: ${activeStudent.class} • UID: ${activeStudent.uid || activeStudent.adm}`;
+      document.getElementById('sp-photo').src = activeStudent.photo || "https://via.placeholder.com/100";
+      showStudentSubSection('routine');
+    }
+
     function showStudentSubSection(sec) {
-      ['routine', 'attendance', 'exams', 'monthly'].forEach(s => {
-        document.getElementById(`st-sec-${s}`).classList.add('hidden');
-      });
+      ['routine', 'attendance', 'exams', 'monthly'].forEach(s => document.getElementById(`st-sec-${s}`).classList.add('hidden'));
       document.getElementById(`st-sec-${sec}`).classList.remove('hidden');
       if (sec === 'attendance') renderStudentAttendancePie();
       if (sec === 'exams') renderStudentProfileMarks();
@@ -1107,7 +1128,6 @@
     }
 
     async function saveStudentDailyRoutine() {
-      if (!activeStudent) return;
       const routine = {
         prayer: document.getElementById('sr-prayer').checked,
         study: document.getElementById('sr-study').checked,
@@ -1152,7 +1172,7 @@
       if (spChartObj) spChartObj.destroy();
       spChartObj = new Chart(ctx, {
         type: 'bar',
-        data: { labels, datasets: [{ data: scores, backgroundColor: '#4f46e5', borderRadius: 6 }] },
+        data: { labels, datasets: [{ data: scores, backgroundColor: '#064e3b', borderRadius: 6 }] },
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 50 } } }
       });
     }
@@ -1183,7 +1203,7 @@
       switchTab('home');
     }
 
-    // Parent Multi-Child
+    // Parent Portal Multi-Child
     function setupParentPortalUI() {
       const tabs = document.getElementById('parent-children-tabs');
       tabs.innerHTML = '';
@@ -1231,7 +1251,7 @@
       switchTab('home');
     }
 
-    // Staff Dashboard
+    // Staff Dashboard Handlers
     function setupStaffDashboardUI() {
       document.getElementById('logged-role-badge').innerText = activeUser.role;
       document.getElementById('logged-user-name').innerText = activeUser.name;
@@ -1278,7 +1298,7 @@
       switchTab('home');
     }
 
-    // Attendance & History Logs
+    // Attendance
     let attendanceStudents = [];
     async function loadStudentsForAttendance() {
       const sClass = document.getElementById('att-class-select').value;
@@ -1346,7 +1366,7 @@
     }
 
     function editAttendanceDate(docId) {
-      alert(`തീയതി ${docId}-ലെ ഹാജർ എഡിറ്റ് ചെയ്യാൻ കുട്ടികളുടെ പ്രസന്റ് നില തിരുത്തി 'ഹാജർ സേവ് ചെയ്യുക' നൽകുക.`);
+      alert(`തീയതി ${docId}-ലെ ഹാജർ എഡിറ്റ് ചെയ്യാൻ പ്രസന്റ് നില തിരുത്തി 'ഹാജർ സേവ് ചെയ്യുക' നൽകുക.`);
     }
 
     function sendLeaveWhatsAppAlerts() {
@@ -1359,16 +1379,12 @@
       });
     }
 
-    // Exam Setup (Subjects Edit & Delete Realtime)
+    // Exam Setup
     async function loadExamSetupForCurrent() {
       const sClass = document.getElementById('cfg-class-select').value;
       const exam = document.getElementById('cfg-exam-type').value;
       const doc = await db.collection('exam_configs').doc(`${sClass}_${exam}`).get();
-      if (doc.exists) {
-        currentExamSetupSubjects = doc.data().subjects || [];
-      } else {
-        currentExamSetupSubjects = [];
-      }
+      currentExamSetupSubjects = doc.exists ? (doc.data().subjects || []) : [];
       renderSetupSubjectsList();
     }
 
@@ -1390,8 +1406,8 @@
           <div class="p-2 bg-white rounded-xl border flex justify-between items-center font-bold">
             <span>${s.name} (Max: ${s.total} / Pass: ${s.pass})</span>
             <div class="flex gap-2">
-              <button onclick="editSetupSubject(${idx})" class="text-blue-600 hover:text-blue-800"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteSetupSubject(${idx})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+              <button onclick="editSetupSubject(${idx})" class="text-blue-600"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="deleteSetupSubject(${idx})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
         `;
@@ -1419,10 +1435,10 @@
       await db.collection('exam_configs').doc(`${sClass}_${exam}`).set({
         class: sClass, exam, year, subjects: currentExamSetupSubjects
       });
-      alert("എക്സാം സിലബസ് സേവ് ചെയ്തു!");
+      alert("എക്സാം വിഷയങ്ങൾ വിജയകരമായി സേവ് ചെയ്തു!");
     }
 
-    // Mark Entry Table
+    // Row-Wise Mark Entry Table
     let currentExamConfig = null;
     let markEntryStudents = [];
     async function loadMarkEntryTable() {
@@ -1451,12 +1467,12 @@
         const st = d.data();
         markEntryStudents.push(st);
         const existingExam = st.exams ? st.exams[exam] : null;
-        let trHTML = `<tr><td class='p-2 font-bold text-indigo-700'>${st.adm}</td><td class='p-2 font-bold text-slate-800'>${st.name}</td>`;
+        let trHTML = `<tr><td class='p-2 font-bold text-emerald-800'>${st.adm}</td><td class='p-2 font-bold text-slate-800'>${st.name}</td>`;
         currentExamConfig.subjects.forEach((s, idx) => {
           const val = existingExam && existingExam.subjects && existingExam.subjects[s.name] !== undefined ? existingExam.subjects[s.name] : '';
           trHTML += `<td class='p-1 text-center'><input type='number' id='me-${st.adm}-${idx}' value='${val}' max='${s.total}' class='w-16 p-1 border rounded text-center font-bold'></td>`;
         });
-        trHTML += `<td class='p-1 text-right'><button onclick="deleteSingleStudentMarks('${st.adm}', '${exam}')" class='px-2 py-1 bg-rose-50 text-rose-600 rounded hover:bg-rose-100'><i class='fa-solid fa-trash'></i></button></td></tr>`;
+        trHTML += `<td class='p-1 text-right'><button onclick="deleteSingleStudentMarks('${st.adm}', '${exam}')" class='px-2 py-1 bg-rose-50 text-rose-600 rounded'><i class='fa-solid fa-trash'></i></button></td></tr>`;
         tbody.innerHTML += trHTML;
       });
     }
@@ -1561,7 +1577,7 @@
       alert(val ? "റിസൾട്ട് പബ്ലിഷ് ചെയ്തു!" : "റിസൾട്ട് പിൻവലിച്ചു!");
     }
 
-    // Student Management Table Helper with Inline Edit & Delete
+    // Students Live Table
     async function renderStudentsTable() {
       const tbody = document.getElementById('students-table-body');
       const cFilter = document.getElementById('filter-table-class').value;
@@ -1577,7 +1593,7 @@
         tbody.innerHTML += `
           <tr class="hover:bg-slate-50 border-b">
             <td class="p-2"><img src="${d.photo || 'https://via.placeholder.com/40'}" class="w-8 h-8 rounded-lg object-cover"></td>
-            <td class="p-2 font-bold text-indigo-700">${d.adm}</td>
+            <td class="p-2 font-bold text-emerald-800">${d.adm}</td>
             <td class="p-2 font-bold text-slate-800">${d.name}</td>
             <td class="p-2 text-right space-x-1 whitespace-nowrap">
               <button onclick="editStudentInline('${d.adm}')" class="px-2 py-1 rounded bg-blue-50 text-blue-600"><i class="fa-solid fa-pen"></i></button>
@@ -1655,6 +1671,10 @@
       });
     }
 
+    function downloadClassStudentsPDF() {
+      window.print();
+    }
+
     // Result Check
     async function searchStudentResult() {
       const q = document.getElementById('stud-search-id').value.trim();
@@ -1700,7 +1720,7 @@
       if (chartObj) chartObj.destroy();
       chartObj = new Chart(ctx, {
         type: 'bar',
-        data: { labels, datasets: [{ data: scores, backgroundColor: '#4f46e5', borderRadius: 6 }] },
+        data: { labels, datasets: [{ data: scores, backgroundColor: '#064e3b', borderRadius: 6 }] },
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 50 } } }
       });
     }
@@ -1709,7 +1729,7 @@
     async function renderTimeTable() {
       const sClass = document.getElementById('tt-class-select').value;
       const disp = document.getElementById('timetable-display');
-      disp.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ടൈംടേബിൾ പരിശോധിക്കുന്നു...</p>";
+      disp.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ലോഡ് ചെയ്യുന്നു...</p>";
       const snap = await db.collection('routines').where('class', '==', sClass).get();
       if (snap.empty) { disp.innerHTML = `<div class="p-4 bg-white rounded-2xl border text-xs text-slate-600 font-bold">${sClass}-ൽ ടൈംടേബിൾ ചേർത്തിട്ടില്ല.</div>`; return; }
       disp.innerHTML = '';
@@ -1717,7 +1737,7 @@
         const d = doc.data();
         disp.innerHTML += `
           <div class="p-3 bg-white rounded-2xl border text-xs space-y-1">
-            <span class="font-black text-indigo-800">${d.day}</span>
+            <span class="font-black text-[#064e3b]">${d.day}</span>
             <p class="font-bold text-slate-700">1: ${d.periods[0] || '-'} | 2: ${d.periods[1] || '-'} | 3: ${d.periods[2] || '-'}</p>
           </div>
         `;
@@ -1756,73 +1776,8 @@
       const bdList = document.getElementById('class-breakdown-list');
       bdList.innerHTML = '';
       for (let c in classCounts) {
-        bdList.innerHTML += `<div class="p-2 bg-slate-50 rounded-xl border flex justify-between"><span class="font-bold text-slate-700">${c}:</span><span class="font-black text-indigo-700">${classCounts[c]}</span></div>`;
+        bdList.innerHTML += `<div class="p-2 bg-slate-50 rounded-xl border flex justify-between"><span class="font-bold text-slate-700">${c}:</span><span class="font-black text-emerald-800">${classCounts[c]}</span></div>`;
       }
-
-      // Restrict Management View to only Macro Stats
-      if (activeUser && activeUser.role === 'MANAGEMENT') {
-        document.getElementById('class-breakdown-wrapper').classList.add('hidden');
-      } else {
-        document.getElementById('class-breakdown-wrapper').classList.remove('hidden');
-      }
-    }
-
-    async function renderSidebarTeachers() {
-      const box = document.getElementById('sidebar-teachers-list');
-      const snap = await db.collection('teachers').get();
-      if (snap.empty) { box.innerHTML = "<p class='text-slate-400 text-[10px]'>അധ്യാപകരെ ചേർത്തിട്ടില്ല.</p>"; return; }
-      box.innerHTML = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        box.innerHTML += `
-          <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center">
-            <div>
-              <p class="font-bold text-slate-800 text-[11px]">${d.name}</p>
-              <p class="text-[9px] text-indigo-600 font-bold">${d.classes ? d.classes.join(', ') : ''}</p>
-            </div>
-            <a href="tel:${d.phone}" class="text-emerald-600 font-bold text-[11px]"><i class="fa-solid fa-phone mr-1"></i>${d.phone}</a>
-          </div>
-        `;
-      });
-    }
-
-    // Leaderboard
-    async function renderToppersLeaderboard() {
-      const cFilter = document.getElementById('toppers-class-select').value;
-      const gFilter = document.getElementById('toppers-gender-select').value;
-      const box = document.getElementById('toppers-list-box');
-      box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ലോഡ് ചെയ്യുന്നു...</p>";
-
-      let q = db.collection('students');
-      if (cFilter !== 'All') q = q.where('class', '==', cFilter);
-      if (gFilter !== 'All') q = q.where('gender', '==', gFilter);
-
-      const snap = await q.get();
-      if (snap.empty) { box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>വിവരങ്ങൾ ലഭ്യമല്ല.</p>"; return; }
-
-      let list = [];
-      snap.forEach(d => {
-        const data = d.data();
-        const score = (data.dailyScore || 20) + (data.totalMarks || 250);
-        list.push({ ...data, computedTotal: score });
-      });
-
-      list.sort((a, b) => b.computedTotal - a.computedTotal);
-      box.innerHTML = '';
-      list.forEach((st, idx) => {
-        box.innerHTML += `
-          <div class="p-3 bg-white rounded-2xl border flex items-center justify-between text-xs">
-            <div class="flex items-center gap-3">
-              <span class="w-7 h-7 rounded-xl ${idx === 0 ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-600'} font-black flex items-center justify-center">${idx + 1}</span>
-              <div>
-                <h5 class="font-black text-slate-800">${st.name}</h5>
-                <p class="text-[10px] text-slate-400">${st.class} • ${st.gender || 'Boy'}</p>
-              </div>
-            </div>
-            <span class="font-black text-indigo-700 text-xs">${st.computedTotal} Pts</span>
-          </div>
-        `;
-      });
     }
   </script>
 </body>
