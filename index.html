@@ -54,7 +54,7 @@
         </div>
       </div>
       
-      <!-- Top Call Button (Opens Real Directory with Direct Call & WhatsApp) -->
+      <!-- Top Call Button (Direct Call & WhatsApp Directory) -->
       <button onclick="openStaffDirectoryModal()" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center font-bold text-sm shadow-xs border border-emerald-200 active:scale-95 transition">
         <i class="fa-solid fa-phone"></i>
       </button>
@@ -259,7 +259,10 @@
       <div class="bg-gradient-to-r from-teal-800 to-emerald-900 text-white p-5 rounded-3xl shadow-lg space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-[9px] font-black uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">PARENT DASHBOARD</span>
-          <button onclick="logoutParent()" class="text-xs bg-white/20 px-3 py-1 rounded-xl font-bold">LOGOUT</button>
+          <div class="flex gap-2">
+            <button onclick="switchTab('home')" class="text-xs bg-white/20 px-2.5 py-1 rounded-xl font-bold">പബ്ലിക് പോർട്ടൽ</button>
+            <button onclick="logoutParent()" class="text-xs bg-rose-600/80 px-2.5 py-1 rounded-xl font-bold">LOGOUT</button>
+          </div>
         </div>
         <h3 class="text-sm font-black">മക്കളുടെ സമഗ്ര വിവരങ്ങൾ</h3>
       </div>
@@ -282,7 +285,10 @@
             <p id="sp-class-uid" class="text-[11px] text-purple-200 font-bold">Class: -- • UID: --</p>
           </div>
         </div>
-        <button onclick="logoutStudent()" class="text-xs bg-white/20 px-3 py-1.5 rounded-xl font-bold">LOGOUT</button>
+        <div class="flex flex-col gap-1 items-end">
+          <button onclick="switchTab('home')" class="text-[10px] bg-white/20 px-2.5 py-1 rounded-xl font-bold">പബ്ലിക് പോർട്ടൽ</button>
+          <button onclick="logoutStudent()" class="text-[10px] bg-rose-600/80 px-2.5 py-1 rounded-xl font-bold">LOGOUT</button>
+        </div>
       </div>
 
       <div class="grid grid-cols-4 gap-2 text-center">
@@ -368,10 +374,13 @@
           <h3 id="logged-user-name" class="text-xs font-black mt-1">അധ്യാപക ഡാഷ്‌ബോർഡ്</h3>
           <p id="assigned-classes-hint" class="text-[10px] text-purple-300 font-bold">Class: All</p>
         </div>
-        <button onclick="logoutStaff()" class="text-xs bg-white/10 px-3 py-1.5 rounded-xl font-bold">LOGOUT</button>
+        <div class="flex gap-2">
+          <button onclick="switchTab('home')" class="text-xs bg-white/20 px-2.5 py-1.5 rounded-xl font-bold">പബ്ലിക് പോർട്ടൽ</button>
+          <button onclick="logoutStaff()" class="text-xs bg-rose-600/80 px-2.5 py-1.5 rounded-xl font-bold">LOGOUT</button>
+        </div>
       </div>
 
-      <!-- Quick Selector Subtabs -->
+      <!-- Dashboard Subnav Grid -->
       <div class="grid grid-cols-4 gap-1.5 text-center">
         <button onclick="openStaffPanel('student-mgmt')" class="p-2 bg-white border border-indigo-300 rounded-xl font-bold text-xs text-indigo-800">
           <i class="fa-solid fa-users block mb-0.5 text-indigo-600"></i> Students
@@ -431,7 +440,6 @@
           </div>
         </div>
 
-        <!-- Live Table -->
         <div class="bg-white p-4 rounded-3xl border space-y-2">
           <div class="flex justify-between items-center border-b pb-2">
             <h4 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥികളുടെ പട്ടിക</h4>
@@ -461,7 +469,6 @@
           <button onclick="sendLeaveWhatsAppAlerts()" class="px-3 bg-emerald-600 text-white font-black text-xs py-2.5 rounded-xl shadow"><i class="fa-brands fa-whatsapp"></i></button>
         </div>
 
-        <!-- Attendance Logs Review & Edit -->
         <div class="border-t pt-3">
           <h5 class="text-xs font-black text-slate-800 mb-2">മുമ്പ് രേഖപ്പെടുത്തിയ ഹാജർ വിവരങ്ങൾ (Edit Logs)</h5>
           <div id="attendance-history-logs" class="space-y-1 text-xs max-h-40 overflow-y-auto"></div>
@@ -489,13 +496,12 @@
           </div>
           <button onclick="addExamSubjectToSetup()" class="w-full bg-teal-600 text-white text-xs font-black py-2 rounded-xl">+ വിഷയം ചേർക്കുക</button>
           
-          <!-- Subject List with Edit & Delete -->
           <div id="cfg-subjects-list" class="space-y-1.5 text-xs pt-1"></div>
         </div>
         <button onclick="saveExamConfiguration()" class="w-full bg-indigo-600 text-white font-black text-xs py-2.5 rounded-xl shadow">എക്സാം ക്രമീകരണം സേവ് ചെയ്യുക</button>
       </div>
 
-      <!-- PANEL D: ROW-WISE MARK ENTRY TABLE -->
+      <!-- PANEL D: ROW-WISE MARK ENTRY TABLE WITH EDIT & DELETE -->
       <div id="panel-marks-entry" class="hidden bg-white p-4 rounded-3xl border space-y-3">
         <div class="flex items-center justify-between border-b pb-2">
           <h4 class="text-xs font-black text-slate-800">മാർക്ക് എൻട്രി ടേബിൾ</h4>
@@ -556,7 +562,6 @@
 
       <!-- PANEL G: TEACHER ASSIGNMENT & MANAGEMENT DELEGATION -->
       <div id="panel-teacher-assign-mgmt" class="hidden space-y-4">
-        <!-- Assign Teacher Form -->
         <div class="bg-white p-4 rounded-3xl border space-y-2">
           <h4 class="text-xs font-black text-indigo-950 border-b pb-1">അധ്യാപകരെ നിയമിക്കുക (Staff Assignment)</h4>
           <input id="adm-t-name" type="text" placeholder="അധ്യാപകന്റെ പേര് *" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
@@ -577,7 +582,6 @@
           <button onclick="adminSaveTeacherProfile()" class="w-full bg-indigo-600 text-white font-black text-xs py-2.5 rounded-xl shadow">അധ്യാപകനെ സേവ് ചെയ്യുക</button>
         </div>
 
-        <!-- Assign Management Representative -->
         <div class="bg-white p-4 rounded-3xl border space-y-2">
           <h4 class="text-xs font-black text-indigo-950 border-b pb-1">മാനേജ്‌മെന്റ് പ്രതിനിധികളെ നിയമിക്കുക</h4>
           <input id="adm-m-name" type="text" placeholder="അംഗത്തിന്റെ പേര് *" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
@@ -605,18 +609,137 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- Staff & Management Direct Calling & WhatsApp Modal -->
-  <div id="staff-directory-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-sm rounded-3xl p-5 shadow-2xl space-y-3 max-h-[85vh] flex flex-col">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h4 class="text-xs font-black text-indigo-950 uppercase">മദ്രസ കോൺടാക്റ്റ് ഡയറക്ടറി</h4>
-        <button onclick="closeStaffDirectoryModal()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+    <!-- 6. MADRASA DETAILS -->
+    <section id="tab-madrasa-details" class="hidden space-y-4">
+      <div class="bg-gradient-to-r from-emerald-800 to-teal-800 text-white p-5 rounded-3xl shadow-lg space-y-1">
+        <span class="text-[9px] font-black uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">MADRASA STATS</span>
+        <h3 class="text-sm font-black">മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്</h3>
       </div>
-      <div id="directory-content-list" class="space-y-2 overflow-y-auto flex-grow text-xs"></div>
-    </div>
-  </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-white p-3.5 rounded-2xl border text-center">
+          <span class="text-[9px] font-black text-slate-400 uppercase">ആകെ കുട്ടികൾ</span>
+          <h4 id="stat-total-students" class="text-lg font-black text-indigo-600">0</h4>
+        </div>
+        <div class="bg-white p-3.5 rounded-2xl border text-center">
+          <span class="text-[9px] font-black text-blue-500 uppercase">ആൺകുട്ടികൾ</span>
+          <h4 id="stat-total-boys" class="text-lg font-black text-blue-600">0</h4>
+        </div>
+        <div class="bg-white p-3.5 rounded-2xl border text-center">
+          <span class="text-[9px] font-black text-pink-500 uppercase">പെൺകുട്ടികൾ</span>
+          <h4 id="stat-total-girls" class="text-lg font-black text-pink-600">0</h4>
+        </div>
+      </div>
+      <div id="class-breakdown-wrapper" class="bg-white p-4 rounded-3xl border space-y-2">
+        <h4 class="text-xs font-black text-slate-800 border-b pb-2">ഓരോ ക്ലാസിലെയും കുട്ടികളുടെ എണ്ണം</h4>
+        <div id="class-breakdown-list" class="grid grid-cols-2 gap-2 text-xs"></div>
+      </div>
+    </section>
+
+    <!-- 7. RESULT CHECK -->
+    <section id="tab-result-check" class="hidden space-y-4">
+      <div class="bg-white p-5 rounded-3xl border space-y-3">
+        <div class="text-center">
+          <h3 class="text-sm font-black text-slate-800">CHECK EXAM RESULT</h3>
+        </div>
+        <div class="space-y-2">
+          <select id="stud-exam-type" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+            <option value="Quarterly">പാദവാർഷിക പരീക്ഷ (Quarterly)</option>
+            <option value="HalfYearly">അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly)</option>
+            <option value="Annual">വാർഷിക പരീക്ഷ (Annual)</option>
+          </select>
+          <input id="stud-search-id" type="text" placeholder="Admission Number അല്ലെങ്കിൽ പേര്" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <input id="stud-search-pwd" type="password" placeholder="പാസ്‌വേഡ്" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <button onclick="searchStudentResult()" class="w-full bg-indigo-600 text-white font-black text-xs py-3 rounded-xl shadow">റിസൾട്ട് പരിശോധിക്കുക</button>
+        </div>
+      </div>
+
+      <div id="result-card-box" class="hidden space-y-3">
+        <div id="printable-report" class="bg-white p-5 rounded-3xl border shadow-xl space-y-3">
+          <div class="text-center border-b pb-2">
+            <h2 class="text-sm font-amiri font-bold text-indigo-950">مدرسة مظهر العلوم</h2>
+            <h3 class="text-xs font-black text-indigo-800 uppercase">MALHARUL ULOOM MADRASA (1283)</h3>
+            <p class="text-[10px] font-bold text-slate-500">Kalloor-Koothali • Progress Report</p>
+          </div>
+          <div class="flex items-center justify-between border-b pb-2">
+            <div class="flex items-center gap-3">
+              <img id="res-photo" src="https://via.placeholder.com/100" class="w-14 h-14 rounded-2xl object-cover border">
+              <div>
+                <h3 id="res-name" class="font-black text-sm text-slate-800">--</h3>
+                <p id="res-class" class="text-xs font-bold text-slate-500">Class: --</p>
+                <p id="res-adm" class="text-[10px] text-slate-400">Adm No: --</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="res-status" class="font-black text-xs px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-700">PASSED</span>
+              <p id="res-att" class="text-[10px] text-slate-500 font-bold mt-1">Attendance: --</p>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-[11px] font-black text-slate-700 uppercase mb-1">വിഷയങ്ങൾ & മാർക്കുകൾ</h4>
+            <div id="res-subjects-list" class="space-y-1 text-xs"></div>
+          </div>
+          <div class="p-2.5 bg-slate-900 text-white rounded-xl flex justify-between items-center text-xs">
+            <span class="font-bold">ആകെ മാർക്ക്:</span>
+            <span id="res-total" class="font-black text-amber-300 text-sm">--</span>
+          </div>
+          <div class="pt-2"><canvas id="progressChart" class="h-36"></canvas></div>
+          <div class="border-t pt-2 space-y-2 text-xs">
+            <div class="grid grid-cols-4 gap-2 text-center text-[9px] font-black p-2 bg-slate-50 rounded-xl border">
+              <div>ആകെ: <span id="rep-total-students">--</span></div>
+              <div>ആൺ: <span id="rep-boys">--</span></div>
+              <div>പെൺ: <span id="rep-girls">--</span></div>
+              <div>വിജയ ശതമാനം: <span id="rep-pass-rate" class="text-emerald-700">100%</span></div>
+            </div>
+            <div class="pt-6 grid grid-cols-2 gap-4 text-center">
+              <div class="border-t border-slate-400 pt-1">
+                <p class="text-[9px] font-black">ക്ലാസ് അധ്യാപകൻ</p>
+                <div class="h-6"></div>
+                <p class="text-[8px] text-slate-400">ഒപ്പ്</p>
+              </div>
+              <div class="border-t border-slate-400 pt-1">
+                <p class="text-[9px] font-black">സദർ മുഅല്ലിം</p>
+                <div class="h-6"></div>
+                <p class="text-[8px] text-slate-400">ഒപ്പ് & സീൽ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button onclick="window.print()" class="w-full bg-slate-900 text-white font-black text-xs py-3 rounded-xl shadow">പ്രിന്റ് / സേവ് PDF</button>
+      </div>
+    </section>
+
+    <!-- 8. CLASS NOTES -->
+    <section id="tab-class-notes" class="hidden space-y-4">
+      <div class="bg-white p-4 rounded-3xl border space-y-2">
+        <h3 class="text-xs font-black text-slate-800">CLASSES & STUDY MATERIALS</h3>
+        <div class="flex gap-1.5 overflow-x-auto hide-scrollbar py-1">
+          <button onclick="filterClassNotes('Class 1')" class="px-3 py-1 rounded-xl text-xs font-bold bg-indigo-600 text-white whitespace-nowrap">Class 1</button>
+          <button onclick="filterClassNotes('Class 2')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 2</button>
+          <button onclick="filterClassNotes('Class 3')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 3</button>
+          <button onclick="filterClassNotes('Class 4')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 4</button>
+          <button onclick="filterClassNotes('Class 5')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 5</button>
+          <button onclick="filterClassNotes('Class 6')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 6</button>
+          <button onclick="filterClassNotes('Class 7')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 7</button>
+          <button onclick="filterClassNotes('Class 8')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 8</button>
+          <button onclick="filterClassNotes('Class 9')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 9</button>
+          <button onclick="filterClassNotes('Class 10')" class="px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 whitespace-nowrap">Class 10</button>
+        </div>
+      </div>
+      <div id="class-notes-feed" class="space-y-2"></div>
+    </section>
+
+    <!-- 9. TIMETABLE -->
+    <section id="tab-timetable" class="hidden space-y-4">
+      <div class="bg-white p-4 rounded-3xl border space-y-2">
+        <h3 class="text-xs font-black text-slate-800">MADRASA TIMETABLE</h3>
+        <select id="tt-class-select" onchange="renderTimeTable()" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
+          <option value="Class 1">ക്ലാസ് 1</option><option value="Class 2">ക്ലാസ് 2</option><option value="Class 3">ക്ലാസ് 3</option><option value="Class 4">ക്ലാസ് 4</option><option value="Class 5" selected>ക്ലാസ് 5</option>
+          <option value="Class 6">ക്ലാസ് 6</option><option value="Class 7">ക്ലാസ് 7</option><option value="Class 8">ക്ലാസ് 8</option><option value="Class 9">ക്ലാസ് 9</option><option value="Class 10">ക്ലാസ് 10</option>
+        </select>
+      </div>
+      <div id="timetable-display" class="space-y-2"></div>
+    </section>
+  </main>
 
   <!-- Universal Role Login Modal -->
   <div id="role-login-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
@@ -696,7 +819,7 @@
 
   <!-- JavaScript Functionalities -->
   <script>
-    // 1. Firebase Initialization with mum-smart-5c296
+    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyCv5BoZc-PDbHON45GsQsoU8ePPe_RNvuM",
       authDomain: "mum-smart-5c296.firebaseapp.com",
@@ -750,7 +873,7 @@
       checkPersistedSession();
     });
 
-    // Persistent Login Handling (Does not log out on refresh except for Admin)
+    // Check localStorage (Persistent auto-login)
     function checkPersistedSession() {
       const savedUser = localStorage.getItem('mum_active_user');
       const savedStudent = localStorage.getItem('mum_active_student');
@@ -771,7 +894,7 @@
       }
     }
 
-    // Navigation Switcher
+    // Switch tab
     function switchTab(tId, pushState = true) {
       if (pushState && tId !== 'home') history.pushState({ tab: tId }, '', `#${tId}`);
       const all = ['home', 'madrasa-details', 'toppers-view', 'student-profile', 'parent-portal', 'result-check', 'class-notes', 'timetable', 'staff-dashboard'];
@@ -799,7 +922,7 @@
 
     function triggerAdminLoginPrompt() { openRoleLoginModal('ADMIN'); }
 
-    // Role Login Popup
+    // Role Login
     async function openPortal(role) { openRoleLoginModal(role); }
 
     async function openRoleLoginModal(role) {
@@ -910,7 +1033,7 @@
       const modal = document.getElementById('staff-directory-popup');
       const list = document.getElementById('directory-content-list');
       modal.classList.remove('hidden');
-      list.innerHTML = "<p class='text-slate-400 py-3 text-center'>ലോഡ് ചെയ്യുന്നു...</p>";
+      list.innerHTML = "<p class='text-slate-400 py-3 text-center'>കോൺടാക്റ്റുകൾ ലോഡ് ചെയ്യുന്നു...</p>";
 
       const snapT = await db.collection('teachers').get();
       const snapM = await db.collection('committee').get();
@@ -1318,7 +1441,7 @@
       currentExamConfig = cfgDoc.data();
       let thHTML = "<tr class='bg-slate-100'><th class='p-2'>Adm</th><th class='p-2'>പേര്</th>";
       currentExamConfig.subjects.forEach(s => thHTML += `<th class='p-2 text-center'>${s.name} (${s.total})</th>`);
-      thHTML += "</tr>";
+      thHTML += "<th class='p-2 text-right'>Action</th></tr>";
       thead.innerHTML = thHTML;
 
       const snap = await db.collection('students').where('class', '==', sClass).get();
@@ -1330,12 +1453,21 @@
         const existingExam = st.exams ? st.exams[exam] : null;
         let trHTML = `<tr><td class='p-2 font-bold text-indigo-700'>${st.adm}</td><td class='p-2 font-bold text-slate-800'>${st.name}</td>`;
         currentExamConfig.subjects.forEach((s, idx) => {
-          const val = existingExam && existingExam.subjects && existingExam.subjects[s.name] ? existingExam.subjects[s.name] : '';
+          const val = existingExam && existingExam.subjects && existingExam.subjects[s.name] !== undefined ? existingExam.subjects[s.name] : '';
           trHTML += `<td class='p-1 text-center'><input type='number' id='me-${st.adm}-${idx}' value='${val}' max='${s.total}' class='w-16 p-1 border rounded text-center font-bold'></td>`;
         });
-        trHTML += "</tr>";
+        trHTML += `<td class='p-1 text-right'><button onclick="deleteSingleStudentMarks('${st.adm}', '${exam}')" class='px-2 py-1 bg-rose-50 text-rose-600 rounded hover:bg-rose-100'><i class='fa-solid fa-trash'></i></button></td></tr>`;
         tbody.innerHTML += trHTML;
       });
+    }
+
+    async function deleteSingleStudentMarks(adm, exam) {
+      if (!confirm(`ഈ കുട്ടിയുടെ ${exam} പരീക്ഷാ മാർക്ക് പൂർണ്ണമായി ഡിലീറ്റ് ചെയ്യട്ടെ?`)) return;
+      await db.collection('students').doc(adm).update({
+        [`exams.${exam}`]: firebase.firestore.FieldValue.delete()
+      });
+      alert("മാർക്ക് ഡിലീറ്റ് ചെയ്തു!");
+      loadMarkEntryTable();
     }
 
     async function saveBatchExamMarks() {
@@ -1577,7 +1709,7 @@
     async function renderTimeTable() {
       const sClass = document.getElementById('tt-class-select').value;
       const disp = document.getElementById('timetable-display');
-      disp.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ലോഡ് ചെയ്യുന്നു...</p>";
+      disp.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ടൈംടേബിൾ പരിശോധിക്കുന്നു...</p>";
       const snap = await db.collection('routines').where('class', '==', sClass).get();
       if (snap.empty) { disp.innerHTML = `<div class="p-4 bg-white rounded-2xl border text-xs text-slate-600 font-bold">${sClass}-ൽ ടൈംടേബിൾ ചേർത്തിട്ടില്ല.</div>`; return; }
       disp.innerHTML = '';
@@ -1626,6 +1758,13 @@
       for (let c in classCounts) {
         bdList.innerHTML += `<div class="p-2 bg-slate-50 rounded-xl border flex justify-between"><span class="font-bold text-slate-700">${c}:</span><span class="font-black text-indigo-700">${classCounts[c]}</span></div>`;
       }
+
+      // Restrict Management View to only Macro Stats
+      if (activeUser && activeUser.role === 'MANAGEMENT') {
+        document.getElementById('class-breakdown-wrapper').classList.add('hidden');
+      } else {
+        document.getElementById('class-breakdown-wrapper').classList.remove('hidden');
+      }
     }
 
     async function renderSidebarTeachers() {
@@ -1641,10 +1780,46 @@
               <p class="font-bold text-slate-800 text-[11px]">${d.name}</p>
               <p class="text-[9px] text-indigo-600 font-bold">${d.classes ? d.classes.join(', ') : ''}</p>
             </div>
-            <div class="flex gap-1.5">
-              <a href="tel:${d.phone}" class="text-emerald-600 font-bold"><i class="fa-solid fa-phone"></i></a>
-              <a href="https://wa.me/${d.phone}" target="_blank" class="text-[#25D366] font-bold"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:${d.phone}" class="text-emerald-600 font-bold text-[11px]"><i class="fa-solid fa-phone mr-1"></i>${d.phone}</a>
+          </div>
+        `;
+      });
+    }
+
+    // Leaderboard
+    async function renderToppersLeaderboard() {
+      const cFilter = document.getElementById('toppers-class-select').value;
+      const gFilter = document.getElementById('toppers-gender-select').value;
+      const box = document.getElementById('toppers-list-box');
+      box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>ലോഡ് ചെയ്യുന്നു...</p>";
+
+      let q = db.collection('students');
+      if (cFilter !== 'All') q = q.where('class', '==', cFilter);
+      if (gFilter !== 'All') q = q.where('gender', '==', gFilter);
+
+      const snap = await q.get();
+      if (snap.empty) { box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>വിവരങ്ങൾ ലഭ്യമല്ല.</p>"; return; }
+
+      let list = [];
+      snap.forEach(d => {
+        const data = d.data();
+        const score = (data.dailyScore || 20) + (data.totalMarks || 250);
+        list.push({ ...data, computedTotal: score });
+      });
+
+      list.sort((a, b) => b.computedTotal - a.computedTotal);
+      box.innerHTML = '';
+      list.forEach((st, idx) => {
+        box.innerHTML += `
+          <div class="p-3 bg-white rounded-2xl border flex items-center justify-between text-xs">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-xl ${idx === 0 ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-600'} font-black flex items-center justify-center">${idx + 1}</span>
+              <div>
+                <h5 class="font-black text-slate-800">${st.name}</h5>
+                <p class="text-[10px] text-slate-400">${st.class} • ${st.gender || 'Boy'}</p>
+              </div>
             </div>
+            <span class="font-black text-indigo-700 text-xs">${st.computedTotal} Pts</span>
           </div>
         `;
       });
