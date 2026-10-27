@@ -39,7 +39,7 @@
 </head>
 <body class="bg-gradient-to-br from-indigo-50/70 via-purple-50/40 to-pink-50/50 text-slate-800 min-h-screen flex flex-col pb-24">
 
-  <!-- Top Header with Secret Admin Click Trigger on Arabic Text -->
+  <!-- Top Header -->
   <header class="bg-white/90 backdrop-blur-xl sticky top-0 z-40 border-b border-indigo-100 px-4 py-2.5 shadow-xs">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2.5">
@@ -54,9 +54,9 @@
         </div>
       </div>
       
-      <!-- Top Action Call Button for Teachers/Office Contacts -->
-      <button onclick="toggleSidebar()" class="w-9 h-9 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold text-xs shadow-xs border border-indigo-100">
-        <i class="fa-solid fa-phone-volume text-xs"></i>
+      <!-- Top Call Icon: Shows Teacher & Management Directory Directly -->
+      <button onclick="openStaffDirectoryModal()" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center font-bold text-sm shadow-xs border border-emerald-200 active:scale-95 transition">
+        <i class="fa-solid fa-phone"></i>
       </button>
     </div>
   </header>
@@ -90,6 +90,7 @@
         <button onclick="switchTab('class-notes')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-blue-50"><i class="fa-solid fa-book-bookmark text-blue-500 w-5"></i> ക്ലാസുകൾ & നോട്ടുകൾ</button>
         <button onclick="switchTab('timetable')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-amber-50"><i class="fa-solid fa-calendar-days text-amber-500 w-5"></i> ടൈംടേബിൾ (Time Table)</button>
         <button onclick="switchTab('madrasa-details')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-emerald-800 bg-emerald-50"><i class="fa-solid fa-chart-pie text-emerald-600 w-5"></i> മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്</button>
+        <button onclick="openFeedbackModal()" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-rose-700 bg-rose-50"><i class="fa-solid fa-envelope-open-text text-rose-600 w-5"></i> അഡ്മിന് നിർദ്ദേശങ്ങൾ അയക്കാം</button>
         <button onclick="switchTab('about-app')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-pink-50"><i class="fa-solid fa-circle-info text-pink-500 w-5"></i> About App</button>
       </nav>
 
@@ -145,11 +146,10 @@
         </div>
       </div>
 
-      <!-- PORTAL LOGINS (Same Size and Style as Main Icons) -->
+      <!-- PORTAL LOGINS -->
       <div class="space-y-2">
         <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">പോർട്ടൽ ലോഗിൻ (LOGIN ACCESS)</h3>
         <div class="grid grid-cols-4 gap-2.5">
-          <!-- STUDENT -->
           <button onclick="openPortal('STUDENT')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-purple-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-500 text-white text-lg flex items-center justify-center shadow-md shadow-purple-200">
               <i class="fa-solid fa-graduation-cap"></i>
@@ -157,7 +157,6 @@
             <span class="text-[10px] font-black text-slate-700">STUDENT</span>
           </button>
 
-          <!-- MUALLIM -->
           <button onclick="openPortal('MUALLIM')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-indigo-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-blue-500 text-white text-lg flex items-center justify-center shadow-md shadow-indigo-200">
               <i class="fa-solid fa-chalkboard-user"></i>
@@ -165,7 +164,6 @@
             <span class="text-[10px] font-black text-slate-700">MUALLIM</span>
           </button>
 
-          <!-- MANAGEMENT -->
           <button onclick="openPortal('MANAGEMENT')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-pink-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-500 text-white text-lg flex items-center justify-center shadow-md shadow-pink-200">
               <i class="fa-solid fa-sitemap"></i>
@@ -173,7 +171,6 @@
             <span class="text-[9px] font-black text-slate-700 leading-tight text-center">MANAGEMENT</span>
           </button>
 
-          <!-- PARENT -->
           <button onclick="openPortal('PARENT')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-teal-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white text-lg flex items-center justify-center shadow-md shadow-teal-200">
               <i class="fa-solid fa-users"></i>
@@ -183,11 +180,10 @@
         </div>
       </div>
 
-      <!-- GENERAL MADRASA SERVICES -->
+      <!-- GENERAL SERVICES -->
       <div class="space-y-2">
         <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">സേവനങ്ങൾ (SERVICES)</h3>
         <div class="grid grid-cols-4 gap-2.5">
-          <!-- PRAYER APP (Single Link) -->
           <a href="https://mu-madrasa.vercel.app/" target="_blank" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-emerald-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-500 text-white flex flex-col items-center justify-center shadow-md shadow-emerald-200">
               <span class="font-black text-[11px] leading-tight">MUM</span>
@@ -196,7 +192,6 @@
             <span class="text-[9px] font-black text-emerald-800 text-center leading-tight">PRAYER APP</span>
           </a>
 
-          <!-- CLASS -->
           <button onclick="switchTab('class-notes')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-blue-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-500 to-cyan-400 text-white text-lg flex items-center justify-center shadow-md shadow-blue-200">
               <i class="fa-solid fa-book-open-reader"></i>
@@ -204,7 +199,6 @@
             <span class="text-[10px] font-black text-slate-700">CLASS</span>
           </button>
 
-          <!-- RESULT -->
           <button onclick="switchTab('result-check')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-teal-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 text-white text-lg flex items-center justify-center shadow-md shadow-teal-200">
               <i class="fa-solid fa-square-poll-vertical"></i>
@@ -212,7 +206,6 @@
             <span class="text-[10px] font-black text-slate-700">RESULT</span>
           </button>
 
-          <!-- TIMETABLE -->
           <button onclick="switchTab('timetable')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-amber-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-400 text-white text-lg flex items-center justify-center shadow-md shadow-amber-200">
               <i class="fa-solid fa-calendar-days"></i>
@@ -221,7 +214,6 @@
           </button>
         </div>
 
-        <!-- TOPPERS & DETAILS -->
         <div class="grid grid-cols-3 gap-2.5 pt-1">
           <button onclick="switchTab('toppers-view')" class="flex items-center gap-2.5 p-3 rounded-2xl bg-white border border-amber-100 shadow-xs hover:scale-105 transition">
             <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-white flex items-center justify-center"><i class="fa-solid fa-trophy"></i></div>
@@ -239,7 +231,7 @@
       </div>
     </section>
 
-    <!-- 2. TOPPERS DASHBOARD (Daily, Weekly, Monthly, Yearly, All Time, Gender & Class Filters) -->
+    <!-- 2. TOPPERS DASHBOARD -->
     <section id="tab-toppers-view" class="hidden space-y-4">
       <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 text-white p-5 rounded-3xl shadow-lg space-y-2">
         <div class="flex items-center justify-between">
@@ -276,7 +268,7 @@
       <div id="toppers-list-box" class="space-y-2"></div>
     </section>
 
-    <!-- 3. PARENT MULTI-CHILD PORTAL (Edusafa Model) -->
+    <!-- 3. PARENT MULTI-CHILD PORTAL -->
     <section id="tab-parent-portal" class="hidden space-y-4">
       <div class="bg-gradient-to-r from-teal-800 to-emerald-900 text-white p-5 rounded-3xl shadow-lg space-y-2">
         <div class="flex items-center justify-between">
@@ -329,7 +321,6 @@
         </button>
       </div>
 
-      <!-- SECTION: Daily Routine -->
       <div id="st-sec-routine" class="bg-white p-5 rounded-3xl border space-y-2.5">
         <div class="flex items-center justify-between border-b pb-2">
           <h4 class="text-xs font-black text-slate-800">ഡെയ്‌ലി റൊട്ടീൻ എൻട്രി</h4>
@@ -360,7 +351,6 @@
         <button onclick="saveStudentDailyRoutine()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-xs py-2.5 rounded-xl shadow">റൊട്ടീൻ സേവ് ചെയ്യുക</button>
       </div>
 
-      <!-- SECTION: Attendance with Pie Chart -->
       <div id="st-sec-attendance" class="hidden bg-white p-5 rounded-3xl border space-y-3">
         <h4 class="text-xs font-black text-slate-800 border-b pb-2">ഹാജർ നില (Attendance Pie Chart)</h4>
         <div class="h-44"><canvas id="studentAttPieChart"></canvas></div>
@@ -370,7 +360,6 @@
         </div>
       </div>
 
-      <!-- SECTION: Exams Analytics Bar Graphs -->
       <div id="st-sec-exams" class="hidden bg-white p-5 rounded-3xl border space-y-3">
         <div class="flex items-center justify-between">
           <h4 class="text-xs font-black text-slate-800">പരീക്ഷാ മാർക്കുകൾ & അനലിറ്റിക്‌സ്</h4>
@@ -384,7 +373,6 @@
         <div id="sp-marks-table" class="space-y-1 text-xs"></div>
       </div>
 
-      <!-- SECTION: Monthly Test Analytics -->
       <div id="st-sec-monthly" class="hidden bg-white p-5 rounded-3xl border space-y-3">
         <h4 class="text-xs font-black text-slate-800 border-b pb-2">മന്ത്ലി ടെസ്റ്റ് മാർക്കുകൾ</h4>
         <div class="h-44"><canvas id="spMonthlyChart"></canvas></div>
@@ -403,34 +391,34 @@
         <button onclick="logoutStaff()" class="text-xs bg-white/10 px-3 py-1.5 rounded-xl font-bold">LOGOUT</button>
       </div>
 
-      <!-- Dashboard Grid Selector (Edusafa Model) -->
+      <!-- Quick Subnav Grid -->
       <div class="grid grid-cols-4 gap-1.5 text-center">
-        <button onclick="openStaffPanel('student-mgmt')" id="snav-student-mgmt" class="p-2 bg-white border border-indigo-300 rounded-xl font-bold text-xs text-indigo-800">
+        <button onclick="openStaffPanel('student-mgmt')" class="p-2 bg-white border border-indigo-300 rounded-xl font-bold text-xs text-indigo-800">
           <i class="fa-solid fa-users block mb-0.5 text-indigo-600"></i> Students
         </button>
-        <button onclick="openStaffPanel('daily-tracker')" id="snav-daily-tracker" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
+        <button onclick="openStaffPanel('daily-tracker')" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
           <i class="fa-solid fa-calendar-check block mb-0.5 text-pink-600"></i> Attendance
         </button>
-        <button onclick="openStaffPanel('exam-config')" id="snav-exam-config" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
+        <button onclick="openStaffPanel('exam-config')" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
           <i class="fa-solid fa-sliders block mb-0.5 text-teal-600"></i> Exam Setup
         </button>
-        <button onclick="openStaffPanel('marks-entry')" id="snav-marks-entry" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
+        <button onclick="openStaffPanel('marks-entry')" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
           <i class="fa-solid fa-pen-nib block mb-0.5 text-purple-600"></i> Mark Entry
         </button>
       </div>
 
       <div class="grid grid-cols-4 gap-1.5 text-center">
-        <button onclick="openStaffPanel('monthly-test')" id="snav-monthly-test" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
+        <button onclick="openStaffPanel('monthly-test')" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
           <i class="fa-solid fa-file-pen block mb-0.5 text-amber-600"></i> Monthly
         </button>
-        <button onclick="openStaffPanel('promotion')" id="snav-promotion" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
+        <button onclick="openStaffPanel('promotion')" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
           <i class="fa-solid fa-angles-up block mb-0.5 text-blue-600"></i> Promotion
         </button>
-        <button onclick="openStaffPanel('feedback-msg')" id="snav-feedback-msg" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
-          <i class="fa-solid fa-envelope block mb-0.5 text-rose-600"></i> Admin Msg
-        </button>
-        <button onclick="openStaffPanel('admin-ctrl')" id="snav-admin-ctrl" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
+        <button onclick="openStaffPanel('admin-mgmt')" id="snav-admin-mgmt" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
           <i class="fa-solid fa-shield-halved block mb-0.5 text-indigo-600"></i> Admin Panel
+        </button>
+        <button onclick="openStaffPanel('feedback-msg')" class="p-2 bg-white border rounded-xl font-bold text-xs text-slate-600">
+          <i class="fa-solid fa-envelope block mb-0.5 text-rose-600"></i> Feedback
         </button>
       </div>
 
@@ -459,7 +447,6 @@
           <button onclick="saveStudentData()" class="w-full bg-indigo-600 text-white font-black text-xs py-2.5 rounded-xl shadow">സേവ് ചെയ്യുക</button>
         </div>
 
-        <!-- Live Table with Student Photo & Edit Actions -->
         <div class="bg-white p-4 rounded-3xl border space-y-2">
           <div class="flex justify-between items-center border-b pb-2">
             <h4 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥികളുടെ പട്ടിക</h4>
@@ -482,7 +469,6 @@
           <h4 class="text-xs font-black text-slate-800">ദിവസേനയുള്ള ഹാജർ രേഖപ്പെടുത്തൽ</h4>
           <select id="att-class-select" onchange="loadStudentsForAttendance()" class="p-1.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
         </div>
-        <p class="text-[10px] text-slate-400">എല്ലാ കുട്ടികളും സ്ഥിരമായി പ്രസന്റ് ആണ്. ലീവ് ഉള്ളവരെ മാത്രം അൺ-ടിക്ക് ചെയ്യുക:</p>
         <div id="attendance-students-list" class="space-y-1.5 max-h-60 overflow-y-auto"></div>
         <button onclick="saveDailyAttendanceBatch()" class="w-full bg-teal-600 text-white font-black text-xs py-2.5 rounded-xl shadow">ഹാജർ സേവ് ചെയ്യുക</button>
         <button onclick="sendLeaveWhatsAppAlerts()" class="w-full bg-emerald-600 text-white font-black text-xs py-2.5 rounded-xl shadow flex items-center justify-center gap-1.5">
@@ -490,7 +476,7 @@
         </button>
       </div>
 
-      <!-- PANEL C: EXAM SETUP (Add Subjects, Pass Marks, Total Marks) -->
+      <!-- PANEL C: EXAM SETUP -->
       <div id="panel-exam-config" class="hidden bg-white p-4 rounded-3xl border space-y-3">
         <h4 class="text-xs font-black text-slate-800 border-b pb-2">പരീക്ഷ & വിഷയങ്ങൾ ക്രമീകരിക്കൽ (Exam Setup)</h4>
         <div class="grid grid-cols-2 gap-2">
@@ -552,7 +538,6 @@
       <!-- PANEL F: STUDENTS PROMOTION (Sadar Muallim & Admin) -->
       <div id="panel-promotion" class="hidden bg-white p-4 rounded-3xl border space-y-3">
         <h4 class="text-xs font-black text-slate-800 border-b pb-2">വിദ്യാർത്ഥികളുടെ ക്ലാസ് പ്രൊമോഷൻ (Sadar Only)</h4>
-        <p class="text-[10px] text-slate-500">വാർഷിക പരീക്ഷയ്ക്ക് ശേഷം അടുത്ത ക്ലാസിലേക്ക് വിജയികളെ മാറ്റുക:</p>
         <div class="grid grid-cols-2 gap-2">
           <select id="prom-from" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
             <option value="Class 1">From Class 1</option><option value="Class 2">From Class 2</option><option value="Class 3">From Class 3</option>
@@ -565,32 +550,106 @@
             <option value="Class 8">To Class 8</option><option value="Class 9">To Class 9</option><option value="Class 10">To Class 10</option>
           </select>
         </div>
-        <button onclick="executeBatchPromotion()" class="w-full bg-blue-600 text-white font-black text-xs py-2.5 rounded-xl shadow">വിദ്യാർത്ഥികളെ പ്രൊമോട്ട് ചെയ്യുക</button>
+        <button onclick="executeBatchPromotion()" class="w-full bg-blue-600 text-white font-black text-xs py-2.5 rounded-xl shadow">പ്രൊമോട്ട് ചെയ്യുക</button>
       </div>
 
-      <!-- PANEL G: ADMIN FEEDBACK & SUGGESTIONS -->
+      <!-- PANEL G: ADMIN MESSAGES INBOX -->
       <div id="panel-feedback-msg" class="hidden bg-white p-4 rounded-3xl border space-y-3">
-        <h4 class="text-xs font-black text-slate-800 border-b pb-2">അഡ്മിന് നിർദ്ദേശങ്ങൾ / സന്ദേശങ്ങൾ അയക്കുക</h4>
-        <textarea id="feedback-text" rows="3" placeholder="ആപ്പിനെക്കുറിച്ചോ മദ്രസയെക്കുറിച്ചോ ഉള്ള സന്ദേശം ഇവിടെ എഴുതുക..." class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold"></textarea>
-        <button onclick="sendAdminFeedbackMessage()" class="w-full bg-rose-600 text-white font-black text-xs py-2.5 rounded-xl shadow">അഡ്മിന് അയക്കുക</button>
+        <h4 class="text-xs font-black text-slate-800 border-b pb-2">അഡ്മിൻ നിർദ്ദേശങ്ങൾ & സന്ദേശങ്ങൾ</h4>
+        <div id="admin-feedback-inbox" class="space-y-2 max-h-60 overflow-y-auto text-xs">
+          <p class="text-slate-400 text-center py-2">സന്ദേശങ്ങൾ പരിശോധിക്കുന്നു...</p>
+        </div>
       </div>
 
-      <!-- PANEL H: FULL ADMIN CONTROL PANEL -->
-      <div id="panel-admin-ctrl" class="hidden bg-white p-4 rounded-3xl border space-y-3">
-        <h4 class="text-xs font-black text-indigo-950 border-b pb-2">സമ്പൂർണ്ണ അഡ്മിൻ കൺട്രോൾ പാനൽ</h4>
-        <div class="space-y-2 text-xs">
-          <button onclick="adminTogglePublicResult(true)" class="w-full p-2 bg-emerald-50 text-emerald-800 rounded-xl font-bold border border-emerald-200">റിസൾട്ട് പബ്ലിഷ് ചെയ്യുക (Live)</button>
-          <button onclick="adminTogglePublicResult(false)" class="w-full p-2 bg-rose-50 text-rose-800 rounded-xl font-bold border border-rose-200">റിസൾട്ട് പിൻവലിക്കുക (Unpublish)</button>
+      <!-- PANEL H: COMPREHENSIVE ADMIN CONTROL PANEL -->
+      <div id="panel-admin-mgmt" class="hidden space-y-4">
+        
+        <!-- 1. Staff Assign Section -->
+        <div class="bg-white p-4 rounded-3xl border space-y-2">
+          <h4 class="text-xs font-black text-indigo-950 border-b pb-1">1. സ്റ്റാഫ് അസൈൻമെന്റ് (അധ്യാപകരെ നിയമിക്കുക)</h4>
+          <input id="adm-t-name" type="text" placeholder="അധ്യാപകന്റെ പേര് *" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <div class="grid grid-cols-2 gap-2">
+            <input id="adm-t-phone" type="tel" placeholder="ഫോൺ നമ്പർ *" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+            <input id="adm-t-pwd" type="text" placeholder="പാസ്‌വേഡ് *" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          </div>
+          <label class="block text-[10px] font-bold text-slate-500">നൽകുന്ന ക്ലാസുകൾ:</label>
+          <div id="adm-classes-checkboxes" class="grid grid-cols-5 gap-1 text-[10px] font-bold p-2 bg-slate-50 rounded-xl border">
+            <label><input type="checkbox" value="Class 1"> 1</label><label><input type="checkbox" value="Class 2"> 2</label>
+            <label><input type="checkbox" value="Class 3"> 3</label><label><input type="checkbox" value="Class 4"> 4</label>
+            <label><input type="checkbox" value="Class 5"> 5</label><label><input type="checkbox" value="Class 6"> 6</label>
+            <label><input type="checkbox" value="Class 7"> 7</label><label><input type="checkbox" value="Class 8"> 8</label>
+            <label><input type="checkbox" value="Class 9"> 9</label><label><input type="checkbox" value="Class 10"> 10</label>
+          </div>
+          <label class="block text-[10px] font-bold text-slate-500">ഫോട്ടോ:</label>
+          <input id="adm-t-photo-file" type="file" accept="image/*" class="w-full text-xs text-slate-400 file:py-1 file:px-2 file:rounded-lg file:border-0 file:bg-indigo-50 file:text-indigo-700">
+          <button onclick="adminSaveTeacherProfile()" class="w-full bg-indigo-600 text-white font-black text-xs py-2.5 rounded-xl shadow">അധ്യാപകനെ സേവ് ചെയ്യുക</button>
         </div>
-        <div class="pt-2 border-t space-y-1.5">
-          <span class="text-[10px] font-bold text-slate-500">നോട്ടീസ് ബോർഡ് സന്ദേശം മാറ്റുക:</span>
-          <input id="admin-notice-input" type="text" placeholder="പുതിയ നോട്ടീസ് എഴുതുക" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
-          <button onclick="adminUpdateNotice()" class="w-full bg-indigo-600 text-white font-black text-xs py-2 rounded-xl">നോട്ടീസ് അപ്ഡേറ്റ് ചെയ്യുക</button>
+
+        <!-- 2. Management Committee Assign Section -->
+        <div class="bg-white p-4 rounded-3xl border space-y-2">
+          <h4 class="text-xs font-black text-indigo-950 border-b pb-1">2. മാനേജ്‌മെന്റ് കമ്മിറ്റി അംഗങ്ങൾ</h4>
+          <input id="adm-m-name" type="text" placeholder="അംഗത്തിന്റെ പേര് *" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <div class="grid grid-cols-2 gap-2">
+            <input id="adm-m-phone" type="tel" placeholder="ഫോൺ നമ്പർ *" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+            <input id="adm-m-role" type="text" placeholder="പദവി (ഉദാ: പ്രസിഡന്റ്)" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          </div>
+          <button onclick="adminSaveCommitteeMember()" class="w-full bg-pink-600 text-white font-black text-xs py-2.5 rounded-xl shadow">കമ്മിറ്റി അംഗത്തെ സേവ് ചെയ്യുക</button>
+        </div>
+
+        <!-- 3. Dynamic Notice Board Updates -->
+        <div class="bg-white p-4 rounded-3xl border space-y-2">
+          <h4 class="text-xs font-black text-indigo-950 border-b pb-1">3. നോട്ടീസ് ബോർഡ് സന്ദേശം മാറ്റുക</h4>
+          <input id="adm-notice-title-in" type="text" placeholder="നോട്ടീസ് തലക്കെട്ട്" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <textarea id="adm-notice-desc-in" rows="2" placeholder="നോട്ടീസ് വിവരണം..." class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold"></textarea>
+          <button onclick="adminSaveNoticeContent()" class="w-full bg-teal-600 text-white font-black text-xs py-2.5 rounded-xl shadow">നോട്ടീസ് അപ്ഡേറ്റ് ചെയ്യുക</button>
+        </div>
+
+        <!-- 4. Result Publish / Unpublish -->
+        <div class="bg-white p-4 rounded-3xl border space-y-2">
+          <h4 class="text-xs font-black text-indigo-950 border-b pb-1">4. പരീക്ഷാ ഫലങ്ങൾ പബ്ലിഷ് ചെയ്യുക / പിൻവലിക്കുക</h4>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="adminTogglePublicResult(true)" class="p-2.5 bg-emerald-100 text-emerald-800 font-black text-xs rounded-xl">പബ്ലിഷ് ചെയ്യുക (Live)</button>
+            <button onclick="adminTogglePublicResult(false)" class="p-2.5 bg-rose-100 text-rose-800 font-black text-xs rounded-xl">പിൻവലിക്കുക (Unpublish)</button>
+          </div>
+        </div>
+
+        <!-- 5. Gallery Photo Upload -->
+        <div class="bg-white p-4 rounded-3xl border space-y-2">
+          <h4 class="text-xs font-black text-indigo-950 border-b pb-1">5. ഗാലറിയിലേക്ക് ഫോട്ടോ ചേർക്കുക</h4>
+          <input id="adm-event-name" type="text" placeholder="പരിപാടിയുടെ പേര് (Event Name)" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+          <input id="adm-event-photo" type="file" accept="image/*" class="w-full text-xs text-slate-400 file:py-1 file:px-2 file:rounded-lg file:border-0 file:bg-purple-50 file:text-purple-700">
+          <button onclick="adminPublishEventPhoto()" class="w-full bg-purple-600 text-white font-black text-xs py-2.5 rounded-xl shadow">ഫോട്ടോ ഗാലറിയിൽ ചേർക്കുക</button>
         </div>
       </div>
     </section>
 
   </main>
+
+  <!-- Staff & Management Direct Call Modal -->
+  <div id="staff-directory-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-5 shadow-2xl space-y-3 max-h-[85vh] flex flex-col">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h4 class="text-xs font-black text-indigo-950 uppercase">മദ്രസ കോൺടാക്റ്റ് ഡയറക്ടറി</h4>
+        <button onclick="closeStaffDirectoryModal()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="directory-content-list" class="space-y-2 overflow-y-auto flex-grow text-xs"></div>
+    </div>
+  </div>
+
+  <!-- User Suggestion Feedback Modal -->
+  <div id="feedback-user-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h4 class="text-xs font-black text-rose-800">അഡ്മിന് നിർദ്ദേശങ്ങൾ അറിയിക്കുക</h4>
+        <button onclick="closeFeedbackModal()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="space-y-2">
+        <input id="user-fb-name" type="text" placeholder="നിങ്ങളുടെ പേര് *" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
+        <textarea id="user-fb-msg" rows="3" placeholder="നിർദ്ദേശം / സന്ദേശം ഇവിടെ എഴുതുക..." class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold"></textarea>
+        <button onclick="submitUserFeedback()" class="w-full bg-rose-600 text-white font-black text-xs py-2.5 rounded-xl shadow">സന്ദേശം അയക്കുക</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Universal Role Login Modal -->
   <div id="role-login-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
@@ -669,7 +728,7 @@
     </div>
   </nav>
 
-  <!-- JavaScript Functionalities -->
+  <!-- JavaScript Application Logic -->
   <script>
     // 1. Firebase Initialization with mum-smart-5c296
     const firebaseConfig = {
@@ -872,7 +931,93 @@
       executeRoleLogin();
     }
 
-    // 5. Student Portal Controls
+    // 5. Staff Directory Direct Modal
+    async function openStaffDirectoryModal() {
+      const modal = document.getElementById('staff-directory-popup');
+      const list = document.getElementById('directory-content-list');
+      modal.classList.remove('hidden');
+      list.innerHTML = "<p class='text-slate-400 py-3 text-center'>കോൺടാക്റ്റുകൾ ലോഡ് ചെയ്യുന്നു...</p>";
+
+      const snapT = await db.collection('teachers').get();
+      const snapM = await db.collection('committee').get();
+
+      list.innerHTML = `
+        <div class="p-2.5 bg-indigo-50 border border-indigo-100 rounded-2xl flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold">RF</div>
+            <div>
+              <p class="font-bold text-slate-800">RASHIDALI FAIZY</p>
+              <span class="text-[10px] text-indigo-600 font-bold">ADMIN / HEAD</span>
+            </div>
+          </div>
+          <a href="tel:6238403492" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></a>
+        </div>
+        <div class="p-2.5 bg-purple-50 border border-purple-100 rounded-2xl flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold">SD</div>
+            <div>
+              <p class="font-bold text-slate-800">SHAFI DARIMI</p>
+              <span class="text-[10px] text-purple-600 font-bold">SADAR MUALLIM</span>
+            </div>
+          </div>
+          <a href="tel:9605169230" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></a>
+        </div>
+      `;
+
+      snapT.forEach(d => {
+        const t = d.data();
+        list.innerHTML += `
+          <div class="p-2.5 bg-slate-50 border rounded-2xl flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img src="${t.photo || 'https://via.placeholder.com/40'}" class="w-10 h-10 rounded-xl object-cover border">
+              <div>
+                <p class="font-bold text-slate-800">${t.name}</p>
+                <span class="text-[10px] text-slate-500 font-bold">Classes: ${t.classes ? t.classes.join(', ') : '-'}</span>
+              </div>
+            </div>
+            <a href="tel:${t.phone}" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></a>
+          </div>
+        `;
+      });
+
+      snapM.forEach(d => {
+        const m = d.data();
+        list.innerHTML += `
+          <div class="p-2.5 bg-slate-50 border rounded-2xl flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-xl bg-pink-600 text-white flex items-center justify-center font-bold"><i class="fa-solid fa-user-tie"></i></div>
+              <div>
+                <p class="font-bold text-slate-800">${m.name}</p>
+                <span class="text-[10px] text-pink-600 font-bold">${m.role || 'Committee Member'}</span>
+              </div>
+            </div>
+            <a href="tel:${m.phone}" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></a>
+          </div>
+        `;
+      });
+    }
+
+    function closeStaffDirectoryModal() {
+      document.getElementById('staff-directory-popup').classList.add('hidden');
+    }
+
+    // 6. User Feedback / Suggestions Handler
+    function openFeedbackModal() { document.getElementById('feedback-user-popup').classList.remove('hidden'); }
+    function closeFeedbackModal() { document.getElementById('feedback-user-popup').classList.add('hidden'); }
+
+    async function submitUserFeedback() {
+      const name = document.getElementById('user-fb-name').value.trim();
+      const msg = document.getElementById('user-fb-msg').value.trim();
+      if (!name || !msg) { alert("പേരും നിർദ്ദേശവും രേഖപ്പെടുത്തുക."); return; }
+
+      await db.collection('feedback').add({ from: name, text: msg, date: new Date() });
+      alert("നിർദ്ദേശം അഡ്മിന് കൈമാറി. നന്ദി!");
+      document.getElementById('user-fb-name').value = '';
+      document.getElementById('user-fb-msg').value = '';
+      closeFeedbackModal();
+    }
+
+    // 7. Student Portal Controls
     function setupStudentProfileUI() {
       document.getElementById('sp-name').innerText = activeStudent.name;
       document.getElementById('sp-class-uid').innerText = `Class: ${activeStudent.class} • UID: ${activeStudent.uid || activeStudent.adm}`;
@@ -976,7 +1121,7 @@
 
     function logoutStudent() { activeStudent = null; switchTab('home'); }
 
-    // 6. Parent Portal Multi-Child View (Edusafa Model)
+    // 8. Parent Multi-Child Setup
     function setupParentPortalUI() {
       const tabs = document.getElementById('parent-children-tabs');
       tabs.innerHTML = '';
@@ -1019,7 +1164,7 @@
 
     function logoutParent() { activeParentChildren = []; switchTab('home'); }
 
-    // 7. Toppers Leaderboard Handlers
+    // 9. Toppers Leaderboard Handlers
     let currentScope = 'daily';
     function filterToppersScope(sc) {
       currentScope = sc;
@@ -1068,7 +1213,7 @@
       });
     }
 
-    // 8. Staff Dashboard Functions (Attendance, Marks Table, Promotion)
+    // 10. Staff Dashboard & Admin Functions
     function setupStaffDashboardUI() {
       document.getElementById('logged-role-badge').innerText = activeUser.role;
       document.getElementById('logged-user-name').innerText = activeUser.name;
@@ -1082,23 +1227,30 @@
         activeUser.classes.forEach(c => el.innerHTML += `<option value="${c}">${c}</option>`);
       });
 
+      const admNav = document.getElementById('snav-admin-mgmt');
+      if (activeUser.role === 'ADMIN') admNav.classList.remove('hidden');
+      else admNav.classList.add('hidden');
+
       openStaffPanel('student-mgmt');
     }
 
     function openStaffPanel(pId) {
-      ['student-mgmt', 'daily-tracker', 'exam-config', 'marks-entry', 'monthly-test', 'promotion', 'feedback-msg', 'admin-ctrl'].forEach(p => {
-        document.getElementById(`panel-${p}`).classList.add('hidden');
+      ['student-mgmt', 'daily-tracker', 'exam-config', 'marks-entry', 'monthly-test', 'promotion', 'feedback-msg', 'admin-mgmt'].forEach(p => {
+        const el = document.getElementById(`panel-${p}`);
+        if (el) el.classList.add('hidden');
       });
-      document.getElementById(`panel-${pId}`).classList.remove('hidden');
+      const curr = document.getElementById(`panel-${pId}`);
+      if (curr) curr.classList.remove('hidden');
 
       if (pId === 'student-mgmt') renderStudentsTable();
       if (pId === 'daily-tracker') loadStudentsForAttendance();
       if (pId === 'marks-entry') loadMarkEntryTable();
+      if (pId === 'feedback-msg') loadAdminFeedbackInbox();
     }
 
     function logoutStaff() { activeUser = null; switchTab('home'); }
 
-    // Attendance Management with Leave Alerts
+    // Attendance Management
     let attendanceStudents = [];
     async function loadStudentsForAttendance() {
       const sClass = document.getElementById('att-class-select').value;
@@ -1148,7 +1300,7 @@
       });
     }
 
-    // Exam Setup (Add Subjects, Pass Marks, Total)
+    // Exam Setup
     function addExamSubjectToSetup() {
       const name = document.getElementById('cfg-sub-name').value.trim();
       const total = Number(document.getElementById('cfg-sub-total').value) || 50;
@@ -1179,7 +1331,7 @@
       renderSetupSubjectsList();
     }
 
-    // Row-Wise Mark Entry Table
+    // Mark Entry Table
     let currentExamConfig = null;
     let markEntryStudents = [];
     async function loadMarkEntryTable() {
@@ -1230,10 +1382,9 @@
         }, { merge: true });
       });
       await b.commit();
-      alert("എല്ലാ കുട്ടികളുടെയും മാർക്കുകൾ വിജയകരമായി സേവ് ചെയ്തു!");
+      alert("മാർക്കുകൾ സേവ് ചെയ്തു!");
     }
 
-    // Monthly Test Entry
     async function saveMonthlyTestScore() {
       const adm = document.getElementById('mtest-adm').value.trim();
       const sub = document.getElementById('mtest-subject').value.trim();
@@ -1246,7 +1397,6 @@
       document.getElementById('mtest-adm').value = '';
     }
 
-    // Batch Promotion (Sadar Only)
     async function executeBatchPromotion() {
       if (activeUser.role !== 'SWADAR' && activeUser.role !== 'ADMIN') {
         alert("സദർ മുഅല്ലിമിനോ അഡ്മിനോ മാത്രമേ ഇത് ചെയ്യാൻ അധികാരമുള്ളൂ!");
@@ -1263,29 +1413,82 @@
       alert(`വിജയകരമായി കുട്ടികളെ ${toC}-ലേക്ക് പ്രൊമോട്ട് ചെയ്തു!`);
     }
 
-    // Admin Feedback
-    async function sendAdminFeedbackMessage() {
-      const txt = document.getElementById('feedback-text').value.trim();
-      if (!txt) return;
-      await db.collection('feedback').add({ text: txt, from: activeUser.name, date: new Date() });
-      alert("സന്ദേശം അഡ്മിന് കൈമാറി!");
-      document.getElementById('feedback-text').value = '';
+    // 11. Admin Exclusive Control Panel Actions
+    async function adminSaveTeacherProfile() {
+      const name = document.getElementById('adm-t-name').value.trim();
+      const phone = document.getElementById('adm-t-phone').value.trim();
+      const pwd = document.getElementById('adm-t-pwd').value.trim();
+      const file = document.getElementById('adm-t-photo-file').files[0];
+
+      const chks = document.querySelectorAll('#adm-classes-checkboxes input[type="checkbox"]:checked');
+      const classes = Array.from(chks).map(c => c.value);
+
+      if (!name || !phone || !pwd || classes.length === 0) { alert("എല്ലാ വിവരങ്ങളും നൽകുക!"); return; }
+
+      const photo = await toBase64(file);
+      await db.collection('teachers').add({ name, phone, password: pwd, classes, photo, createdAt: new Date() });
+      alert("അധ്യാപകനെ അസൈൻ ചെയ്തു!");
+      document.getElementById('adm-t-name').value = '';
+      document.getElementById('adm-t-phone').value = '';
+      document.getElementById('adm-t-pwd').value = '';
     }
 
-    // Admin Public Publish Controls
+    async function adminSaveCommitteeMember() {
+      const name = document.getElementById('adm-m-name').value.trim();
+      const phone = document.getElementById('adm-m-phone').value.trim();
+      const role = document.getElementById('adm-m-role').value.trim();
+      if (!name || !phone) { alert("പേരും ഫോണും നൽകുക!"); return; }
+
+      await db.collection('committee').add({ name, phone, role: role || 'Member' });
+      alert("മാനേജ്‌മെന്റ് അംഗത്തെ സേവ് ചെയ്തു!");
+      document.getElementById('adm-m-name').value = '';
+      document.getElementById('adm-m-phone').value = '';
+    }
+
+    async function adminSaveNoticeContent() {
+      const t = document.getElementById('adm-notice-title-in').value.trim();
+      const d = document.getElementById('adm-notice-desc-in').value.trim();
+      if (!t && !d) return;
+
+      if (t) document.getElementById('notice-title').innerText = t;
+      if (d) document.getElementById('notice-desc').innerText = d;
+      alert("നോട്ടീസ് ബോർഡ് തത്സമയം അപ്ഡേറ്റ് ചെയ്തു!");
+    }
+
     function adminTogglePublicResult(val) {
       document.getElementById('notice-result-banner').classList.toggle('hidden', !val);
       alert(val ? "റിസൾട്ട് പബ്ലിഷ് ചെയ്തു!" : "റിസൾട്ട് പിൻവലിച്ചു!");
     }
 
-    function adminUpdateNotice() {
-      const txt = document.getElementById('admin-notice-input').value.trim();
-      if (!txt) return;
-      document.getElementById('notice-desc').innerText = txt;
-      alert("നോട്ടീസ് ബോർഡ് അപ്ഡേറ്റ് ചെയ്തു!");
+    async function adminPublishEventPhoto() {
+      const name = document.getElementById('adm-event-name').value.trim();
+      const file = document.getElementById('adm-event-photo').files[0];
+      if (!name || !file) { alert("പേരും ഫോട്ടോയും തിരഞ്ഞെടുക്കുക!"); return; }
+
+      const photo = await toBase64(file);
+      await db.collection('events').add({ name, photo, date: new Date() });
+      alert("ഫോട്ടോ ഗാലറിയിൽ ചേർത്തു!");
+      document.getElementById('adm-event-name').value = '';
     }
 
-    // Student Management Table Helper
+    async function loadAdminFeedbackInbox() {
+      const box = document.getElementById('admin-feedback-inbox');
+      box.innerHTML = "<p class='text-slate-400 py-2 text-center'>ലോഡ് ചെയ്യുന്നു...</p>";
+      const snap = await db.collection('feedback').orderBy('date', 'desc').get();
+      if (snap.empty) { box.innerHTML = "<p class='text-slate-400 py-2 text-center'>സന്ദേശങ്ങൾ ലഭ്യമല്ല.</p>"; return; }
+      box.innerHTML = '';
+      snap.forEach(d => {
+        const f = d.data();
+        box.innerHTML += `
+          <div class="p-2.5 bg-slate-50 rounded-2xl border">
+            <span class="font-bold text-indigo-700">${f.from}:</span>
+            <p class="text-slate-700 mt-0.5">${f.text}</p>
+          </div>
+        `;
+      });
+    }
+
+    // Helper functions
     async function renderStudentsTable() {
       const tbody = document.getElementById('students-table-body');
       const cFilter = document.getElementById('filter-table-class').value;
@@ -1346,7 +1549,6 @@
       });
     }
 
-    // 9. Public Result Search & PDF Printout
     async function searchStudentResult() {
       const q = document.getElementById('stud-search-id').value.trim();
       const pwd = document.getElementById('stud-search-pwd').value.trim();
@@ -1380,7 +1582,6 @@
 
       document.getElementById('res-total').innerText = examData ? examData.totalMarks : 0;
 
-      // Class Stats for Report Footer
       const allClassSnap = await db.collection('students').where('class', '==', sData.class).get();
       let cTotal = allClassSnap.size, cBoys = 0, cGirls = 0;
       allClassSnap.forEach(cd => { if (cd.data().gender === 'Girl') cGirls++; else cBoys++; });
@@ -1397,7 +1598,6 @@
       });
     }
 
-    // 10. Timetable & Notes
     async function renderTimeTable() {
       const sClass = document.getElementById('tt-class-select').value;
       const disp = document.getElementById('timetable-display');
@@ -1463,7 +1663,7 @@
           <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center">
             <div>
               <p class="font-bold text-slate-800 text-[11px]">${d.name}</p>
-              <p class="text-[9px] text-indigo-600 font-bold">${d.classes.join(', ')}</p>
+              <p class="text-[9px] text-indigo-600 font-bold">${d.classes ? d.classes.join(', ') : ''}</p>
             </div>
             <a href="tel:${d.phone}" class="text-emerald-600 font-bold text-[11px]"><i class="fa-solid fa-phone mr-1"></i>${d.phone}</a>
           </div>
