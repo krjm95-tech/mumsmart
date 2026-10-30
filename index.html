@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MALHARUL ULOOM MADRASA - KALLOOR-KOOTHALI (1283)</title>
 
-  <!-- PWA Capabilities -->
+  <!-- PWA Settings -->
   <meta name="theme-color" content="#064e3b">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -16,9 +16,6 @@
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -32,14 +29,14 @@
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     @media print {
       body * { visibility: hidden; }
-      #printable-report, #printable-report * { visibility: visible; }
-      #printable-report { position: absolute; left: 0; top: 0; width: 100%; border: none !important; box-shadow: none !important; }
+      #printable-marklist-sheet, #printable-marklist-sheet * { visibility: visible; }
+      #printable-marklist-sheet { position: absolute; left: 0; top: 0; width: 100%; border: none !important; box-shadow: none !important; }
     }
   </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-50/70 via-purple-50/40 to-pink-50/50 text-slate-800 min-h-screen flex flex-col pb-24">
 
-  <!-- Top Header with Secret Admin Access on Arabic Text -->
+  <!-- Top Header with Secret Admin Access -->
   <header class="bg-white/90 backdrop-blur-xl sticky top-0 z-40 border-b border-indigo-100 px-4 py-2.5 shadow-xs">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2.5">
@@ -47,14 +44,12 @@
           <i class="fa-solid fa-bars-staggered text-sm"></i>
         </button>
         <div>
-          <!-- Secret Admin Trigger on click -->
           <span onclick="triggerAdminSecretPrompt()" title="Admin Control" class="font-amiri font-bold text-xs text-indigo-950 cursor-pointer hover:text-indigo-600 transition">مدرسة مظهر العلوم</span>
           <h1 class="text-[11px] font-black tracking-tight text-slate-800 leading-none">MALHARUL ULOOM MADRASA</h1>
           <p class="text-[9px] font-black text-purple-600 tracking-wider">KALLOOR - KOOTHALI (1283)</p>
         </div>
       </div>
       
-      <!-- Top Call Button (Direct Calling & WhatsApp Directory) -->
       <button onclick="openStaffDirectoryModal()" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center font-bold text-sm shadow-xs border border-emerald-200 active:scale-95 transition">
         <i class="fa-solid fa-phone"></i>
       </button>
@@ -64,12 +59,12 @@
   <!-- Sidebar Overlay -->
   <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden transition-opacity" onclick="toggleSidebar()"></div>
 
-  <!-- Sidebar Drawer Menu -->
+  <!-- Sidebar Drawer Menu (Auto-Close Enabled & Contact List Removed) -->
   <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white w-72 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col justify-between">
     <div class="p-5 overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center gap-3">
-          <div onclick="triggerAdminSecretPrompt()" class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-700 via-purple-600 to-pink-500 text-white flex flex-col items-center justify-center shadow-md cursor-pointer">
+          <div onclick="triggerAdminSecretPrompt(); toggleSidebar();" class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-700 via-purple-600 to-pink-500 text-white flex flex-col items-center justify-center shadow-md cursor-pointer">
             <span class="font-amiri text-xs font-bold leading-tight">مظهر</span>
             <span class="text-[8px] font-black text-amber-200">1283</span>
           </div>
@@ -82,21 +77,15 @@
       </div>
 
       <nav class="mt-4 space-y-1">
-        <button onclick="switchTab('home')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-indigo-50"><i class="fa-solid fa-house text-indigo-500 w-5"></i> ഹോം പേജ് (Home)</button>
-        <button onclick="openDedicatedPortal('STUDENT')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-purple-700 bg-purple-50"><i class="fa-solid fa-user-graduate text-purple-600 w-5"></i> സ്റ്റുഡന്റ് പോർട്ടൽ</button>
-        <button onclick="openDedicatedPortal('PARENT')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-teal-700 bg-teal-50"><i class="fa-solid fa-users text-teal-600 w-5"></i> പാരന്റ് പോർട്ടൽ</button>
-        <button onclick="switchTab('daily-routine-view')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-pink-700 bg-pink-50"><i class="fa-solid fa-list-check text-pink-600 w-5"></i> ഡെയ്‌ലി റൊട്ടീൻ (Daily Routine)</button>
-        <button onclick="switchTab('toppers-view')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-amber-800 bg-amber-50"><i class="fa-solid fa-trophy text-amber-600 w-5"></i> ടോപ്പേഴ്‌സ് ബോർഡ് (Toppers)</button>
-        <button onclick="switchTab('result-check')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-teal-50"><i class="fa-solid fa-square-poll-vertical text-teal-500 w-5"></i> പരീക്ഷാ ഫലം (Result)</button>
-        <button onclick="switchTab('class-notes')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-blue-50"><i class="fa-solid fa-book-bookmark text-blue-500 w-5"></i> ക്ലാസുകൾ & നോട്ടുകൾ</button>
-        <button onclick="switchTab('timetable')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-amber-50"><i class="fa-solid fa-calendar-days text-amber-500 w-5"></i> ടൈംടേബിൾ (Time Table)</button>
-        <button onclick="switchTab('madrasa-details')" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-emerald-800 bg-emerald-50"><i class="fa-solid fa-chart-pie text-emerald-600 w-5"></i> മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്</button>
+        <button onclick="switchTab('home'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-indigo-50"><i class="fa-solid fa-house text-indigo-500 w-5"></i> ഹോം പേജ് (Home)</button>
+        <button onclick="openDedicatedPortal('STUDENT'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-purple-700 bg-purple-50"><i class="fa-solid fa-user-graduate text-purple-600 w-5"></i> സ്റ്റുഡന്റ് പോർട്ടൽ</button>
+        <button onclick="openDedicatedPortal('PARENT'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-teal-700 bg-teal-50"><i class="fa-solid fa-users text-teal-600 w-5"></i> പാരന്റ് പോർട്ടൽ</button>
+        <button onclick="switchTab('toppers-view'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-amber-800 bg-amber-50"><i class="fa-solid fa-trophy text-amber-600 w-5"></i> ടോപ്പേഴ്‌സ് ബോർഡ് (Toppers)</button>
+        <button onclick="switchTab('result-check'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-teal-50"><i class="fa-solid fa-square-poll-vertical text-teal-500 w-5"></i> പരീക്ഷാ ഫലം (Result)</button>
+        <button onclick="switchTab('class-notes'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-blue-50"><i class="fa-solid fa-book-bookmark text-blue-500 w-5"></i> ക്ലാസുകൾ & നോട്ടുകൾ</button>
+        <button onclick="switchTab('timetable'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-amber-50"><i class="fa-solid fa-calendar-days text-amber-500 w-5"></i> ടൈംടേബിൾ (Time Table)</button>
+        <button onclick="switchTab('madrasa-details'); toggleSidebar();" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold text-emerald-800 bg-emerald-50"><i class="fa-solid fa-chart-pie text-emerald-600 w-5"></i> മദ്രസ ബേസിക് ഡീറ്റെയിൽസ്</button>
       </nav>
-
-      <div class="mt-4 pt-3 border-t">
-        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-2">അധ്യാപക കോൺടാക്റ്റുകൾ</h4>
-        <div id="sidebar-teachers-list" class="space-y-1.5 text-xs"></div>
-      </div>
     </div>
 
     <!-- Official Contacts -->
@@ -111,6 +100,12 @@
       </div>
     </div>
   </aside>
+
+  <!-- Return Floating Badge (When logged into a Portal and visiting Home) -->
+  <div id="return-portal-badge" class="hidden fixed bottom-20 left-1/2 transform -translate-x-1/2 z-40 bg-gradient-to-r from-emerald-600 to-teal-700 text-white px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 border border-white/20 animate-bounce">
+    <i class="fa-solid fa-arrow-rotate-left text-xs"></i>
+    <button onclick="returnToActivePortal()" class="text-xs font-black">Return to My Portal</button>
+  </div>
 
   <!-- Main View Container -->
   <main class="max-w-md mx-auto w-full px-4 pt-3 flex-grow">
@@ -142,7 +137,7 @@
         </div>
       </div>
 
-      <!-- PORTAL LOGINS (Dedicated Clean Login per Role) -->
+      <!-- PORTAL LOGINS -->
       <div class="space-y-2">
         <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">പോർട്ടൽ ലോഗിൻ (LOGIN ACCESS)</h3>
         <div class="grid grid-cols-4 gap-2.5">
@@ -176,17 +171,18 @@
         </div>
       </div>
 
-      <!-- GENERAL SERVICES -->
+      <!-- SERVICES (With Active Prayer App Button Restored) -->
       <div class="space-y-2">
         <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">സേവനങ്ങൾ (SERVICES)</h3>
         <div class="grid grid-cols-4 gap-2.5">
-          <!-- Daily Routine (Public View by Class) -->
-          <button onclick="switchTab('daily-routine-view')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-pink-100 shadow-xs hover:scale-105 active:scale-95 transition">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-400 text-white text-lg flex items-center justify-center shadow-md shadow-pink-200">
-              <i class="fa-solid fa-list-check"></i>
+          <!-- PRAYER APP (Fully Restored) -->
+          <a href="https://mu-madrasa.vercel.app/" target="_blank" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-emerald-200 shadow-xs hover:scale-105 active:scale-95 transition">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex flex-col items-center justify-center shadow-md shadow-emerald-200">
+              <span class="font-black text-[11px] leading-tight">MUM</span>
+              <span class="text-[7px] font-bold text-emerald-100">PRAYER</span>
             </div>
-            <span class="text-[10px] font-black text-slate-700 text-center leading-tight">ROUTINE</span>
-          </button>
+            <span class="text-[9px] font-black text-emerald-800 text-center leading-tight">PRAYER APP</span>
+          </a>
 
           <!-- Class Notes -->
           <button onclick="switchTab('class-notes')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-blue-100 shadow-xs hover:scale-105 active:scale-95 transition">
@@ -196,7 +192,7 @@
             <span class="text-[10px] font-black text-slate-700">CLASS</span>
           </button>
 
-          <!-- Check Result -->
+          <!-- Result -->
           <button onclick="switchTab('result-check')" class="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-white border border-teal-100 shadow-xs hover:scale-105 active:scale-95 transition">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 text-white text-lg flex items-center justify-center shadow-md shadow-teal-200">
               <i class="fa-solid fa-square-poll-vertical"></i>
@@ -226,27 +222,7 @@
       </div>
     </section>
 
-    <!-- 2. PUBLIC DAILY ROUTINE LIST (By Class) -->
-    <section id="tab-daily-routine-view" class="hidden space-y-4">
-      <div class="bg-gradient-to-r from-pink-600 to-rose-600 text-white p-5 rounded-3xl shadow-lg space-y-1">
-        <span class="text-[9px] font-black uppercase tracking-wider bg-black/20 px-2.5 py-0.5 rounded-full">DAILY ACTIVITY GUIDE</span>
-        <h3 class="text-sm font-black">ക്ലാസ് തിരിച്ചുള്ള ഡെയ്‌ലി റൊട്ടീൻ</h3>
-        <p class="text-[11px] text-pink-100">അധ്യാപകർ നിശ്ചയിച്ച ദിവസേനയുള്ള പഠന കാര്യങ്ങൾ</p>
-      </div>
-
-      <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
-        <div>
-          <label class="block text-[10px] font-bold text-slate-500 mb-1">ക്ലാസ് തിരഞ്ഞെടുക്കുക:</label>
-          <select id="routine-class-filter" onchange="loadPublicRoutineTasks()" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold">
-            <option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option><option value="Class 4">Class 4</option><option value="Class 5">Class 5</option>
-            <option value="Class 6">Class 6</option><option value="Class 7">Class 7</option><option value="Class 8">Class 8</option><option value="Class 9">Class 9</option><option value="Class 10">Class 10</option>
-          </select>
-        </div>
-        <div id="public-routine-tasks-list" class="space-y-1.5 text-xs"></div>
-      </div>
-    </section>
-
-    <!-- 3. TEACHER DASHBOARD (Modern Grid & Real-time Live Tables) -->
+    <!-- 2. TEACHER DASHBOARD (Role Secured & Marklist Matching Shared Image) -->
     <section id="tab-staff-dashboard" class="hidden space-y-4">
       <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-purple-950 text-white p-4 rounded-3xl shadow-lg flex items-center justify-between">
         <div>
@@ -255,30 +231,24 @@
           <p id="assigned-classes-hint" class="text-[10px] text-purple-300 font-bold">Class: All</p>
         </div>
         <div class="flex gap-2">
-          <button onclick="switchTab('home')" class="text-xs bg-white/20 px-2.5 py-1.5 rounded-xl font-bold">പബ്ലിക് പോർട്ടൽ</button>
+          <button onclick="switchTab('home')" class="text-xs bg-white/20 px-2.5 py-1.5 rounded-xl font-bold">ഹോം സ്ക്രീൻ</button>
           <button onclick="logoutStaff()" class="text-xs bg-rose-600 px-2.5 py-1.5 rounded-xl font-bold">LOGOUT</button>
         </div>
       </div>
 
-      <!-- Quick Action Grid Navigation (Instant Accessibility) -->
+      <!-- Navigation Subtabs -->
       <div class="grid grid-cols-4 gap-1.5 text-center bg-white p-1 rounded-2xl border shadow-xs">
         <button onclick="openStaffPanel('student-mgmt')" id="snav-students" class="py-2 rounded-xl text-xs font-black bg-[#065f46] text-white">വിദ്യാർത്ഥികൾ</button>
-        <button onclick="openStaffPanel('attendance-panel')" id="snav-attendance" class="py-2 rounded-xl text-xs font-black text-slate-600">ഹാജർ</button>
-        <button onclick="openStaffPanel('marks-entry')" id="snav-marks" class="py-2 rounded-xl text-xs font-black text-slate-600">മാർക്ക് എൻട്രി</button>
+        <button onclick="openStaffPanel('marks-entry')" id="snav-marks" class="py-2 rounded-xl text-xs font-black text-slate-600">മാർക്ക് ലിസ്റ്റ്</button>
         <button onclick="openStaffPanel('exam-config')" id="snav-settings" class="py-2 rounded-xl text-xs font-black text-slate-600">എക്സാം സെറ്റപ്പ്</button>
-      </div>
-
-      <div class="grid grid-cols-3 gap-1.5 text-center bg-white p-1 rounded-2xl border shadow-xs">
-        <button onclick="openStaffPanel('routine-manager')" id="snav-routine-mgr" class="py-1.5 rounded-xl text-xs font-bold text-slate-600">റൊട്ടീൻ സെറ്റപ്പ്</button>
-        <button onclick="openStaffPanel('teacher-assign-mgmt')" id="snav-teacher-assign" class="py-1.5 rounded-xl text-xs font-bold text-slate-600">സ്റ്റാഫ് അസൈൻ</button>
-        <button onclick="openStaffPanel('admin-mgmt')" id="snav-admin-mgmt" class="py-1.5 rounded-xl text-xs font-bold text-slate-600">അഡ്മിൻ പാനൽ</button>
+        <button onclick="openStaffPanel('admin-mgmt')" id="snav-admin-mgmt" class="py-2 rounded-xl text-xs font-black text-slate-600">അഡ്മിൻ</button>
       </div>
 
       <!-- SUB-PANEL 1: STUDENTS MANAGEMENT & FAST INLINE EDITING -->
       <div id="panel-student-mgmt" class="space-y-4">
         <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
           <div class="flex justify-between items-center border-b pb-2">
-            <h4 id="student-form-title" class="text-xs font-black text-slate-800">✏️ വിദ്യാർത്ഥി എൻട്രി / തിരുത്തൽ</h4>
+            <h4 id="student-form-title" class="text-xs font-black text-slate-800">✏️ വിദ്യാർത്ഥി എൻട്രി / CSV ഇംപോർട്ട്</h4>
             <label class="bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-xl cursor-pointer">
               <i class="fa-solid fa-file-csv mr-1"></i> CSV ഇംപോർട്ട്
               <input type="file" accept=".csv" class="hidden" onchange="handleStudentCSVUpload(event)">
@@ -313,19 +283,11 @@
           </div>
         </div>
 
-        <!-- Student List with Table & Fast In-Place Editing -->
+        <!-- Student List with Table & In-Place Editing for UID & Phone -->
         <div class="bg-white p-4 rounded-3xl border space-y-2 shadow-xs">
           <div class="flex justify-between items-center border-b pb-2">
-            <div>
-              <h4 class="text-xs font-black text-slate-800">വിദ്യാർത്ഥികളുടെ പട്ടിക (Live Records)</h4>
-              <p class="text-[9px] text-slate-400">UID, ഫോൺ നമ്പർ എന്നിവ നേരിട്ട് തിരുത്താം</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <select id="filter-table-class" onchange="renderStudentsTable()" class="p-1.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
-              <button onclick="window.print()" class="bg-blue-600 text-white text-[10px] font-black px-2.5 py-1.5 rounded-xl flex items-center gap-1">
-                <i class="fa-solid fa-file-pdf"></i> PDF
-              </button>
-            </div>
+            <h4 class="text-xs font-black text-slate-800">ക്ലാസിലെ വിദ്യാർത്ഥികളുടെ പട്ടിക</h4>
+            <select id="filter-table-class" onchange="renderStudentsTable()" class="p-1.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
@@ -338,97 +300,119 @@
         </div>
       </div>
 
-      <!-- SUB-PANEL 2: ATTENDANCE ONLY (No Prayer Option Here as Requested) -->
-      <div id="panel-attendance" class="hidden space-y-3">
-        <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs font-black text-slate-800">ക്ലാസ് ഹാജർ രേഖപ്പെടുത്തൽ</h4>
-            <button onclick="window.print()" class="bg-blue-600 text-white font-black text-[10px] px-2.5 py-1.5 rounded-xl flex items-center gap-1">
-              <i class="fa-solid fa-file-pdf"></i> Attendance PDF
-            </button>
-          </div>
-
-          <div>
-            <label class="block text-[10px] font-bold text-slate-400 mb-1">ക്ലാസ് തിരഞ്ഞെടുക്കുക:</label>
-            <select id="att-only-class" onchange="loadAttendanceTableOnly()" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none"></select>
-          </div>
-
-          <div class="overflow-x-auto border rounded-2xl">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-50 text-[10px] font-black text-slate-600 border-b">
-                <tr>
-                  <th class="p-2 text-center">Adm</th>
-                  <th class="p-2">പേര്</th>
-                  <th class="p-2 text-center">ആകെ ഹാജർ</th>
-                  <th class="p-2 text-center">ഇന്നത്തെ ഹാജർ</th>
-                </tr>
-              </thead>
-              <tbody id="attendance-only-table-body" class="divide-y text-center font-bold"></tbody>
-            </table>
-          </div>
-          <button onclick="saveAttendanceOnlyBatch()" class="w-full bg-[#065f46] text-white font-black text-xs py-2.5 rounded-xl shadow-xs">ഹാജർ സേവ് ചെയ്യുക</button>
-        </div>
-      </div>
-
-      <!-- SUB-PANEL 3: MARKS ENTRY TABLE (Pre-view & After-view Tables with Custom Subjects & PDF) -->
+      <!-- SUB-PANEL 2: EXACT MARKLIST MATCHING SHARED IMAGE (Image 8 style) -->
       <div id="panel-marks-entry" class="hidden space-y-3">
         <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
           <div class="flex items-center justify-between border-b pb-2">
             <div>
-              <h4 class="text-xs font-black text-slate-800">പരീക്ഷാ മാർക്കുകൾ & അനലിറ്റിക്‌സ്</h4>
-              <p class="text-[9px] text-slate-400">വിഷയങ്ങൾ നൽകുന്നതിൻ മുൻപും ശേഷവും പട്ടികയിൽ കാണാം</p>
+              <h4 class="text-xs font-black text-slate-800">പരീക്ഷാ മാർക്ക് ലിസ്റ്റ്</h4>
+              <p class="text-[9px] text-slate-400">വിഷയങ്ങൾ സെറ്റ് ചെയ്യുന്നതിനനുസരിച്ച് കോളങ്ങൾ തനിയെ വരുന്നു</p>
             </div>
             <div class="flex gap-1.5">
-              <button onclick="window.print()" class="bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-xl flex items-center gap-1">
-                <i class="fa-solid fa-file-pdf"></i> Marklist PDF
+              <button onclick="window.print()" class="bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1.5 rounded-xl flex items-center gap-1">
+                <i class="fa-solid fa-file-pdf"></i> PDF പ്രിന്റ്
               </button>
-              <label class="bg-teal-600 text-white text-[10px] font-bold px-2 py-1 rounded-xl cursor-pointer">
-                <i class="fa-solid fa-file-csv mr-1"></i> CSV
-                <input type="file" accept=".csv" class="hidden" onchange="handleMarksCSVUpload(event)">
-              </label>
             </div>
           </div>
 
           <div class="grid grid-cols-2 gap-2">
             <select id="entry-exam-select" onchange="loadMarkEntryTable()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
-              <option value="Quarterly">Quarterly</option>
-              <option value="HalfYearly">Half Yearly</option>
-              <option value="Annual">Annual</option>
+              <option value="പാദ വാർഷിക പരീക്ഷ">പാദ വാർഷിക പരീക്ഷ</option>
+              <option value="അർദ്ധ വാർഷിക പരീക്ഷ">അർദ്ധ വാർഷിക പരീക്ഷ</option>
+              <option value="വാർഷിക പരീക്ഷ">വാർഷിക പരീക്ഷ</option>
             </select>
             <select id="entry-class-select" onchange="loadMarkEntryTable()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold"></select>
           </div>
 
-          <!-- Mark Entry Dynamic Table -->
-          <div class="overflow-x-auto border rounded-2xl max-h-72">
-            <table class="w-full text-left text-xs" id="marks-entry-table">
-              <thead class="bg-slate-100 font-bold" id="marks-table-head"></thead>
-              <tbody id="marks-table-body" class="divide-y font-bold"></tbody>
-            </table>
-          </div>
+          <!-- Marklist Container Styled Exactly like Image 8 -->
+          <div id="printable-marklist-sheet" class="bg-white border rounded-2xl p-4 space-y-3 overflow-x-auto">
+            <!-- Header matching Image 8 -->
+            <div class="bg-[#0b5c46] text-white p-4 rounded-xl text-center space-y-1">
+              <h2 class="text-sm font-black uppercase tracking-wide">MALHARUL ULOOM MADRASA KALLOOR - KOOTHALI</h2>
+              <p id="rep-sheet-exam-title" class="text-xs font-bold text-amber-200">പാദ വാർഷിക പരീക്ഷാ മാർക്ക് ലിസ്റ്റ്</p>
+              
+              <div class="flex justify-between items-center text-[10px] pt-1">
+                <span>രജിസ്റ്റർ നമ്പർ: 1283</span>
+                <span id="rep-sheet-class-badge" class="bg-[#fef08a] text-slate-900 px-3 py-0.5 rounded-full font-black">CLASS - 9</span>
+                <span>അധ്യയന വർഷം: 2026-27</span>
+              </div>
+            </div>
 
-          <!-- Real-time Computed Summary -->
-          <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl grid grid-cols-4 gap-2 text-center text-[10px] font-black">
-            <div>ആകെ കുട്ടികൾ: <span id="ana-total-students" class="text-slate-900 block text-xs">0</span></div>
-            <div>വിജയിച്ചവർ: <span id="ana-passed-count" class="text-emerald-700 block text-xs">0</span></div>
-            <div>പരാജയപ്പെട്ടവർ: <span id="ana-failed-count" class="text-rose-700 block text-xs">0</span></div>
-            <div>വിജയ ശതമാനം: <span id="ana-pass-rate" class="text-indigo-700 block text-xs">0%</span></div>
+            <!-- Table exactly like Image 8 -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-center text-xs border" id="custom-photo-marklist-table">
+                <thead class="bg-[#111827] text-white font-bold" id="marks-table-head"></thead>
+                <tbody id="marks-table-body" class="divide-y divide-slate-200 font-bold"></tbody>
+              </table>
+            </div>
+
+            <!-- Summary Table matching Image 8 bottom table -->
+            <div class="pt-2">
+              <p class="text-[10px] font-black text-center text-sky-800 uppercase mb-1">പരീക്ഷാ ഫല സംഗ്രഹം</p>
+              <table class="w-full text-center text-[10px] border">
+                <thead class="bg-[#0284c7] text-white font-bold">
+                  <tr>
+                    <th class="p-1 border">വിഭാഗം</th>
+                    <th class="p-1 border">ആകെ വിദ്യാർത്ഥികൾ</th>
+                    <th class="p-1 border">ആകെ വിജയിച്ചവരുടെ എണ്ണം</th>
+                    <th class="p-1 border">ആകെ വിജയ ശതമാനം</th>
+                  </tr>
+                </thead>
+                <tbody class="font-bold divide-y bg-slate-50">
+                  <tr>
+                    <td class="p-1 border bg-sky-100 text-sky-900">ആൺ</td>
+                    <td class="p-1 border" id="sum-boy-total">0</td>
+                    <td class="p-1 border" id="sum-boy-pass">0</td>
+                    <td class="p-1 border" id="sum-boy-rate">0%</td>
+                  </tr>
+                  <tr>
+                    <td class="p-1 border bg-sky-100 text-sky-900">പെൺ</td>
+                    <td class="p-1 border" id="sum-girl-total">0</td>
+                    <td class="p-1 border" id="sum-girl-pass">0</td>
+                    <td class="p-1 border" id="sum-girl-rate">0%</td>
+                  </tr>
+                  <tr class="bg-sky-200 text-sky-950">
+                    <td class="p-1 border font-black">ആകെ</td>
+                    <td class="p-1 border font-black" id="sum-all-total">0</td>
+                    <td class="p-1 border font-black" id="sum-all-pass">0</td>
+                    <td class="p-1 border font-black" id="sum-all-rate">0%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Official Signatures matching Image 8 -->
+            <div class="pt-6 grid grid-cols-3 gap-2 text-center text-[9px] font-black text-slate-700">
+              <div>
+                <p>-------------------------</p>
+                <p class="mt-1">ക്ലാസ് ടീച്ചർ</p>
+              </div>
+              <div>
+                <p>-------------------------</p>
+                <p class="mt-1">പരിശോധിച്ചത്</p>
+              </div>
+              <div>
+                <p>-------------------------</p>
+                <p class="mt-1">സദർ മുഅല്ലിം</p>
+              </div>
+            </div>
           </div>
 
           <button onclick="saveBatchExamMarks()" class="w-full bg-[#065f46] text-white font-black text-xs py-3 rounded-2xl shadow-xs">മാർക്കുകൾ സേവ് ചെയ്യുക</button>
         </div>
       </div>
 
-      <!-- SUB-PANEL 4: EXAM SETUP (Edit & Delete Available for Subjects) -->
+      <!-- SUB-PANEL 3: EXAM SETUP (Edit & Delete Available) -->
       <div id="panel-exam-config" class="hidden space-y-3">
         <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
           <h4 class="text-xs font-black text-slate-800 border-b pb-2">പരീക്ഷ & വിഷയങ്ങൾ ക്രമീകരിക്കൽ (Exam Setup)</h4>
           <div class="grid grid-cols-2 gap-2">
             <select id="cfg-exam-type" onchange="loadExamSetupForCurrent()" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
-              <option value="Quarterly">പാദവാർഷികം (Quarterly)</option>
-              <option value="HalfYearly">അർദ്ധവാർഷികം (Half Yearly)</option>
-              <option value="Annual">വാർഷികം (Annual)</option>
+              <option value="പാദ വാർഷിക പരീക്ഷ">പാദ വാർഷിക പരീക്ഷ</option>
+              <option value="അർദ്ധ വാർഷിക പരീക്ഷ">അർദ്ധ വാർഷിക പരീക്ഷ</option>
+              <option value="വാർഷിക പരീക്ഷ">വാർഷിക പരീക്ഷ</option>
             </select>
-            <input id="cfg-exam-year" type="number" value="2026" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
+            <input id="cfg-exam-year" type="text" value="2026-27" class="p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none">
           </div>
           <select id="cfg-class-select" onchange="loadExamSetupForCurrent()" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold outline-none"></select>
           
@@ -439,30 +423,14 @@
               <input id="cfg-sub-pass" type="number" placeholder="Pass" value="18" class="p-2 bg-white border rounded-xl text-xs font-bold">
             </div>
             <button onclick="addExamSubjectToSetup()" class="w-full bg-teal-600 text-white text-xs font-black py-2 rounded-xl">+ വിഷയം ചേർക്കുക</button>
-            
             <div id="cfg-subjects-list" class="space-y-1.5 text-xs pt-1"></div>
           </div>
           <button onclick="saveExamConfiguration()" class="w-full bg-[#065f46] text-white font-black text-xs py-3 rounded-2xl shadow-xs">എക്സാം ക്രമീകരണം സേവ് ചെയ്യുക</button>
         </div>
       </div>
 
-      <!-- SUB-PANEL 5: ROUTINE SETUP BY TEACHER -->
-      <div id="panel-routine-manager" class="hidden space-y-3">
-        <div class="bg-white p-4 rounded-3xl border space-y-3 shadow-xs">
-          <h4 class="text-xs font-black text-slate-800 border-b pb-2">ഡെയ്‌ലി റൊട്ടീൻ ടാസ്കുകൾ നിശ്ചയിക്കുക</h4>
-          <select id="mgr-routine-class" onchange="loadClassRoutineConfig()" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-bold"></select>
-          
-          <div class="flex gap-2">
-            <input id="mgr-task-text" type="text" placeholder="ടാസ്ക് ചേർക്കുക (ഉദാ: ഹദ്ദാദ് ചൊല്ലി)" class="flex-1 p-2 bg-slate-50 border rounded-xl text-xs font-bold">
-            <button onclick="addClassRoutineTask()" class="px-3 bg-pink-600 text-white text-xs font-bold rounded-xl">+</button>
-          </div>
-          <div id="mgr-tasks-list" class="space-y-1 text-xs"></div>
-          <button onclick="saveClassRoutineTasks()" class="w-full bg-[#065f46] text-white font-black text-xs py-2.5 rounded-xl shadow-xs">റൊട്ടീൻ സേവ് ചെയ്യുക</button>
-        </div>
-      </div>
-
-      <!-- SUB-PANEL 6: TEACHER ASSIGNMENT & ADMIN CONTROLS -->
-      <div id="panel-teacher-assign-mgmt" class="hidden space-y-4">
+      <!-- SUB-PANEL 4: ADMIN EXCLUSIVE CONTROLS -->
+      <div id="panel-admin-mgmt" class="hidden space-y-4">
         <div class="bg-white p-4 rounded-3xl border space-y-2">
           <h4 class="text-xs font-black text-indigo-950 border-b pb-1">അധ്യാപകരെ നിയമിക്കുക (Staff Assignment)</h4>
           <input id="adm-t-name" type="text" placeholder="അധ്യാപകന്റെ പേര് *" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
@@ -483,37 +451,15 @@
           <button onclick="adminSaveTeacherProfile()" class="w-full bg-indigo-600 text-white font-black text-xs py-2.5 rounded-xl shadow">അധ്യാപകനെ സേവ് ചെയ്യുക</button>
         </div>
       </div>
-
-      <!-- SUB-PANEL 7: ADMIN CONTROLS -->
-      <div id="panel-admin-mgmt" class="hidden space-y-4">
-        <div class="bg-white p-4 rounded-3xl border space-y-2">
-          <h4 class="text-xs font-black text-indigo-950 border-b pb-1">നോട്ടീസ് ബോർഡ് & റിസൾട്ട് കൺട്രോൾ</h4>
-          <input id="adm-notice-title-in" type="text" placeholder="നോട്ടീസ് തലക്കെട്ട്" class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold">
-          <textarea id="adm-notice-desc-in" rows="2" placeholder="നോട്ടീസ് വിവരണം..." class="w-full p-2 bg-slate-50 border rounded-xl text-xs font-bold"></textarea>
-          <button onclick="adminSaveNoticeContent()" class="w-full bg-teal-600 text-white font-black text-xs py-2 rounded-xl shadow">നോട്ടീസ് അപ്ഡേറ്റ് ചെയ്യുക</button>
-          
-          <div class="grid grid-cols-2 gap-2 pt-2">
-            <button onclick="adminTogglePublicResult(true)" class="p-2 bg-emerald-100 text-emerald-800 font-bold text-xs rounded-xl">പബ്ലിഷ് ചെയ്യുക (Live)</button>
-            <button onclick="adminTogglePublicResult(false)" class="p-2 bg-rose-100 text-rose-800 font-bold text-xs rounded-xl">പിൻവലിക്കുക (Draft)</button>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- 4. TOPPERS DASHBOARD -->
+    <!-- 3. TOPPERS DASHBOARD -->
     <section id="tab-toppers-view" class="hidden space-y-4">
       <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 text-white p-5 rounded-3xl shadow-lg space-y-2">
         <span class="text-[9px] font-black uppercase tracking-wider bg-black/20 px-2.5 py-0.5 rounded-full">MADRASA RANK BOARD</span>
         <h3 class="text-base font-black">മദ്റസ ടോപ്പേഴ്സ്</h3>
       </div>
       <div class="bg-white p-4 rounded-3xl border space-y-3">
-        <div class="grid grid-cols-5 gap-1 text-[10px] font-black text-center bg-slate-100 p-1 rounded-2xl">
-          <button onclick="filterToppersScope('daily')" id="btn-top-daily" class="py-1.5 rounded-xl bg-white text-indigo-700 shadow-xs">DAILY</button>
-          <button onclick="filterToppersScope('weekly')" id="btn-top-weekly" class="py-1.5 rounded-xl text-slate-500">WEEKLY</button>
-          <button onclick="filterToppersScope('monthly')" id="btn-top-monthly" class="py-1.5 rounded-xl text-slate-500">MONTHLY</button>
-          <button onclick="filterToppersScope('yearly')" id="btn-top-yearly" class="py-1.5 rounded-xl text-slate-500">YEARLY</button>
-          <button onclick="filterToppersScope('all')" id="btn-top-all" class="py-1.5 rounded-xl text-slate-500">TOTAL</button>
-        </div>
         <div class="grid grid-cols-2 gap-2">
           <select id="toppers-class-select" onchange="renderToppersLeaderboard()" class="p-2 bg-slate-50 border rounded-xl text-xs font-bold">
             <option value="All">All Classes</option>
@@ -526,19 +472,19 @@
             <option value="Girl">Girls</option>
           </select>
         </div>
+        <div id="toppers-list-box" class="space-y-2"></div>
       </div>
-      <div id="toppers-list-box" class="space-y-2"></div>
     </section>
 
-    <!-- 5. RESULT CHECK & PRINTABLE REPORT -->
+    <!-- 4. RESULT CHECK & PRINTABLE REPORT -->
     <section id="tab-result-check" class="hidden space-y-4">
       <div class="bg-white p-5 rounded-3xl border space-y-3 shadow-xs">
         <h3 class="text-sm font-black text-slate-800 text-center">CHECK EXAM RESULT</h3>
         <div class="space-y-2">
           <select id="stud-exam-type" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold">
-            <option value="Quarterly">പാദവാർഷിക പരീക്ഷ (Quarterly)</option>
-            <option value="HalfYearly">അർദ്ധവാർഷിക പരീക്ഷ (Half Yearly)</option>
-            <option value="Annual">വാർഷിക പരീക്ഷ (Annual)</option>
+            <option value="പാദ വാർഷിക പരീക്ഷ">പാദ വാർഷിക പരീക്ഷ</option>
+            <option value="അർദ്ധ വാർഷിക പരീക്ഷ">അർദ്ധ വാർഷിക പരീക്ഷ</option>
+            <option value="വാർഷിക പരീക്ഷ">വാർഷിക പരീക്ഷ</option>
           </select>
           <input id="stud-search-id" type="text" placeholder="Admission Number അല്ലെങ്കിൽ പേര്" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold">
           <input id="stud-search-pwd" type="password" placeholder="പാസ്‌വേഡ്" class="w-full p-2.5 bg-slate-50 border rounded-2xl text-xs font-bold">
@@ -554,46 +500,24 @@
             <p class="text-[10px] font-bold text-slate-500">Kalloor-Koothali • Progress Report</p>
           </div>
           <div class="flex items-center justify-between border-b pb-2">
-            <div class="flex items-center gap-3">
-              <img id="res-photo" src="https://via.placeholder.com/100" class="w-14 h-14 rounded-2xl object-cover border">
-              <div>
-                <h3 id="res-name" class="font-black text-sm text-slate-800">--</h3>
-                <p id="res-class" class="text-xs font-bold text-slate-500">Class: --</p>
-                <p id="res-adm" class="text-[10px] text-slate-400">Adm No: --</p>
-              </div>
+            <div>
+              <h3 id="res-name" class="font-black text-sm text-slate-800">--</h3>
+              <p id="res-class" class="text-xs font-bold text-slate-500">Class: --</p>
+              <p id="res-adm" class="text-[10px] text-slate-400">Adm No: --</p>
             </div>
-            <div class="text-right">
-              <span id="res-status" class="font-black text-xs px-2.5 py-1 rounded-xl bg-emerald-100 text-emerald-700">PASSED</span>
-              <p id="res-att" class="text-[10px] text-slate-500 font-bold mt-1">Attendance: --</p>
-            </div>
+            <span id="res-status" class="font-black text-xs px-2.5 py-1 rounded-xl bg-emerald-100 text-emerald-700">PASSED</span>
           </div>
           <div id="res-subjects-list" class="space-y-1 text-xs"></div>
           <div class="p-2.5 bg-slate-900 text-white rounded-xl flex justify-between items-center text-xs">
             <span class="font-bold">ആകെ മാർക്ക്:</span>
             <span id="res-total" class="font-black text-amber-300 text-sm">--</span>
           </div>
-          <div class="border-t pt-2 space-y-2 text-xs">
-            <div class="grid grid-cols-4 gap-2 text-center text-[9px] font-black p-2 bg-slate-50 rounded-xl border">
-              <div>ആകെ: <span id="rep-total-students">--</span></div>
-              <div>ആൺ: <span id="rep-boys">--</span></div>
-              <div>പെൺ: <span id="rep-girls">--</span></div>
-              <div>വിജയം: <span id="rep-pass-rate" class="text-emerald-700">100%</span></div>
-            </div>
-            <div class="pt-6 grid grid-cols-2 gap-4 text-center">
-              <div class="border-t border-slate-400 pt-1">
-                <p class="text-[9px] font-black">ക്ലാസ് അധ്യാപകൻ</p><div class="h-6"></div><p class="text-[8px] text-slate-400">ഒപ്പ്</p>
-              </div>
-              <div class="border-t border-slate-400 pt-1">
-                <p class="text-[9px] font-black">സദർ മുഅല്ലിം</p><div class="h-6"></div><p class="text-[8px] text-slate-400">ഒപ്പ് & സീൽ</p>
-              </div>
-            </div>
-          </div>
         </div>
         <button onclick="window.print()" class="w-full bg-slate-900 text-white font-black text-xs py-3 rounded-2xl shadow-xs">പ്രിന്റ് / സേവ് PDF</button>
       </div>
     </section>
 
-    <!-- 6. STUDENT & PARENT PROFILE -->
+    <!-- 5. STUDENT PORTAL -->
     <section id="tab-student-profile" class="hidden space-y-4">
       <div class="bg-gradient-to-r from-purple-800 to-indigo-800 text-white p-5 rounded-3xl shadow-lg flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -605,45 +529,48 @@
           </div>
         </div>
         <div class="flex gap-2">
-          <button onclick="switchTab('home')" class="text-xs bg-white/20 px-2.5 py-1.5 rounded-xl font-bold">പബ്ലിക് പോർട്ടൽ</button>
+          <button onclick="switchTab('home')" class="text-xs bg-white/20 px-2.5 py-1.5 rounded-xl font-bold">ഹോം സ്ക്രീൻ</button>
           <button onclick="logoutStudent()" class="text-xs bg-rose-600 px-3 py-1.5 rounded-xl font-bold">LOGOUT</button>
         </div>
       </div>
       
-      <!-- Fingerprint Register Box inside Student Portal -->
+      <!-- Biometric Fingerprint Register -->
       <div class="bg-white p-4 rounded-3xl border flex items-center justify-between text-xs">
         <div>
           <h4 class="font-black text-slate-800">ഫിംഗർ പ്രിന്റ് ലോഗിൻ രജിസ്ട്രേഷൻ</h4>
-          <p class="text-[10px] text-slate-400">പാസ്‌വേഡ് ഇല്ലാതെ ലോഗിൻ ചെയ്യാൻ വിരലടയാളം രജിസ്റ്റർ ചെയ്യുക</p>
+          <p class="text-[10px] text-slate-400">പാസ്‌വേഡ് ഇല്ലാതെ ലോഗിൻ ചെയ്യാൻ വിരലടയാളം രജിസ്റ്റർ ചെയ്യാം</p>
         </div>
         <button onclick="registerBiometricForActiveUser()" class="bg-indigo-600 text-white font-black px-3 py-1.5 rounded-xl">രജിസ്റ്റർ</button>
       </div>
     </section>
 
-    <!-- 7. MADRASA DETAILS -->
+    <!-- 6. MADRASA DETAILS (Total, Boys, Girls Class-wise Table) -->
     <section id="tab-madrasa-details" class="hidden space-y-4">
       <div class="bg-gradient-to-r from-emerald-800 to-teal-800 text-white p-5 rounded-3xl shadow-lg space-y-1">
         <span class="text-[9px] font-black uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">MADRASA STATS</span>
-        <h3 class="text-sm font-black">മദ്റസ വിവരങ്ങൾ</h3>
+        <h3 class="text-sm font-black">മദ്റസ വിവരങ്ങൾ (ക്ലാസ് തിരിച്ച്)</h3>
       </div>
-      <div class="grid grid-cols-3 gap-2">
-        <div class="bg-white p-3.5 rounded-2xl border text-center">
-          <span class="text-[9px] font-black text-slate-400 uppercase">ആകെ കുട്ടികൾ</span>
-          <h4 id="stat-total-students" class="text-lg font-black text-emerald-700">0</h4>
-        </div>
-        <div class="bg-white p-3.5 rounded-2xl border text-center">
-          <span class="text-[9px] font-black text-blue-500 uppercase">ആൺകുട്ടികൾ</span>
-          <h4 id="stat-total-boys" class="text-lg font-black text-blue-600">0</h4>
-        </div>
-        <div class="bg-white p-3.5 rounded-2xl border text-center">
-          <span class="text-[9px] font-black text-pink-500 uppercase">പെൺകുട്ടികൾ</span>
-          <h4 id="stat-total-girls" class="text-lg font-black text-pink-600">0</h4>
+
+      <div class="bg-white p-4 rounded-3xl border space-y-2 shadow-xs">
+        <h4 class="text-xs font-black text-slate-800 border-b pb-2">1 മുതൽ 10 വരെയുള്ള ക്ലാസുകളുടെ എണ്ണം</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-center text-xs border">
+            <thead class="bg-slate-100 font-bold">
+              <tr>
+                <th class="p-2 border">ക്ലാസ്</th>
+                <th class="p-2 border text-blue-600">ആൺകുട്ടികൾ</th>
+                <th class="p-2 border text-pink-600">പെൺകുട്ടികൾ</th>
+                <th class="p-2 border text-emerald-800">ആകെ</th>
+              </tr>
+            </thead>
+            <tbody id="madrasa-classwise-stats-body" class="font-bold divide-y"></tbody>
+          </table>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- MODAL 1: CONTACT DIRECTORY (Uses purely admin uploaded photos & titles) -->
+  <!-- MODAL 1: CONTACT DIRECTORY (Uses Admin Registered Staff Photos & Titles) -->
   <div id="staff-directory-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-sm rounded-[32px] p-5 shadow-2xl space-y-3 max-h-[90vh] flex flex-col">
       <div class="flex items-center gap-2 text-[#064e3b] border-b pb-3 font-bold text-sm">
@@ -657,7 +584,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: DEDICATED INDIVIDUAL PORTAL LOGIN (Clean, without multi-role lists) -->
+  <!-- MODAL 2: DEDICATED INDIVIDUAL PORTAL LOGIN (No Unwanted Roles Selection) -->
   <div id="role-login-popup" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-sm rounded-[32px] p-6 shadow-2xl space-y-3">
       <h3 id="dedicated-portal-title" class="text-center font-bold text-base text-[#064e3b]">Portal Login</h3>
@@ -746,7 +673,6 @@
     let activeUser = null;
     let activeStudent = null;
     let currentExamSetupSubjects = [];
-    let currentClassRoutineTasks = [];
 
     // Permanent PWA App Icon
     function generateDynamicAppIcon() {
@@ -797,7 +723,7 @@
 
     // Phone Back Button Fix
     window.addEventListener('popstate', function() {
-      const activeTabs = ['tab-daily-routine-view', 'tab-toppers-view', 'tab-student-profile', 'tab-result-check', 'tab-staff-dashboard'];
+      const activeTabs = ['tab-toppers-view', 'tab-student-profile', 'tab-result-check', 'tab-staff-dashboard'];
       let isSubOpen = false;
       activeTabs.forEach(t => {
         const el = document.getElementById(t);
@@ -808,18 +734,30 @@
 
     function switchTab(tId, pushState = true) {
       if (pushState && tId !== 'home') history.pushState({ tab: tId }, '', `#${tId}`);
-      ['home', 'daily-routine-view', 'toppers-view', 'student-profile', 'result-check', 'staff-dashboard'].forEach(id => {
+      ['home', 'toppers-view', 'student-profile', 'result-check', 'staff-dashboard', 'madrasa-details'].forEach(id => {
         const el = document.getElementById('tab-' + id);
         if (el) el.classList.add('hidden');
       });
       const curr = document.getElementById('tab-' + tId);
       if (curr) curr.classList.remove('hidden');
 
+      // Floating Return Badge condition
+      const retBadge = document.getElementById('return-portal-badge');
+      if (tId === 'home' && (activeUser || activeStudent)) {
+        retBadge.classList.remove('hidden');
+      } else {
+        retBadge.classList.add('hidden');
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      if (tId === 'daily-routine-view') loadPublicRoutineTasks();
       if (tId === 'toppers-view') renderToppersLeaderboard();
       if (tId === 'madrasa-details') calculateMadrasaStats();
+    }
+
+    function returnToActivePortal() {
+      if (activeUser) switchTab('staff-dashboard');
+      else if (activeStudent) switchTab('student-profile');
     }
 
     function toggleSidebar() {
@@ -838,7 +776,7 @@
 
     function triggerAdminSecretPrompt() { openDedicatedPortal('ADMIN'); }
 
-    // Dedicated Individual Login per Card (Eliminating unwanted role choices)
+    // Dedicated Individual Login per Card
     async function openDedicatedPortal(role) {
       document.getElementById('active-dedicated-role').value = role;
       document.getElementById('dedicated-portal-title').innerText = `${role} LOGIN`;
@@ -933,7 +871,7 @@
       }
     }
 
-    // Biometric Login
+    // Biometric Fingerprint System
     async function registerBiometricForActiveUser() {
       const activeObj = activeUser || activeStudent;
       if (!activeObj) return;
@@ -969,7 +907,7 @@
       alert("ഫിംഗർ പ്രിന്റ് സ്ഥിരീകരിച്ചു!");
     }
 
-    // Direct Call Modal (Exclusively showing purely admin registered staff photos and titles)
+    // Direct Call Modal (Uses purely Admin Registered Staff)
     async function openStaffDirectoryModal() {
       const modal = document.getElementById('staff-directory-popup');
       const list = document.getElementById('directory-content-list');
@@ -1009,13 +947,13 @@
 
     function closeStaffDirectoryModal() { document.getElementById('staff-directory-popup').classList.add('hidden'); }
 
-    // Staff Dashboard Setup
+    // Staff Dashboard Navigation
     function setupStaffDashboardUI() {
       document.getElementById('logged-role-badge').innerText = activeUser.role;
       document.getElementById('logged-user-name').innerText = activeUser.name;
       document.getElementById('assigned-classes-hint').innerText = "Classes: " + activeUser.classes.join(', ');
 
-      const drops = ['att-only-class', 'input-class', 'filter-table-class', 'cfg-class-select', 'entry-class-select', 'mgr-routine-class'];
+      const drops = ['input-class', 'filter-table-class', 'cfg-class-select', 'entry-class-select'];
       drops.forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -1027,18 +965,28 @@
     }
 
     function openStaffPanel(pId) {
-      ['student-mgmt', 'attendance-panel', 'marks-entry', 'exam-config', 'routine-manager', 'teacher-assign-mgmt', 'admin-mgmt'].forEach(p => {
+      ['student-mgmt', 'marks-entry', 'exam-config', 'admin-mgmt'].forEach(p => {
         const el = document.getElementById(`panel-${p}`);
         if (el) el.classList.add('hidden');
       });
       const curr = document.getElementById(`panel-${pId}`);
       if (curr) curr.classList.remove('hidden');
 
-      if (pId === 'student-mgmt') renderStudentsTable();
-      if (pId === 'attendance-panel') loadAttendanceTableOnly();
-      if (pId === 'marks-entry') loadMarkEntryTable();
-      if (pId === 'exam-config') loadExamSetupForCurrent();
-      if (pId === 'routine-manager') loadClassRoutineConfig();
+      ['students', 'marks', 'settings', 'admin-mgmt'].forEach(s => {
+        const b = document.getElementById(`snav-${s}`);
+        if (b) b.className = 'py-2 rounded-xl text-xs font-black text-slate-600';
+      });
+
+      if (pId === 'student-mgmt') {
+        document.getElementById('snav-students').className = 'py-2 rounded-xl text-xs font-black bg-[#065f46] text-white';
+        renderStudentsTable();
+      } else if (pId === 'marks-entry') {
+        document.getElementById('snav-marks').className = 'py-2 rounded-xl text-xs font-black bg-[#065f46] text-white';
+        loadMarkEntryTable();
+      } else if (pId === 'exam-config') {
+        document.getElementById('snav-settings').className = 'py-2 rounded-xl text-xs font-black bg-[#065f46] text-white';
+        loadExamSetupForCurrent();
+      }
     }
 
     function logoutStaff() {
@@ -1067,11 +1015,12 @@
             const sClass = row[2].trim();
             const uid = row[3] ? row[3].trim() : adm;
             const phone = row[4] ? row[4].trim() : '';
+            const gender = row[5] ? row[5].trim() : 'Boy';
 
             if (adm && name && sClass) {
               const docRef = db.collection('students').doc(adm);
               b.set(docRef, {
-                adm, name, class: sClass, uid, phone, pwd: '123',
+                adm, name, class: sClass, uid, phone, gender, pwd: '123',
                 attendance: { present: 0, total: 0 }
               }, { merge: true });
               count++;
@@ -1086,7 +1035,7 @@
       reader.readAsText(file);
     }
 
-    // Students Management Table with Fast Inline Editing for UID and Phone
+    // Students Management Table with Inline Editing for UID and Phone
     async function renderStudentsTable() {
       const tbody = document.getElementById('students-table-body');
       const cFilter = document.getElementById('filter-table-class').value;
@@ -1104,8 +1053,8 @@
             <td class="p-2"><img src="${d.photo || 'https://via.placeholder.com/40'}" class="w-8 h-8 rounded-lg object-cover border"></td>
             <td class="p-2 font-bold text-emerald-800">${d.adm}</td>
             <td class="p-2 font-bold text-slate-800">${d.name}</td>
-            <td class="p-1"><input type="text" id="uid-inline-${d.adm}" value="${d.uid || ''}" onchange="updateStudentFieldInline('${d.adm}', 'uid', this.value)" class="p-1 border rounded w-20 text-center font-bold"></td>
-            <td class="p-1"><input type="text" id="ph-inline-${d.adm}" value="${d.phone || ''}" onchange="updateStudentFieldInline('${d.adm}', 'phone', this.value)" class="p-1 border rounded w-24 text-center font-bold"></td>
+            <td class="p-1"><input type="text" value="${d.uid || ''}" onchange="updateStudentFieldInline('${d.adm}', 'uid', this.value)" class="p-1 border rounded w-20 text-center font-bold"></td>
+            <td class="p-1"><input type="text" value="${d.phone || ''}" onchange="updateStudentFieldInline('${d.adm}', 'phone', this.value)" class="p-1 border rounded w-24 text-center font-bold"></td>
             <td class="p-2 text-right space-x-1 whitespace-nowrap">
               <button onclick="editStudentFull('${d.adm}')" class="px-2 py-1 rounded bg-blue-50 text-blue-600"><i class="fa-solid fa-pen"></i></button>
               <button onclick="deleteStudentInline('${d.adm}')" class="px-2 py-1 rounded bg-red-50 text-red-600"><i class="fa-solid fa-trash"></i></button>
@@ -1177,48 +1126,6 @@
       document.getElementById('student-form-title').innerText = "✏️ വിദ്യാർത്ഥി എൻട്രി / തിരുത്തൽ";
     }
 
-    // Attendance Only Table (No Prayer requirement)
-    let attendanceOnlyStudents = [];
-    async function loadAttendanceTableOnly() {
-      const sClass = document.getElementById('att-only-class').value;
-      const tbody = document.getElementById('attendance-only-table-body');
-      tbody.innerHTML = "<tr><td colspan='4' class='p-3 text-slate-400'>ലോഡ് ചെയ്യുന്നു...</td></tr>";
-
-      const snap = await db.collection('students').where('class', '==', sClass).get();
-      tbody.innerHTML = '';
-      attendanceOnlyStudents = [];
-
-      snap.forEach(d => {
-        const st = d.data();
-        attendanceOnlyStudents.push(st);
-        const cur = st.attendance ? st.attendance.present : 0;
-        tbody.innerHTML += `
-          <tr class="hover:bg-slate-50">
-            <td class="p-2 font-bold text-emerald-800">${st.adm}</td>
-            <td class="p-2 text-left font-bold text-slate-800">${st.name}</td>
-            <td class="p-2">${cur} Days</td>
-            <td class="p-2"><input type="checkbox" id="att-only-chk-${st.adm}" checked class="w-4 h-4 accent-[#065f46]"></td>
-          </tr>
-        `;
-      });
-    }
-
-    async function saveAttendanceOnlyBatch() {
-      const b = db.batch();
-      attendanceOnlyStudents.forEach(st => {
-        const chk = document.getElementById(`att-only-chk-${st.adm}`).checked;
-        const curP = st.attendance ? st.attendance.present : 0;
-        const curT = st.attendance ? st.attendance.total : 0;
-
-        b.update(db.collection('students').doc(st.adm), {
-          attendance: { present: chk ? curP + 1 : curP, total: curT + 1 }
-        });
-      });
-      await b.commit();
-      alert("ഹാജർ രേഖപ്പെടുത്തി!");
-      loadAttendanceTableOnly();
-    }
-
     // Exam Setup (Fully functional Edit & Delete)
     async function loadExamSetupForCurrent() {
       const sClass = document.getElementById('cfg-class-select').value;
@@ -1278,7 +1185,7 @@
       alert("എക്സാം ക്രമീകരണം സേവ് ചെയ്തു!");
     }
 
-    // Mark Entry Table with Pre-View & After-View Tables
+    // Mark Entry Table Matching Image 8[span_2](start_span)[span_2](end_span)
     let currentExamConfig = null;
     let markEntryStudents = [];
     async function loadMarkEntryTable() {
@@ -1287,52 +1194,106 @@
       const thead = document.getElementById('marks-table-head');
       const tbody = document.getElementById('marks-table-body');
 
+      document.getElementById('rep-sheet-class-badge').innerText = sClass.toUpperCase();
+      document.getElementById('rep-sheet-exam-title').innerText = `${exam} മാർക്ക് ലിസ്റ്റ്`;
+
       const cfgDoc = await db.collection('exam_configs').doc(`${sClass}_${exam}`).get();
       currentExamConfig = cfgDoc.exists ? cfgDoc.data() : { subjects: [] };
 
-      let thHTML = "<tr class='bg-slate-100'><th class='p-2'>Adm</th><th class='p-2'>പേര്</th>";
-      currentExamConfig.subjects.forEach(s => thHTML += `<th class='p-2 text-center'>${s.name} (${s.total})</th>`);
-      thHTML += "<th class='p-2 text-right'>Action</th></tr>";
+      // Header matching Image 8[span_3](start_span)[span_3](end_span)
+      let thHTML = `
+        <tr>
+          <th class="p-2 border border-slate-700">ക്രമ നം.</th>
+          <th class="p-2 border border-slate-700 text-left">കുട്ടിയുടെ പേര്</th>
+          <th class="p-2 border border-slate-700">ആകെ ഹാജർ</th>
+      `;
+      currentExamConfig.subjects.forEach(s => thHTML += `<th class="p-2 border border-slate-700">${s.name}</th>`);
+      thHTML += `
+          <th class="p-2 border border-slate-700">ആകെ മാർക്ക്</th>
+          <th class="p-2 border border-slate-700">ക്ലാസിലെ സ്ഥാനം</th>
+          <th class="p-2 border border-slate-700">ഫലം (P/F)</th>
+        </tr>
+      `;
       thead.innerHTML = thHTML;
 
       const snap = await db.collection('students').where('class', '==', sClass).get();
       tbody.innerHTML = '';
       markEntryStudents = [];
-      let totalStudents = snap.size;
-      let passedCount = 0;
 
+      let boyTotal = 0, boyPass = 0;
+      let girlTotal = 0, girlPass = 0;
+
+      // Collect students and calculate rank
+      let rankList = [];
       snap.forEach(d => {
         const st = d.data();
-        markEntryStudents.push(st);
         const existingExam = st.exams ? st.exams[exam] : null;
-        let trHTML = `<tr><td class='p-2 font-bold text-emerald-800'>${st.adm}</td><td class='p-2 font-bold text-slate-800'>${st.name}</td>`;
-        let studentPassed = currentExamConfig.subjects.length > 0;
+        let tot = 0;
+        let isPass = currentExamConfig.subjects.length > 0;
 
-        currentExamConfig.subjects.forEach((s, idx) => {
-          const val = existingExam && existingExam.subjects && existingExam.subjects[s.name] !== undefined ? existingExam.subjects[s.name] : '';
-          if (val === '' || Number(val) < s.pass) studentPassed = false;
-          trHTML += `<td class='p-1 text-center'><input type='number' id='me-${st.adm}-${idx}' value='${val}' max='${s.total}' class='w-14 p-1 border rounded text-center font-bold'></td>`;
+        currentExamConfig.subjects.forEach(s => {
+          const val = existingExam && existingExam.subjects && existingExam.subjects[s.name] !== undefined ? Number(existingExam.subjects[s.name]) : null;
+          if (val === null || val < s.pass) isPass = false;
+          if (val !== null) tot += val;
         });
 
-        if (existingExam && studentPassed && currentExamConfig.subjects.length > 0) passedCount++;
+        rankList.push({ st, tot, isPass, existingExam });
+      });
 
-        trHTML += `<td class='p-1 text-right'><button onclick="deleteSingleStudentMarks('${st.adm}', '${exam}')" class='px-2 py-1 bg-rose-50 text-rose-600 rounded'><i class='fa-solid fa-trash'></i></button></td></tr>`;
+      // Rank calculation
+      rankList.sort((a, b) => b.tot - a.tot);
+      rankList.forEach((item, index) => { item.rank = item.isPass ? (index + 1) : '-'; });
+
+      let rowNo = 1;
+      rankList.forEach(item => {
+        const st = item.st;
+        markEntryStudents.push(st);
+
+        if (st.gender === 'Girl') {
+          girlTotal++;
+          if (item.isPass) girlPass++;
+        } else {
+          boyTotal++;
+          if (item.isPass) boyPass++;
+        }
+
+        const att = st.attendance ? st.attendance.present : 0;
+        let trHTML = `
+          <tr class="hover:bg-slate-50">
+            <td class="p-2 border">${rowNo}</td>
+            <td class="p-2 border text-left font-bold text-slate-900">${st.name}</td>
+            <td class="p-1 border"><input type="number" id="att-inp-${st.adm}" value="${att}" class="w-12 p-1 border rounded text-center font-bold"></td>
+        `;
+
+        currentExamConfig.subjects.forEach((s, idx) => {
+          const val = item.existingExam && item.existingExam.subjects && item.existingExam.subjects[s.name] !== undefined ? item.existingExam.subjects[s.name] : '';
+          trHTML += `<td class="p-1 border"><input type="number" id="me-${st.adm}-${idx}" value="${val}" max="${s.total}" class="w-14 p-1 border rounded text-center font-bold"></td>`;
+        });
+
+        trHTML += `
+            <td class="p-2 border font-black text-slate-900">${item.tot}</td>
+            <td class="p-2 border font-black text-indigo-700">${item.rank}</td>
+            <td class="p-2 border font-black ${item.isPass ? 'text-emerald-600' : 'text-rose-600'}">${item.isPass ? 'P' : 'F'}</td>
+          </tr>
+        `;
         tbody.innerHTML += trHTML;
+        rowNo++;
       });
 
-      document.getElementById('ana-total-students').innerText = totalStudents;
-      document.getElementById('ana-passed-count').innerText = passedCount;
-      document.getElementById('ana-failed-count').innerText = Math.max(0, totalStudents - passedCount);
-      document.getElementById('ana-pass-rate').innerText = totalStudents > 0 ? Math.round((passedCount / totalStudents) * 100) + '%' : '0%';
-    }
+      // Update Summary Table exactly like Image 8[span_4](start_span)[span_4](end_span)
+      document.getElementById('sum-boy-total').innerText = boyTotal;
+      document.getElementById('sum-boy-pass').innerText = boyPass;
+      document.getElementById('sum-boy-rate').innerText = boyTotal > 0 ? ((boyPass / boyTotal) * 100).toFixed(1) + '%' : '0%';
 
-    async function deleteSingleStudentMarks(adm, exam) {
-      if (!confirm(`മാർക്ക് ഡിലീറ്റ് ചെയ്യട്ടെ?`)) return;
-      await db.collection('students').doc(adm).update({
-        [`exams.${exam}`]: firebase.firestore.FieldValue.delete()
-      });
-      alert("മാർക്ക് ഡിലീറ്റ് ചെയ്തു!");
-      loadMarkEntryTable();
+      document.getElementById('sum-girl-total').innerText = girlTotal;
+      document.getElementById('sum-girl-pass').innerText = girlPass;
+      document.getElementById('sum-girl-rate').innerText = girlTotal > 0 ? ((girlPass / girlTotal) * 100).toFixed(1) + '%' : '0%';
+
+      const allTot = boyTotal + girlTotal;
+      const allPass = boyPass + girlPass;
+      document.getElementById('sum-all-total').innerText = allTot;
+      document.getElementById('sum-all-pass').innerText = allPass;
+      document.getElementById('sum-all-rate').innerText = allTot > 0 ? ((allPass / allTot) * 100).toFixed(1) + '%' : '0%';
     }
 
     async function saveBatchExamMarks() {
@@ -1346,45 +1307,52 @@
           subs[s.name] = val;
           total += val;
         });
+
+        const newAtt = Number(document.getElementById(`att-inp-${st.adm}`).value) || 0;
+
         b.set(db.collection('students').doc(st.adm), {
-          exams: { [exam]: { subjects: subs, totalMarks: total } }
+          exams: { [exam]: { subjects: subs, totalMarks: total } },
+          attendance: { present: newAtt, total: st.attendance ? st.attendance.total : newAtt }
         }, { merge: true });
       });
       await b.commit();
-      alert("മാർക്കുകൾ സേവ് ചെയ്തു!");
+      alert("മാർക്കുകളും ഹാജറും വിജയകരമായി സേവ് ചെയ്തു!");
       loadMarkEntryTable();
     }
 
-    // Dynamic Routine Tasks Management
-    async function loadClassRoutineConfig() {
-      const sClass = document.getElementById('mgr-routine-class').value;
-      const doc = await db.collection('class_routines').doc(sClass).get();
-      currentClassRoutineTasks = doc.exists ? (doc.data().tasks || []) : ["ഇന്നത്തെ പാഠങ്ങൾ പഠിച്ചു", "ഹോംവർക്ക് ചെയ്തു", "നിസ്കാരം നിർവ്വഹിച്ചു"];
-      renderManagerRoutineTasks();
-    }
+    // Class-wise Madrasa Stats
+    async function calculateMadrasaStats() {
+      const snap = await db.collection('students').get();
+      let counts = {};
+      for (let i = 1; i <= 10; i++) {
+        counts[`Class ${i}`] = { boy: 0, girl: 0, total: 0 };
+      }
 
-    function addClassRoutineTask() {
-      const t = document.getElementById('mgr-task-text').value.trim();
-      if (!t) return;
-      currentClassRoutineTasks.push(t);
-      document.getElementById('mgr-task-text').value = '';
-      renderManagerRoutineTasks();
-    }
-
-    function renderManagerRoutineTasks() {
-      const box = document.getElementById('mgr-tasks-list');
-      box.innerHTML = '';
-      currentClassRoutineTasks.forEach((t, i) => {
-        box.innerHTML += `<div class="p-2 bg-slate-50 border rounded-xl flex justify-between font-bold"><span>${t}</span><button onclick="currentClassRoutineTasks.splice(${i},1);renderManagerRoutineTasks();" class="text-rose-600">✕</button></div>`;
+      snap.forEach(d => {
+        const st = d.data();
+        const c = st.class;
+        if (counts[c]) {
+          counts[c].total++;
+          if (st.gender === 'Girl') counts[c].girl++;
+          else counts[c].boy++;
+        }
       });
+
+      const tbody = document.getElementById('madrasa-classwise-stats-body');
+      tbody.innerHTML = '';
+      for (let c in counts) {
+        tbody.innerHTML += `
+          <tr class="hover:bg-slate-50">
+            <td class="p-2 border font-black">${c}</td>
+            <td class="p-2 border text-blue-600">${counts[c].boy}</td>
+            <td class="p-2 border text-pink-600">${counts[c].girl}</td>
+            <td class="p-2 border text-emerald-800 font-black">${counts[c].total}</td>
+          </tr>
+        `;
+      }
     }
 
-    async function saveClassRoutineTasks() {
-      const sClass = document.getElementById('mgr-routine-class').value;
-      await db.collection('class_routines').doc(sClass).set({ tasks: currentClassRoutineTasks });
-      alert("റൊട്ടീൻ വിവരങ്ങൾ സേവ് ചെയ്തു!");
-    }
-
+    // Public Daily Routine Viewer
     async function loadPublicRoutineTasks() {
       const sClass = document.getElementById('routine-class-filter').value;
       const box = document.getElementById('public-routine-tasks-list');
@@ -1394,46 +1362,6 @@
       box.innerHTML = '';
       tasks.forEach((t, i) => {
         box.innerHTML += `<div class="p-2.5 bg-slate-50 border rounded-xl flex items-center gap-2 font-bold"><span class="w-5 h-5 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center text-[10px]">${i+1}</span><span>${t}</span></div>`;
-      });
-    }
-
-    // Admin & Staff Allocation
-    async function adminSaveTeacherProfile() {
-      const name = document.getElementById('adm-t-name').value.trim();
-      const phone = document.getElementById('adm-t-phone').value.trim();
-      const pwd = document.getElementById('adm-t-pwd').value.trim();
-      const file = document.getElementById('adm-t-photo-file').files[0];
-      const chks = document.querySelectorAll('#adm-classes-checkboxes input[type="checkbox"]:checked');
-      const classes = Array.from(chks).map(c => c.value);
-
-      if (!name || !phone || !pwd || classes.length === 0) { alert("വിവരങ്ങൾ പൂർണ്ണമായി നൽകുക!"); return; }
-      const photo = await toBase64(file);
-      await db.collection('teachers').add({ name, phone, password: pwd, classes, photo, createdAt: new Date() });
-      alert("അധ്യാപകനെ സേവ് ചെയ്തു!");
-      document.getElementById('adm-t-name').value = '';
-      document.getElementById('adm-t-phone').value = '';
-      document.getElementById('adm-t-pwd').value = '';
-    }
-
-    async function adminSaveNoticeContent() {
-      const t = document.getElementById('adm-notice-title-in').value.trim();
-      const d = document.getElementById('adm-notice-desc-in').value.trim();
-      if (t) document.getElementById('notice-title').innerText = t;
-      if (d) document.getElementById('notice-desc').innerText = d;
-      alert("നോട്ടീസ് അപ്ഡേറ്റ് ചെയ്തു!");
-    }
-
-    function adminTogglePublicResult(val) {
-      document.getElementById('notice-result-banner').classList.toggle('hidden', !val);
-      alert(val ? "റിസൾട്ട് പബ്ലിഷ് ചെയ്തു!" : "റിസൾട്ട് പിൻവലിച്ചു!");
-    }
-
-    function toBase64(file) {
-      return new Promise((res) => {
-        if (!file) return res("https://via.placeholder.com/100");
-        const r = new FileReader();
-        r.onload = (e) => res(e.target.result);
-        r.readAsDataURL(file);
       });
     }
 
@@ -1463,55 +1391,9 @@
         list.innerHTML += `<div class="flex justify-between p-1.5 bg-slate-50 rounded-lg font-bold"><span>${s}</span><span>${subs[s]} / 50</span></div>`;
       }
       document.getElementById('res-total').innerText = examData ? examData.totalMarks : 0;
-
-      const allClassSnap = await db.collection('students').where('class', '==', sData.class).get();
-      let cTotal = allClassSnap.size, cBoys = 0, cGirls = 0;
-      allClassSnap.forEach(cd => { if (cd.data().gender === 'Girl') cGirls++; else cBoys++; });
-      document.getElementById('rep-total-students').innerText = cTotal;
-      document.getElementById('rep-boys').innerText = cBoys;
-      document.getElementById('rep-girls').innerText = cGirls;
     }
 
-    function calculateMadrasaStats() {
-      db.collection('students').get().then(snap => {
-        let total = snap.size, boys = 0, girls = 0;
-        snap.forEach(d => { if (d.data().gender === 'Girl') girls++; else boys++; });
-        document.getElementById('stat-total-students').innerText = total;
-        document.getElementById('stat-total-boys').innerText = boys;
-        document.getElementById('stat-total-girls').innerText = girls;
-      });
-    }
-
-    function setupStudentProfileUI() {
-      document.getElementById('sp-name').innerText = activeStudent.name;
-      document.getElementById('sp-class-uid').innerText = `Class: ${activeStudent.class} • UID: ${activeStudent.uid || activeStudent.adm}`;
-      document.getElementById('sp-photo').src = activeStudent.photo || "https://via.placeholder.com/100";
-    }
-
-    function logoutStudent() {
-      activeStudent = null;
-      localStorage.removeItem('mum_active_student');
-      switchTab('home');
-    }
-
-    async function renderSidebarTeachers() {
-      const box = document.getElementById('sidebar-teachers-list');
-      const snap = await db.collection('teachers').get();
-      box.innerHTML = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        box.innerHTML += `
-          <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center">
-            <div>
-              <p class="font-bold text-slate-800 text-[11px]">${d.name}</p>
-              <p class="text-[9px] text-indigo-600 font-bold">${d.classes ? d.classes.join(', ') : ''}</p>
-            </div>
-            <a href="tel:${d.phone}" class="text-emerald-600 font-bold text-[11px]"><i class="fa-solid fa-phone mr-1"></i>${d.phone}</a>
-          </div>
-        `;
-      });
-    }
-
+    // Toppers Leaderboard
     async function renderToppersLeaderboard() {
       const cFilter = document.getElementById('toppers-class-select').value;
       const gFilter = document.getElementById('toppers-gender-select').value;
@@ -1523,11 +1405,14 @@
       if (gFilter !== 'All') q = q.where('gender', '==', gFilter);
 
       const snap = await q.get();
+      if (snap.empty) { box.innerHTML = "<p class='text-xs text-center text-slate-400 py-3'>വിവരങ്ങൾ ലഭ്യമല്ല.</p>"; return; }
+
       let list = [];
       snap.forEach(d => {
         const data = d.data();
-        const score = (data.dailyScore || 20) + (data.totalMarks || 250);
-        list.push({ ...data, computedTotal: score });
+        let examTot = 0;
+        if (data.exams && data.exams['പാദ വാർഷിക പരീക്ഷ']) examTot = data.exams['പാദ വാർഷിക പരീക്ഷ'].totalMarks || 0;
+        list.push({ ...data, computedTotal: examTot });
       });
 
       list.sort((a, b) => b.computedTotal - a.computedTotal);
@@ -1543,6 +1428,46 @@
               </div>
             </div>
             <span class="font-black text-indigo-700 text-xs">${st.computedTotal} Pts</span>
+          </div>
+        `;
+      });
+    }
+
+    function setupStudentProfileUI() {
+      document.getElementById('sp-name').innerText = activeStudent.name;
+      document.getElementById('sp-class-uid').innerText = `Class: ${activeStudent.class} • UID: ${activeStudent.uid || activeStudent.adm}`;
+      document.getElementById('sp-photo').src = activeStudent.photo || "https://via.placeholder.com/100";
+    }
+
+    function logoutStudent() {
+      activeStudent = null;
+      localStorage.removeItem('mum_active_student');
+      switchTab('home');
+    }
+
+    function toBase64(file) {
+      return new Promise((res) => {
+        if (!file) return res("https://via.placeholder.com/100");
+        const r = new FileReader();
+        r.onload = (e) => res(e.target.result);
+        r.readAsDataURL(file);
+      });
+    }
+
+    // Sidebar Directory Contacts Helper
+    async function renderSidebarTeachers() {
+      const box = document.getElementById('sidebar-teachers-list');
+      const snap = await db.collection('teachers').get();
+      box.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        box.innerHTML += `
+          <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center">
+            <div>
+              <p class="font-bold text-slate-800 text-[11px]">${d.name}</p>
+              <p class="text-[9px] text-indigo-600 font-bold">${d.classes ? d.classes.join(', ') : ''}</p>
+            </div>
+            <a href="tel:${d.phone}" class="text-emerald-600 font-bold text-[11px]"><i class="fa-solid fa-phone mr-1"></i>${d.phone}</a>
           </div>
         `;
       });
